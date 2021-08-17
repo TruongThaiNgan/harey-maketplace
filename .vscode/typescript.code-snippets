@@ -1,4 +1,15 @@
 {
+  //HTML
+  "Button": {
+    "prefix": "button",
+    "body": ["<button type=\"button\">", "$0", "</button>"],
+    "description": "Button HTML"
+  },
+  "Div With Classes": {
+    "prefix": "dwc",
+    "body": ["<div className={classes.$1}>", "$0", "</div>"],
+    "description": "Div with classes"
+  },
   // React
   "React Arrow Function Component Export": {
     "prefix": ["rafce", "ReactArrowFunctionComponentExport"],

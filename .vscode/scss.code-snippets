@@ -1,0 +1,17 @@
+{
+  "Row Center": {
+    "prefix": ["rc", "RowCenter"],
+    "body": ["display: flex;", "justify-content: center;", "align-items: center;"],
+    "description": "Row Center"
+  },
+  "Column Center": {
+    "prefix": ["cc", "ColumnCenter"],
+    "body": ["display: flex;", "flex-direction: column;", "justify-content: center;", "align-items: center;"],
+    "description": "Column Center"
+  },
+  "Row Space Between": {
+    "prefix": ["rsb", "RowSpaceBetween"],
+    "body": ["display: flex;", "justify-content: space-between;", "align-items: center;"],
+    "description": "Row Space Between"
+  }
+}

@@ -1,0 +1,19 @@
+.priceSlider {
+  .title {
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+  .price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button {
+      padding: 0.5rem;
+      background-color: rgba(89, 91, 212, 1);
+      color: white;
+      border: 1px solid rgba(89, 91, 212, 1);
+      border-radius: 2px;
+      font-weight: 400;
+    }
+  }
+}

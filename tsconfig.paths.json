@@ -7,9 +7,9 @@
       "@Constant/*": ["src/constants/*"],
       "@Slice/*": ["src/store/slices/*"],
       "@Page/*": ["src/pages/*"],
-      "@Assets/*": ["src/assets/*"],
       "@Image/*": ["src/assets/images/*"],
       "@Icons/*": ["src/assets/icons/*"],
+      "@Assets/*": ["src/assets/*"],
       "@Util/*": ["src/utils/*"]
     }
   }

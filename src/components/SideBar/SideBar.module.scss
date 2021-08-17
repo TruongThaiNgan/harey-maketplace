@@ -1,0 +1,106 @@
+.sideBar {
+  padding: 0 1rem 0 2rem;
+  background-color: #f8f9fa;
+  .brand {
+    margin-top: 2rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 1rem;
+    border: none;
+    cursor: pointer;
+    div {
+      font-weight: bold;
+      margin-bottom: 2rem;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      li {
+        margin-bottom: 0.5rem;
+        &::before {
+          content: '⇨';
+          margin-right: 0.5rem;
+        }
+        span {
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+  .color {
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-top: 2rem;
+    padding: 1rem;
+    div {
+      font-weight: bold;
+      margin-bottom: 2rem;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      li {
+        display: flex;
+        height: 2rem;
+        cursor: pointer;
+        .check {
+          width: 1rem;
+          height: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #cacaca;
+          border-radius: 2px;
+          margin-right: 0.5rem;
+          color: white;
+        }
+        &:hover > .check {
+          background-color: rgba(89, 91, 212, 1);
+        }
+        input {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+  .price {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .topRate {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    .titleTopRate {
+      font-weight: bold;
+      margin-bottom: 2rem;
+    }
+    .product {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      .info {
+        display: flex;
+        flex-direction: column;
+        .title {
+          font-weight: normal;
+          margin-bottom: 1rem;
+        }
+        .money {
+          color: rgba(89, 91, 212, 1);
+          font-size: 1.3rem;
+          font-weight: 500;
+        }
+      }
+      .imgProduct {
+        img {
+          height: 90px;
+          width: 90px;
+        }
+      }
+    }
+  }
+}
