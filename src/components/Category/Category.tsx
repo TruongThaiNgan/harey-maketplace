@@ -8,6 +8,7 @@ import MobileScreenShareOutlinedIcon from '@material-ui/icons/MobileScreenShareO
 import BuildOutlinedIcon from '@material-ui/icons/BuildOutlined';
 import TvOutlinedIcon from '@material-ui/icons/TvOutlined';
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
+import { useTranslation } from 'react-i18next';
 
 import classes from './Category.module.scss';
 
@@ -15,18 +16,18 @@ interface CategoryProps {
   template?: string;
 }
 const listCategories = [
-  { title: 'Accessories', icon: <SelectAllOutlinedIcon />, hasButtonAdd: false },
-  { title: 'Camera & Photos', icon: <CameraAltOutlinedIcon />, hasButtonAdd: true },
-  { title: 'Computers', icon: <ComputerOutlinedIcon />, hasButtonAdd: false },
-  { title: 'Consoles & Games', icon: <SportsEsportsOutlinedIcon />, hasButtonAdd: false },
-  { title: 'Gadgets', icon: <HeadsetOutlinedIcon />, hasButtonAdd: true },
-  { title: 'Mobiles & Tablets', icon: <MobileScreenShareOutlinedIcon />, hasButtonAdd: true },
-  { title: 'Tool & storage', icon: <BuildOutlinedIcon />, hasButtonAdd: false },
-  { title: "Tv's & Audio", icon: <TvOutlinedIcon />, hasButtonAdd: true },
+  { title: 'catelogy.accessories', icon: <SelectAllOutlinedIcon />, hasButtonAdd: false },
+  { title: 'catelogy.camera', icon: <CameraAltOutlinedIcon />, hasButtonAdd: true },
+  { title: 'catelogy.computer', icon: <ComputerOutlinedIcon />, hasButtonAdd: false },
+  { title: 'catelogy.console', icon: <SportsEsportsOutlinedIcon />, hasButtonAdd: false },
+  { title: 'catelogy.gadgets', icon: <HeadsetOutlinedIcon />, hasButtonAdd: true },
+  { title: 'catelogy.mobile', icon: <MobileScreenShareOutlinedIcon />, hasButtonAdd: true },
+  { title: 'catelogy.tool', icon: <BuildOutlinedIcon />, hasButtonAdd: false },
+  { title: 'catelogy.tv', icon: <TvOutlinedIcon />, hasButtonAdd: true },
 ];
 
 const Category: React.FC<CategoryProps> = ({ template }) => {
-  const temp = 0;
+  const [t] = useTranslation();
   return (
     <div className={classes.category}>
       <div className={classes.product}>Product categories</div>
@@ -35,7 +36,7 @@ const Category: React.FC<CategoryProps> = ({ template }) => {
           <li key={item.title}>
             <div className={classes.left}>
               <button type="button">{item.icon}</button>
-              <span>{item.title}</span>
+              <span>{t(item.title)}</span>
             </div>
             {item.hasButtonAdd && (
               <div className={classes.right}>

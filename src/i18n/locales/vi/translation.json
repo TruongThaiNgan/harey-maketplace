@@ -1,0 +1,87 @@
+{
+  "header": {
+    "home": "Trang chủ",
+    "blog": "Blog",
+    "shop": "Cửa hàng",
+    "aboutUs": "Về chúng tôi",
+    "contactUs": "Liên hệ chúng tôi",
+    "comingSoon": "Sắp có",
+    "pages": "Trang",
+    "elements": "Các sản phẩm",
+    "ship": "Đang vận chuyển tới Canada",
+    "allCategories": "Tất cả thể loại",
+    "categories": "THỂ LOẠI",
+    "look": "Bạn đang tìm kiếm gì?"
+  },
+  "sideBar": {
+    "black": "Đen",
+    "blue": "Xanh dương",
+    "gray": "Xám",
+    "green": "Xanh lục",
+    "red": "Đỏ",
+    "yellow": "Vàng",
+    "brands": "Thương hiệu",
+    "color": "Màu",
+    "topRateProducts": "Top sản phẩm",
+    "filter": "LỌC",
+    "price": "Giá"
+  },
+  "catelogy": {
+    "accessories": "Phụ kiện",
+    "camera": "Máy ảnh & Hình ảnh",
+    "computer": "Máy tính",
+    "console": "Console & trò chơi",
+    "gadgets": "Tiện ích",
+    "mobile": "Di động & máy tính bảng",
+    "tool": "Công cụ & lưu trữ",
+    "tv": "Tv's & audio"
+  },
+  "toolBar": {
+    "default": "Sắp xếp mặc định",
+    "popularity": "Sắp xếp theo phổ biến",
+    "rating": "Sắp xếp theo xếp hạng trung bình",
+    "latest": "Sắp xếp theo mới nhất",
+    "priceIncrease": "Sắp xếp theo giá: từ thấp đến cao",
+    "priceDecrease": "Sắp xếp theo giá: từ cao đến thấp",
+    "show": "Hiển thị",
+    "compare": "So sánh"
+  },
+  "product": {
+    "addToCart": "Thêm vào giỏ",
+    "addToWishList": "Thêm vào danh sách mong muốn",
+    "addToCompare": "Thêm vào so sánh",
+    "quickView": "Xem nhanh",
+    "sale": "Giảm giá!"
+  },
+
+  "banner": {
+    "look": "Tìm kiếm thêm?",
+    "get": "Lấy",
+    "voucher": "phiếu giảm giá cho máy tính xách tay",
+    "shop": "MUA NGAY"
+  },
+  "footer": {
+    "info": "Thông tin",
+    "shop": "Cửa hàng",
+    "cart": "Giỏ hàng",
+    "aboutUs": "Về chúng tôi",
+    "contactUs": "Liên hệ chúng tôi",
+    "comingSoon": "Sắp có",
+    "home": "Trang chủ",
+    "blog": "Blog",
+    "wishList": "Danh sách mong muốn",
+    "compare": "So sánh",
+    "portfolio": "Portfolio",
+    "subscribe": "ĐẶT MUA",
+    "account": "Tài khoản của tôi",
+    "service": "Dịch vụ khách hàng",
+    "quickContact": "Liên hệ nhanh",
+    "sendMessage": "GỬI TIN NHẮN",
+    "specialOffers": "Ưu đãi đặc biệt",
+    "contact": "Liên hệ",
+    "copyRight": "Copyright © 2020. eLab WordPress Theme bởi StylemixThemes",
+    "enterEmail": "Nhập E-mail của bạn để đăng ký...",
+    "enterYourEmail": "Nhập email của bạn",
+    "writeYourReview": "Viết đánh giá của bạn"
+  }
+}

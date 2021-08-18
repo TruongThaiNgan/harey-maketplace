@@ -8,6 +8,7 @@ import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import ShuffleOutlinedIcon from '@material-ui/icons/ShuffleOutlined';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import logo from '@Image/logo.svg';
 
@@ -22,7 +23,7 @@ const iconlist = [
   { id: 2, icon: <InstagramIcon /> },
   { id: 3, icon: <FacebookIcon /> },
 ];
-const linkList = ['Home', 'Blog', 'Coming Soon'];
+const linkList = ['header.home', 'header.blog', 'header.comingSoon'];
 const featureList = [
   { id: 1, icon: <ShuffleOutlinedIcon /> },
   { id: 2, icon: <PersonOutlineOutlinedIcon /> },
@@ -30,17 +31,17 @@ const featureList = [
   { id: 4, icon: <ShoppingCartOutlinedIcon /> },
 ];
 const buttonList = [
-  { id: 1, title: 'Home' },
-  { id: 2, title: 'Shop' },
-  { id: 3, title: 'About us' },
-  { id: 4, title: 'Contact us' },
-  { id: 5, title: 'Coming Soon' },
-  { id: 6, title: 'Pages' },
-  { id: 7, title: 'Elements' },
+  { id: 1, title: 'header.home' },
+  { id: 2, title: 'header.shop' },
+  { id: 3, title: 'header.aboutUs' },
+  { id: 4, title: 'header.contactUs' },
+  { id: 5, title: 'header.comingSoon' },
+  { id: 6, title: 'header.pages' },
+  { id: 7, title: 'header.elements' },
 ];
 
 const Header: React.FC<HeaderProps> = ({ template }) => {
-  const temp = 0;
+  const [t] = useTranslation();
   return (
     <header className={classes.header}>
       <div className={classes.listLink}>
@@ -50,12 +51,12 @@ const Header: React.FC<HeaderProps> = ({ template }) => {
               {icon.icon}
             </button>
           ))}
-          <span>Now shipping to Canada</span>
+          <span>{t('header.ship')}</span>
         </div>
 
         <div className={classes.right}>
           {linkList.map((link) => (
-            <span key={link}>{link}</span>
+            <span key={link}>{t(link)}</span>
           ))}
         </div>
       </div>
@@ -67,9 +68,9 @@ const Header: React.FC<HeaderProps> = ({ template }) => {
         </button>
 
         <div className={classes.searchBar}>
-          <input type="text" />
+          <input type="text" placeholder={t('header.look')} />
           <button type="button" className={classes.allCategoriesButton}>
-            ALL CATEGORIES
+            {t('header.allCategories')}
           </button>
           <button type="button" className={classes.searchButton}>
             <SearchOutlinedIcon />
@@ -87,7 +88,7 @@ const Header: React.FC<HeaderProps> = ({ template }) => {
 
       <nav className={classes.nav}>
         <div className={classes.categories}>
-          <span>CATEGORIES</span>
+          <span>{t('header.categories')}</span>
           <button type="button">
             <MenuIcon />
           </button>
@@ -96,7 +97,7 @@ const Header: React.FC<HeaderProps> = ({ template }) => {
         <div className={classes.listButton}>
           {buttonList.map((item) => (
             <button type="button" key={`${item.id}`}>
-              {item.title}
+              {t(item.title)}
             </button>
           ))}
         </div>

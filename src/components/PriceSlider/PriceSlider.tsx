@@ -1,6 +1,7 @@
 import Slider from '@material-ui/core/Slider';
 import { withStyles } from '@material-ui/core/styles';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import classes from './PriceSlider.module.scss';
 
@@ -45,13 +46,14 @@ const AirbnbThumbComponent: React.FC = ({ ...res }) => (
   </span>
 );
 const PriceSlider: React.FC<PriceSliderProps> = ({ template }) => {
+  const [t] = useTranslation();
   const [value, setValue] = useState<number[]>([59, 1499]);
   const handleChange = (event: React.ChangeEvent<unknown>, newValue: number | number[]): void => {
     setValue(newValue as number[]);
   };
   return (
     <div className={classes.priceSlider}>
-      <div className={classes.title}>Price</div>
+      <div className={classes.title}>{t('sideBar.price')}</div>
       <AirbnbSlider
         ThumbComponent={AirbnbThumbComponent}
         value={value}
@@ -63,9 +65,9 @@ const PriceSlider: React.FC<PriceSliderProps> = ({ template }) => {
         max={1499}
       />
       <div className={classes.price}>
-        <button type="button">FILTER</button>
+        <button type="button">{t('sideBar.filter')}</button>
         <span>
-          Price: <strong>{`$${value[0]}`}</strong> — <strong>{`$${value[1]}`}</strong>
+          {t('sideBar.price')}: <strong>{`$${value[0]}`}</strong> — <strong>{`$${value[1]}`}</strong>
         </span>
       </div>
     </div>

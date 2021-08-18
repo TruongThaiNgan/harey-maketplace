@@ -3,6 +3,7 @@ import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
 import LocalPhoneOutlinedIcon from '@material-ui/icons/LocalPhoneOutlined';
 import PermPhoneMsgOutlinedIcon from '@material-ui/icons/PermPhoneMsgOutlined';
 import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
+import { useTranslation } from 'react-i18next';
 
 import skype from '@Image/skype.svg';
 import copyRight from '@Image/copyRight.png';
@@ -17,11 +18,11 @@ interface FooterProps {
 }
 const infoList = [
   { icon: skype, title: 'Skype', content: 'E-lab_shop_contact' },
-  { icon: phoneCall, title: 'Info line', content: '878 - 3853 -9576' },
+  { icon: phoneCall, title: 'footer.info', content: '878 - 3853 -9576' },
   { icon: mail, title: 'Email', content: 'shopelab@gmail.com' },
 ];
-const myAccountList = ['Shop', 'Cart', 'About Us', 'Contact Us', 'Coming Soon'];
-const customServicesList = ['Home', 'Blog', 'Wishlist', 'Compare', 'Portfolio'];
+const myAccountList = ['footer.shop', 'footer.cart', 'footer.aboutUs', 'footer.contactUs', 'footer.comingSoon'];
+const customServicesList = ['footer.home', 'footer.blog', 'footer.wishList', 'footer.compare', 'footer.portfolio'];
 const contactList = [
   { icon: <RoomOutlinedIcon />, content: '445 Mount Eden Road' },
   { icon: <LocalPhoneOutlinedIcon />, content: '878 - 3853 -9576' },
@@ -30,7 +31,7 @@ const contactList = [
 ];
 
 const Footer: React.FC<FooterProps> = ({ template }) => {
-  const temp = 0;
+  const [t] = useTranslation();
   return (
     <div className={classes.footer}>
       <div className={classes.info}>
@@ -39,65 +40,65 @@ const Footer: React.FC<FooterProps> = ({ template }) => {
             <div className={classes.contact} key={item.title}>
               <img src={item.icon} alt={item.title} />
               <div className={classes.record}>
-                <span className={classes.title}>{item.title}</span>
-                <span>{item.content}</span>
+                <span className={classes.title}>{t(item.title)}</span>
+                <span>{t(item.content)}</span>
               </div>
             </div>
           ))}
         </div>
 
         <div className={classes.right}>
-          <input type="text" placeholder="Enter your E-mail to subscribe..." />
-          <button type="button">SUBSCRIBE</button>
+          <input type="text" placeholder={t('footer.enterEmail')} />
+          <button type="button">{t('footer.subscribe')}</button>
         </div>
       </div>
 
       <div className={classes.more}>
         <div className={classes.list}>
-          <span>My account</span>
+          <span>{t('footer.account')}</span>
           <ul>
             {myAccountList.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item}>{t(item)}</li>
             ))}
           </ul>
         </div>
 
         <div className={classes.list}>
-          <span>Customer Services</span>
+          <span>{t('footer.service')}</span>
           <ul>
             {customServicesList.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item}>{t(item)}</li>
             ))}
           </ul>
         </div>
 
         <div className={classes.list}>
           <div className={classes.quickContact}>
-            <span>Quick Contact</span>
-            <input type="text" placeholder="Enter your email" />
-            <textarea rows={3} placeholder="Write your review" />
-            <button type="button">SEND MESSAGE</button>
+            <span>{t('footer.quickContact')}</span>
+            <input type="text" placeholder={t('footer.enterYourEmail')} />
+            <textarea rows={3} placeholder={t('footer.writeYourReview')} />
+            <button type="button">{t('footer.sendMessage')}</button>
           </div>
         </div>
 
         <div className={classes.list}>
-          <span>Special offers</span>
+          <span>{t('footer.specialOffers')}</span>
           <img src={specialOffer} alt="specialOffer" />
         </div>
 
         <div className={classes.list}>
-          <span>Contact</span>
+          <span>{t('footer.contact')}</span>
           {contactList.map((item) => (
             <div className={classes.contactRow} key={item.content}>
               <button type="button">{item.icon}</button>
-              <span>{item.content}</span>
+              <span>{t(item.content)}</span>
             </div>
           ))}
         </div>
       </div>
 
       <div className={classes.copyRight}>
-        <span>Copyright © 2020. eLab WordPress Theme by StylemixThemes</span>
+        <span>{t('footer.copyRight')}</span>
         <img src={copyRight} alt="copyRight" />
       </div>
     </div>

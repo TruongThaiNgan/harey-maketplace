@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import classes from './Banner.module.scss';
 
@@ -7,16 +8,16 @@ interface BannerProps {
 }
 
 const Banner: React.FC<BannerProps> = ({ template }) => {
-  const temp = 0;
+  const [t] = useTranslation();
   return (
     <div className={classes.banner}>
       <div className={classes.text}>
-        <div className={classes.title}>Looking for more?</div>
+        <div className={classes.title}>{t('banner.look')}</div>
         <div className={classes.content}>
-          <strong>Get $100</strong> Voucher for Laptops
+          <strong>{`${t('banner.get')} $100`}</strong> {t('banner.voucher')}
         </div>
         <div className={classes.button}>
-          <button type="button">SHOP NOW</button>
+          <button type="button">{t('banner.shop')}</button>
         </div>
       </div>
     </div>

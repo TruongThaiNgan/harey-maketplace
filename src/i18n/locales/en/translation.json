@@ -1,0 +1,86 @@
+{
+  "header": {
+    "home": "Home",
+    "blog": "Blog",
+    "shop": "Shop",
+    "aboutUs": "About us",
+    "contactUs": "Contact us",
+    "comingSoon": "Coming Soon",
+    "pages": "Pages",
+    "elements": "Elements",
+    "ship": "Now shipping to Canada",
+    "allCategories": "ALL CATEGORIES",
+    "categories": "CATEGORIES",
+    "look": "What are you looking for?"
+  },
+  "sideBar": {
+    "black": "Black",
+    "blue": "Blue",
+    "gray": "Gray",
+    "green": "Green",
+    "red": "Red",
+    "yellow": "Yellow",
+    "brands": "Brands",
+    "color": "Color",
+    "topRateProducts": "Top rate products",
+    "filter": "FILTER",
+    "price": "Price"
+  },
+  "catelogy": {
+    "accessories": "Accessories",
+    "camera": "Camera & Photos",
+    "computer": "Computers",
+    "console": "Console & Games",
+    "gadgets": "Gadgets",
+    "mobile": "Mobiles & Tablets",
+    "tool": "Tool & storage",
+    "tv": "Tv's & Audio"
+  },
+  "toolBar": {
+    "default": "Default sorting",
+    "popularity": "Sort by popylarity",
+    "rating": "Sort by average rating",
+    "latest": "Sort by latest",
+    "priceIncrease": "Sort by price: low to high",
+    "priceDecrease": "Sort by price: high to low",
+    "show": "Show",
+    "compare": "Compare"
+  },
+  "product": {
+    "addToCart": "Add to cart",
+    "addToWishList": "Add to wishlist",
+    "addToCompare": "Add to Compare",
+    "quickView": "Quick view",
+    "sale": "Sale!"
+  },
+  "banner": {
+    "look": "Looking for more?",
+    "get": "Get",
+    "voucher": "Voucher for Laptops",
+    "shop": "SHOP NOW"
+  },
+  "footer": {
+    "info": "Info line",
+    "shop": "Shop",
+    "cart": "Cart",
+    "aboutUs": "About us",
+    "contactUs": "Contact us",
+    "comingSoon": "Coming Soon",
+    "home": "Home",
+    "blog": "Blog",
+    "wishList": "wishList",
+    "compare": "Compare",
+    "portfolio": "Portfolio",
+    "subscribe": "SUBSCRIBE",
+    "account": "My Account",
+    "service": "Customer Services",
+    "quickContact": "Quick contact",
+    "sendMessage": "SEND MESSAGE",
+    "specialOffers": "Special Offers",
+    "contact": "Contact",
+    "copyRight": "Copyright © 2020. eLab WordPress Theme by StylemixThemes",
+    "enterEmail": "Enter your E-mail to subscribe...",
+    "enterYourEmail": "Enter your email",
+    "writeYourReview": "Write your review"
+  }
+}

@@ -96,6 +96,7 @@
           margin: 1rem 0;
           text-decoration: underline;
           color: rgba(41, 47, 56, 1);
+          cursor: pointer;
           &::before {
             content: '\2022';
             color: rgba(89, 91, 212, 1);
@@ -117,6 +118,7 @@
           height: 2rem;
           border: 1px solid #e6e6e6;
           margin-bottom: 0.5rem;
+          padding: 1rem;
           &:focus {
             outline: none;
           }

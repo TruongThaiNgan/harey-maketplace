@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Category from '@Component/Category/Category';
 import PriceSlider from '@Component/PriceSlider/PriceSlider';
@@ -23,12 +24,12 @@ const brandList = [
 ];
 
 const colorList = [
-  { id: 1, title: 'Black' },
-  { id: 2, title: 'Blue' },
-  { id: 3, title: 'Gray' },
-  { id: 4, title: 'Green' },
-  { id: 5, title: 'Red' },
-  { id: 6, title: 'Yellow' },
+  { id: 1, title: 'sideBar.black' },
+  { id: 2, title: 'sideBar.blue' },
+  { id: 3, title: 'sideBar.gray' },
+  { id: 4, title: 'sideBar.green' },
+  { id: 5, title: 'sideBar.red' },
+  { id: 6, title: 'sideBar.yellow' },
 ];
 
 const topRateList = [
@@ -57,13 +58,14 @@ const topRateList = [
 ];
 
 const SideBar: React.FC<SideBarProps> = ({ template }) => {
+  const [t] = useTranslation();
   const temp = 0;
   return (
     <div className={classes.sideBar}>
       <Category />
 
       <div className={classes.brand}>
-        <div>Brands</div>
+        <div>{t('sideBar.brands')}</div>
         <ul>
           {brandList.map((item) => (
             <li key={item.id}>
@@ -74,12 +76,12 @@ const SideBar: React.FC<SideBarProps> = ({ template }) => {
       </div>
 
       <div className={classes.color}>
-        <div>Color</div>
+        <div>{t('sideBar.color')}</div>
         <ul>
           {colorList.map((item) => (
             <li key={item.id}>
               <div className={classes.check}>✓</div>
-              <span>{item.title}</span>
+              <span>{t(item.title)}</span>
             </li>
           ))}
         </ul>
@@ -90,7 +92,7 @@ const SideBar: React.FC<SideBarProps> = ({ template }) => {
       </div>
 
       <div className={classes.topRate}>
-        <div className={classes.titleTopRate}>Top rate products</div>
+        <div className={classes.titleTopRate}>{t('sideBar.topRateProducts')}</div>
         {topRateList.map((item) => (
           <div className={classes.product} key={item.id}>
             <div className={classes.info}>
