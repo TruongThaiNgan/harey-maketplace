@@ -57,18 +57,17 @@ const topRateList = [
   },
 ];
 
-const SideBar: React.FC<SideBarProps> = ({ template }) => {
+const SideBar: React.FC<SideBarProps> = () => {
   const [t] = useTranslation();
-  const temp = 0;
   return (
     <div className={classes.sideBar}>
       <Category />
 
       <div className={classes.brand}>
-        <div>{t('sideBar.brands')}</div>
+        <div className={classes.title}>{t('sideBar.brands')}</div>
         <ul>
           {brandList.map((item) => (
-            <li key={item.id}>
+            <li key={item.id} className={classes.brandItem}>
               <span>{item.title}</span>
             </li>
           ))}
@@ -76,7 +75,7 @@ const SideBar: React.FC<SideBarProps> = ({ template }) => {
       </div>
 
       <div className={classes.color}>
-        <div>{t('sideBar.color')}</div>
+        <div className={classes.title}>{t('sideBar.color')}</div>
         <ul>
           {colorList.map((item) => (
             <li key={item.id}>
@@ -92,7 +91,7 @@ const SideBar: React.FC<SideBarProps> = ({ template }) => {
       </div>
 
       <div className={classes.topRate}>
-        <div className={classes.titleTopRate}>{t('sideBar.topRateProducts')}</div>
+        <div className={classes.title}>{t('sideBar.topRateProducts')}</div>
         {topRateList.map((item) => (
           <div className={classes.product} key={item.id}>
             <div className={classes.info}>

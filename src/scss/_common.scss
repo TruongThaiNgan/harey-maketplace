@@ -1,0 +1,34 @@
+@mixin row($justify-content: flex-start, $align-items: flex-start) {
+  display: flex;
+  align-items: $align-items;
+  justify-content: $justify-content;
+}
+
+@mixin col($justify-content: flex-start, $align-items: flex-start) {
+  display: flex;
+  flex-direction: column;
+  align-items: $align-items;
+  justify-content: $justify-content;
+}
+
+@mixin cover-background {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin button-icon($background-color: transparent) {
+  border: 0;
+  background-color: $background-color;
+  cursor: pointer;
+}
+
+@mixin ul-no-padding {
+  padding: 0;
+  list-style: none;
+}

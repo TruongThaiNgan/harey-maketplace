@@ -83,5 +83,39 @@
     "enterEmail": "Nhập E-mail của bạn để đăng ký...",
     "enterYourEmail": "Nhập email của bạn",
     "writeYourReview": "Viết đánh giá của bạn"
+  },
+  "login": {
+    "name": "Tên",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khấu",
+    "login": "ĐĂNG NHẬP",
+    "lost": "Quên mật khẩu",
+    "address": "Địa chỉ email",
+    "firstName": "Họ và tên lót",
+    "lastName": "Tên",
+    "shopName": "Tên shop",
+    "url": "URL của shop",
+    "phone": "Số điện thoại",
+    "loginTitle": "Đăng nhập",
+    "registerTitle": "Đăng ký",
+    "register": "ĐĂNG KÝ",
+    "error": {
+      "emailRequired": "Email là bắt buộc",
+      "emailInvalid": "Email không hợp lệ",
+      "firstNameRequired": "Họ và tên lót là bắt buộc",
+      "lastNameRequired": "Tên là bắt buộc",
+      "shopNameRequired": "Tên shop là bắt buộc",
+      "shopUrlRequired": "ShopUrl là bắt buộc",
+      "urlInvalid": "ShopUrl không hợp lệ",
+      "phoneRequired": "Số điện thoại là bắt buộc",
+      "phoneInvalid": "Số điện thoại không hợp lệ",
+      "passwordRequired": "Mật khấu là bắt buộc",
+      "minPassword": "Mật khẩu phải có ít nhất 8 ký tự",
+      "maxPassword": "Mật khẩu phải có nhiều nhất 15 ký tự",
+      "passwordInvalid": "Mật khấu phải có ít nhất 1 ký tự in hoa, 1 ký tự thường và một ký tự số",
+      "confirmPasswordRequired": "Xác nhận mật khấu là bắt buộc",
+      "equalPassword": "Xác nhận mật khẩu không khớp"
+    }
   }
 }

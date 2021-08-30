@@ -1,32 +1,18 @@
 .app {
+  display: flex;
+  flex-direction: column;
+
   .content {
-    height: 2000px;
     display: flex;
-    background-color: '#f8f9fa';
     justify-content: center;
-    .body {
-      max-width: 1500px;
-      height: 100%;
-      width: 100%;
+    width: 100%;
+    background-color: '#f8f9fa';
+
+    .displayBoard {
       display: flex;
       justify-content: center;
-      margin-top: 2rem;
-      .sideBar {
-        width: 25%;
-        height: 100%;
-      }
-      .displayBar {
-        width: 75%;
-        height: 100%;
-        background-color: #f8f9fa;
-        .toolBar {
-          margin-top: 2rem;
-        }
-        .listProduct {
-          display: flex;
-          flex-wrap: wrap;
-        }
-      }
+      width: 100%;
+      max-width: 1500px;
     }
   }
 }

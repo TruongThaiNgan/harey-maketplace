@@ -1,0 +1,81 @@
+@import '../../scss/main';
+
+.registerFormContainer {
+  width: 100%;
+}
+
+.form {
+  @include col;
+  width: 100%;
+}
+
+.row {
+  @include row(space-between, center);
+  width: 100%;
+  margin-bottom: 0.5rem;
+
+  input {
+    @include size(75%, 3.5rem);
+    width: 70%;
+    padding: 0.5rem 1rem;
+    border: 0;
+    background-color: #f4f6f7;
+    font-size: 1.1rem;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  span {
+    min-width: 10rem;
+  }
+
+  .asterisk {
+    color: #f00;
+  }
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 3rem;
+
+  div {
+    @include row(flex-start, center);
+    width: 70%;
+
+    span {
+      color: #777;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
+
+.error {
+  @include row(flex-end);
+  width: 100%;
+  margin-bottom: 0.5rem;
+
+  div {
+    width: 70%;
+  }
+}
+
+.submit {
+  min-width: 140px;
+  margin-right: 1rem;
+  padding: 13px 25px;
+  border: 0;
+  border-radius: 22px;
+  background-color: rgba(89, 91, 212, 1);
+  color: #fff;
+  font-size: 11px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(41, 47, 56, 1);
+  }
+}

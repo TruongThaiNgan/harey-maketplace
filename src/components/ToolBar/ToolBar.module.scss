@@ -1,64 +1,67 @@
+@import '../../scss/main';
+
 .toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include row(space-between, center);
   background-color: transparent;
+
   .left {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include row(center, center);
+
     .sort {
       height: 2.5rem;
       padding: 0 1rem;
       border: 1px solid rgba(0, 0, 0, 0.1);
-      color: #444444;
       border-radius: 2rem;
       background-color: #fff;
+      color: #444;
       cursor: pointer;
+
       &:focus {
         outline: none;
       }
     }
+
     .button {
+      @include size(7rem, 2.5rem);
+      @include row(space-around, center);
       margin-left: 2rem;
-      height: 2.5rem;
-      width: 7rem;
-      font-size: small;
-      background-color: transparent;
       border: 1px solid rgba(0, 0, 0, 0.1);
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      color: #444444;
       border-radius: 2rem;
+      background-color: transparent;
+      color: #444;
+      font-size: small;
       cursor: pointer;
+
       &:hover {
-        color: white;
-        background-color: rgba(89, 91, 212, 1);
         border-color: rgba(89, 91, 212, 1);
+        background-color: rgba(89, 91, 212, 1);
+        color: #fff;
       }
     }
   }
+
   .right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include row(center, center);
+
     button {
+      border: 0;
       background-color: transparent;
-      border: none;
       color: #e5e5e5;
+
       &:hover {
-        color: black;
+        color: #000;
       }
     }
+
     .show {
       height: 2.5rem;
       padding: 0 1rem;
       border: 1px solid rgba(0, 0, 0, 0.1);
-      color: #444444;
       border-radius: 2rem;
       background-color: #fff;
+      color: #444;
       cursor: pointer;
+
       &:focus {
         outline: none;
       }

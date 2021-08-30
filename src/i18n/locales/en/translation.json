@@ -82,5 +82,40 @@
     "enterEmail": "Enter your E-mail to subscribe...",
     "enterYourEmail": "Enter your email",
     "writeYourReview": "Write your review"
+  },
+
+  "login": {
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "login": "LOG IN",
+    "lost": "Lost your password?",
+    "address": "Email address",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "shopName": "Shop Name",
+    "url": "Shop URL",
+    "phone": "Phone number",
+    "loginTitle": "Login",
+    "registerTitle": "Register",
+    "register": "REGISTER",
+    "error": {
+      "emailRequired": "Email required",
+      "emailInvalid": "Email Invalid",
+      "firstNameRequired": "Firstname required",
+      "lastNameRequired": "Lastname required",
+      "shopNameRequired": "Shopname required",
+      "shopUrlRequired": "ShopUrl required",
+      "urlInvalid": "ShopUrl invalid",
+      "phoneRequired": "Phone number required",
+      "phoneInvalid": "Phone invalid",
+      "passwordRequired": "Password required",
+      "minPassword": "Password at least 8 characters",
+      "maxPassword": "Password at most 15 characters",
+      "passwordInvalid": "Password have at least 1 uppercase letter, 1 lowercase letter and 1 number",
+      "confirmPasswordRequired": "Confirm password required",
+      "equalPassword": "Confirm password not match"
+    }
   }
 }

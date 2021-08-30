@@ -8,11 +8,11 @@ import { useTranslation } from 'react-i18next';
 import classes from './Product.module.scss';
 
 interface ProductProps {
-  originImage: string;
-  hoverImage: string;
+  image1: string;
+  image2: string;
   title: string;
+  oldPrice?: string;
   price: string;
-  isSale?: boolean;
 }
 
 const listButton = [
@@ -21,24 +21,27 @@ const listButton = [
   { id: 3, icon: <ShuffleOutlinedIcon />, toolTip: 'product.addToCompare' },
   { id: 4, icon: <VisibilityOutlinedIcon />, toolTip: 'product.quickView' },
 ];
-const Product: React.FC<ProductProps> = ({ originImage, hoverImage, title, price, isSale }) => {
+const Product: React.FC<ProductProps> = ({ image1, image2, title, price, oldPrice }) => {
   const [t] = useTranslation();
-  const [image, setImage] = useState<string>(originImage);
+  const [image, setImage] = useState<string>(image1);
   const [isShowListButton, setIsShowListButton] = useState<boolean>(false);
   const onMouseEnter = (): void => {
     setIsShowListButton(true);
-    setImage(hoverImage);
+    setImage(image2);
   };
   const onMouseLeave = (): void => {
     setIsShowListButton(false);
-    setImage(originImage);
+    setImage(image1);
   };
   return (
     <div className={classes.product} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <img src={image} alt="origin" />
       <div className={classes.title}>{title}</div>
-      <div className={classes.price}>{price}</div>
-      {isSale && <div className={classes.sale}>{t('product.sale')}</div>}
+      <div className={classes.price}>
+        <span>{oldPrice}</span>
+        {price}
+      </div>
+      {oldPrice && <div className={classes.sale}>{t('product.sale')}</div>}
       {isShowListButton && (
         <div className={classes.button}>
           {listButton.map((item) => (
@@ -52,5 +55,5 @@ const Product: React.FC<ProductProps> = ({ originImage, hoverImage, title, price
   );
 };
 
-Product.defaultProps = { isSale: false };
+Product.defaultProps = {};
 export default Product;

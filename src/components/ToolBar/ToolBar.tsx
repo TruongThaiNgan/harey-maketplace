@@ -1,15 +1,12 @@
-import React from 'react';
 import AppsIcon from '@material-ui/icons/Apps';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
-import ShuffleIcon from '@material-ui/icons/Shuffle';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import classes from './ToolBar.module.scss';
 
-interface ToolBarProps {
-  template?: string;
-}
+interface ToolBarProps {}
 const sortOptionList = [
   'toolBar.default',
   'toolBar.popularity',
@@ -21,7 +18,7 @@ const sortOptionList = [
 
 const showOptionList = [5, 12, 15, 20];
 
-const ToolBar: React.FC<ToolBarProps> = ({ template }) => {
+const ToolBar: React.FC<ToolBarProps> = () => {
   const [t] = useTranslation();
   return (
     <div className={classes.toolbar}>
@@ -49,7 +46,9 @@ const ToolBar: React.FC<ToolBarProps> = ({ template }) => {
         </button>
         <select name="show" id="show" className={classes.show}>
           {showOptionList.map((item) => (
-            <option value={item}>{`${t('toolBar.show')} ${item}`} </option>
+            <option key={item} value={item}>
+              {`${t('toolBar.show')} ${item}`}{' '}
+            </option>
           ))}
         </select>
       </div>

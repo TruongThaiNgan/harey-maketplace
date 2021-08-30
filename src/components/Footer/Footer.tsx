@@ -13,9 +13,7 @@ import specialOffer from '@Image/special-offer.jpg';
 
 import classes from './Footer.module.scss';
 
-interface FooterProps {
-  template?: string;
-}
+interface FooterProps {}
 const infoList = [
   { icon: skype, title: 'Skype', content: 'E-lab_shop_contact' },
   { icon: phoneCall, title: 'footer.info', content: '878 - 3853 -9576' },
@@ -30,10 +28,10 @@ const contactList = [
   { icon: <EmailOutlinedIcon />, content: 'shopelab@gmail.com' },
 ];
 
-const Footer: React.FC<FooterProps> = ({ template }) => {
+const Footer: React.FC<FooterProps> = () => {
   const [t] = useTranslation();
   return (
-    <div className={classes.footer}>
+    <div className={classes.footerContainer}>
       <div className={classes.info}>
         <div className={classes.left}>
           {infoList.map((item) => (
@@ -55,7 +53,7 @@ const Footer: React.FC<FooterProps> = ({ template }) => {
 
       <div className={classes.more}>
         <div className={classes.list}>
-          <span>{t('footer.account')}</span>
+          <span className={classes.title}>{t('footer.account')}</span>
           <ul>
             {myAccountList.map((item) => (
               <li key={item}>{t(item)}</li>
@@ -64,7 +62,7 @@ const Footer: React.FC<FooterProps> = ({ template }) => {
         </div>
 
         <div className={classes.list}>
-          <span>{t('footer.service')}</span>
+          <span className={classes.title}>{t('footer.service')}</span>
           <ul>
             {customServicesList.map((item) => (
               <li key={item}>{t(item)}</li>
@@ -74,7 +72,7 @@ const Footer: React.FC<FooterProps> = ({ template }) => {
 
         <div className={classes.list}>
           <div className={classes.quickContact}>
-            <span>{t('footer.quickContact')}</span>
+            <span className={classes.title}>{t('footer.quickContact')}</span>
             <input type="text" placeholder={t('footer.enterYourEmail')} />
             <textarea rows={3} placeholder={t('footer.writeYourReview')} />
             <button type="button">{t('footer.sendMessage')}</button>
@@ -82,12 +80,12 @@ const Footer: React.FC<FooterProps> = ({ template }) => {
         </div>
 
         <div className={classes.list}>
-          <span>{t('footer.specialOffers')}</span>
+          <span className={classes.title}>{t('footer.specialOffers')}</span>
           <img src={specialOffer} alt="specialOffer" />
         </div>
 
         <div className={classes.list}>
-          <span>{t('footer.contact')}</span>
+          <span className={classes.title}>{t('footer.contact')}</span>
           {contactList.map((item) => (
             <div className={classes.contactRow} key={item.content}>
               <button type="button">{item.icon}</button>
@@ -98,7 +96,7 @@ const Footer: React.FC<FooterProps> = ({ template }) => {
       </div>
 
       <div className={classes.copyRight}>
-        <span>{t('footer.copyRight')}</span>
+        <span className={classes.title}>{t('footer.copyRight')}</span>
         <img src={copyRight} alt="copyRight" />
       </div>
     </div>

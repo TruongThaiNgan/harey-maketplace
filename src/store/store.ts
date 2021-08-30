@@ -1,4 +1,6 @@
 import { Action, AnyAction, CombinedState, combineReducers, configureStore, ThunkAction } from '@reduxjs/toolkit';
+import { FLUSH, PAUSE, PERSIST, persistReducer, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import { LOG_OUT } from '@Constant/auth';
 import noteReducer from '@Slice/noteSlice';
@@ -16,7 +18,20 @@ const rootReducer = (state: State, action: AnyAction): RootReducer => {
   return appReducer(state, action);
 };
 
-const store = configureStore({ reducer: rootReducer });
+const persistConfig = {
+  key: 'root',
+  version: 1,
+  storage,
+};
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: { ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER] },
+    }),
+});
 
 export default store;
 

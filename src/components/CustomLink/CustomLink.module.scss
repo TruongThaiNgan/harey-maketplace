@@ -1,0 +1,8 @@
+@import '../../scss/main';
+
+.customLinkContainer {
+  @include row(center, center);
+  @include size(100%, 100%);
+  color: inherit;
+  text-decoration: none;
+}

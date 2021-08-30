@@ -1,0 +1,165 @@
+@import '../../scss/main';
+
+.homeContainer {
+  @include col;
+  width: 100%;
+}
+
+div {
+  width: 100%;
+}
+
+.category {
+  @include row;
+  width: 100%;
+  max-width: 1500px;
+
+  .sideBar {
+    @include size(25%, 100%);
+    padding: 0 1rem;
+    background-color: #fff;
+  }
+
+  .banner {
+    width: 75%;
+    margin-top: 1rem;
+    border: 1px solid #000;
+  }
+}
+
+.imageList {
+  @include row(space-between, center);
+  @include size(100%, 500px);
+  margin-top: 2rem;
+
+  .image {
+    @include size(50%, 100%);
+    @include row(center, center);
+    margin-right: 1rem;
+    border: 1px solid #000;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.trending {
+  width: 100%;
+}
+
+.listProduct {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.product {
+  @include row(center, center);
+  display: flex;
+  flex: 1 0 21%;
+  max-width: 24%;
+  height: 200px;
+  margin-top: 1rem;
+  border: 1px solid #000;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.lastChance {
+  @include col(center);
+  width: 100%;
+  margin-top: 2rem;
+  border: 1px solid #000;
+
+  .lastChanceTitle {
+    font-weight: bold;
+
+    strong {
+      font-size: 2rem;
+    }
+  }
+}
+
+.bestSeller {
+  width: 100%;
+  margin-top: 2rem;
+  border: 1px solid #000;
+}
+
+.latestProduct {
+  @include col;
+  width: 100%;
+  margin-top: 2rem;
+
+  .latestTitle {
+    font-weight: bold;
+    font-size: 1rem;
+
+    strong {
+      font-size: 2rem;
+    }
+  }
+}
+
+.hotDeal {
+  @include col;
+  width: 100%;
+  margin-top: 2rem;
+
+  .hotDealTitle {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+}
+
+.hotDealContent {
+  @include row;
+
+  .hotDealNav {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 100%;
+    border: 1px solid #000;
+
+    div {
+      @include row(flex-end, center);
+      padding: 1rem 0;
+      cursor: pointer;
+
+      button {
+        @include button-icon;
+        padding: 0 1rem;
+      }
+    }
+  }
+
+  .listProduct {
+    display: flex;
+    justify-content: flex-start;
+    width: 75%;
+    margin-top: 0;
+    border: 1px solid #000;
+  }
+}
+
+.viewed {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .viewedTitle {
+    margin-top: 2rem;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+}
+
+.donors {
+  width: 100%;
+}

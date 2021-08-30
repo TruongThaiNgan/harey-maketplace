@@ -1,0 +1,19 @@
+@import '../../scss/main';
+
+.elementsMenuContainer {
+  @include size(100%, 100%);
+  @include row;
+  border: 1px solid #000;
+  background-color: #fff;
+
+  .element {
+    @include size(100%, 100%);
+    margin-left: 1rem;
+  }
+}
+
+.image {
+  @include row(center, center);
+  @include size(100%, 100%);
+  border: 1px solid #000;
+}

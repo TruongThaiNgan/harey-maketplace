@@ -1,0 +1,40 @@
+@import '../../scss/main';
+
+.loginContainer {
+  @include row(center, center);
+  width: 100%;
+  padding: 5rem 0;
+  background: #f4f6f7;
+
+  .block {
+    @include row(center);
+    width: 90%;
+    background-color: #fff;
+  }
+}
+
+.form {
+  @include col;
+  width: 50%;
+  padding: 4rem;
+  background-color: #fff;
+
+  h1 {
+    margin-bottom: 2rem;
+  }
+}
+
+.radioGroup {
+  @include row(center, center);
+  width: 100%;
+  margin-top: 2rem;
+
+  label {
+    @include row(center, center);
+    margin-right: 2rem;
+
+    input {
+      margin-right: 1rem;
+    }
+  }
+}

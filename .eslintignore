@@ -1,3 +1,4 @@
 *.css
 *.svg
 craco.config.js
+postcss.config.js

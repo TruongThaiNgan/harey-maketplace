@@ -3,14 +3,18 @@
     "baseUrl": ".",
     "paths": {
       "@Component/*": ["src/components/*"],
-      "@Store/*": ["src/store/*"],
       "@Constant/*": ["src/constants/*"],
       "@Slice/*": ["src/store/slices/*"],
+      "@Store/*": ["src/store/*"],
+      "@Page/": ["src/pages/"],
       "@Page/*": ["src/pages/*"],
       "@Image/*": ["src/assets/images/*"],
       "@Icons/*": ["src/assets/icons/*"],
       "@Assets/*": ["src/assets/*"],
-      "@Util/*": ["src/utils/*"]
+      "@Util/*": ["src/utils/*"],
+      "@Service/*": ["src/services/*"],
+      "@Mutation/*": ["src/hooks/apiHooks/mutations/*"],
+      "@Query/*": ["src/hooks/apiHooks/queries/*"]
     }
   }
 }

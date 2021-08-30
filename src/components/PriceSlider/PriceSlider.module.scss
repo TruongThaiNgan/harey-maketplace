@@ -1,18 +1,20 @@
+@import '../../scss/main';
+
 .priceSlider {
   .title {
-    font-weight: bold;
     margin-bottom: 2rem;
+    font-weight: bold;
   }
+
   .price {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include row(space-between, center);
+
     button {
       padding: 0.5rem;
-      background-color: rgba(89, 91, 212, 1);
-      color: white;
       border: 1px solid rgba(89, 91, 212, 1);
       border-radius: 2px;
+      background-color: rgba(89, 91, 212, 1);
+      color: #fff;
       font-weight: 400;
     }
   }

@@ -5,9 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 import classes from './PriceSlider.module.scss';
 
-interface PriceSliderProps {
-  template?: string;
-}
+interface PriceSliderProps {}
 const valuetext = (value: number): string => `$${value}`;
 const AirbnbSlider = withStyles({
   root: {
@@ -45,7 +43,7 @@ const AirbnbThumbComponent: React.FC = ({ ...res }) => (
     <span className="bar" />
   </span>
 );
-const PriceSlider: React.FC<PriceSliderProps> = ({ template }) => {
+const PriceSlider: React.FC<PriceSliderProps> = () => {
   const [t] = useTranslation();
   const [value, setValue] = useState<number[]>([59, 1499]);
   const handleChange = (event: React.ChangeEvent<unknown>, newValue: number | number[]): void => {

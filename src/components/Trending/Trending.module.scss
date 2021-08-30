@@ -1,0 +1,94 @@
+@import '../../scss/main';
+
+.trendingContainer {
+  @include row(space-between, center);
+  width: 100%;
+  margin-top: 2rem;
+  border: 1px solid #000;
+
+  .trendingTitle {
+    padding: 1rem;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+}
+
+.trendingDeal {
+  @include col;
+  width: 75%;
+  border: 1px solid #000;
+}
+
+.dealOfDay {
+  @include size(25%, 100%);
+  @include col(center, center);
+
+  .dealTitle {
+    font-weight: bold;
+    font-size: 2rem;
+  }
+
+  .imageProduct {
+    @include size(100%, 500px);
+    @include row(center, center);
+    border: 1px solid #000;
+  }
+
+  .dealSubTitle {
+    margin-top: 0.5rem;
+    color: #808080;
+  }
+
+  .dealProductName {
+    margin-top: 0.5rem;
+    font-weight: bold;
+  }
+
+  .price {
+    margin: 1rem 0;
+    color: #595bd4;
+    font-weight: bold;
+  }
+}
+
+.listProduct {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.product {
+  @include row(center, center);
+  display: flex;
+  flex: 1 0 21%;
+  max-width: 24%;
+  height: 200px;
+  margin-top: 1rem;
+  border: 1px solid #000;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.nav {
+  @include row(flex-start, center);
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #000;
+
+  div {
+    margin-right: 3rem;
+    cursor: pointer;
+
+    &:last-child() {
+      margin-right: 0;
+    }
+
+    &:hover {
+      color: #595bd4;
+    }
+  }
+}

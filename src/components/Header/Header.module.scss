@@ -1,132 +1,158 @@
+@import '../../scss/main';
+
 .header {
   .listLink {
-    padding: 0 10%;
+    @include row(space-between, center);
     height: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    padding: 0 10%;
+
     .left {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include row(center, center);
       color: #686767;
       font-size: small;
+
       button {
-        color: grey;
+        @include button-icon;
+        color: #808080;
         font-style: italic;
         font-size: small;
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
       }
+
       span {
         margin-left: 3rem;
       }
     }
+
     .right {
-      color: grey;
+      color: #808080;
       font-size: small;
+
       span {
         margin: 0 0.5rem;
       }
     }
   }
+
   .seperate {
-    height: 0;
-    width: 100%;
+    @include size(100%, 0);
     border-top: 1px solid #ccc;
   }
+
   .headerBar {
-    padding: 0 10%;
+    @include row(space-between, center);
     height: 8rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    padding: 0 10%;
+
     button {
-      border: none;
+      border: 0;
       background-color: transparent;
       color: #575757;
       font-weight: 100;
     }
-    .searchBar {
-      color: #555555;
-      height: 3rem;
-      border: 1px solid #e6e6e6;
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-left: 0.5rem;
-      overflow: hidden;
-      input {
-        height: 2rem;
-        width: 20rem;
-        border: none;
-        border-right: 1px solid #e6e6e6;
-        &:focus {
-          outline: none;
-        }
-      }
-      .searchButton {
-        height: 100%;
-        width: 4rem;
-        background-color: rgba(89, 91, 212, 1);
-        color: white;
+  }
+
+  .searchBar {
+    @include row(space-between, center);
+    overflow: hidden;
+    width: fit-content;
+    height: 3rem;
+    padding-left: 0.5rem;
+    border: 1px solid #e6e6e6;
+    border-radius: 18px;
+    color: #555;
+
+    input {
+      @include size(20rem, 2rem);
+      border: 0;
+      border-right: 1px solid #e6e6e6;
+
+      &:focus {
+        outline: none;
       }
     }
-    .features {
-      button {
-        margin: 0 1rem;
-      }
+
+    .searchButton {
+      @include size(4rem, 100%);
+      background-color: rgba(89, 91, 212, 1);
+      color: #fff;
     }
   }
+
+  .features {
+    @include row(flex-end, center);
+    width: fit-content;
+
+    button {
+      margin: 0 1rem;
+    }
+  }
+
   .nav {
-    width: 100%;
-    background-color: rgba(41, 47, 56, 1);
+    @include size(100%, 3rem);
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    padding: 0 1rem;
-    height: 3rem;
+    background-color: rgba(41, 47, 56, 1);
+    cursor: pointer;
+  }
+
+  .navBar {
+    @include row(center, flex-end);
+    width: 100%;
+    max-width: 1500px;
+    height: 100%;
+
     button {
-      color: white;
-      border: none;
+      border: 0;
       background-color: transparent;
+      color: #fff;
     }
+
     .categories {
-      padding: 0 1.5rem;
-      height: 120%;
-      width: 21rem;
-      background-color: rgba(89, 91, 212, 1);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      @include size(25%, 120%);
+      @include row(space-between, center);
+      padding: 0 1rem;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
+      background-color: rgba(89, 91, 212, 1);
+      color: #fff;
       font-size: 0.8rem;
+
       button {
-        color: white;
-        border: none;
+        border: 0;
         background-color: transparent;
+        color: #fff;
       }
     }
-    .listButton {
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      button {
-        height: 100%;
-        padding: 1rem 3rem;
-        font-size: 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        &:hover {
-          background-color: rgba(89, 91, 212, 1);
-        }
-      }
+  }
+}
+
+.listButton {
+  @include row(space-between, flex-start);
+  @include size(75%, 100%);
+
+  margin-left: 2rem;
+  cursor: pointer;
+
+  .boxContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &:hover .buttonLink {
+      background-color: rgba(89, 91, 212, 1);
     }
+  }
+
+  .buttonLink {
+    // @include row(center, center);
+    @include size(100%, 100%);
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .dropBox {
+    position: relative;
   }
 }

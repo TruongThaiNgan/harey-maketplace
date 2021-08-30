@@ -11,7 +11,7 @@ const resources = {
   en: { translation: translationEN },
   vi: { translation: translationVI },
 };
-const lng = 'vi';
+const lng = 'en';
 i18n
   .use(Backend)
   .use(LanguageDetector)

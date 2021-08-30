@@ -1,0 +1,27 @@
+@import '../../scss/main';
+
+.body {
+  @include size(100%, 100%);
+  display: flex;
+  justify-content: center;
+  max-width: 1500px;
+  margin-top: 2rem;
+
+  .sideBar {
+    @include size(25%, 100%);
+  }
+
+  .displayBar {
+    @include size(75%, 100%);
+    background-color: #f8f9fa;
+
+    .toolBar {
+      margin-top: 2rem;
+    }
+
+    .listProduct {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+}

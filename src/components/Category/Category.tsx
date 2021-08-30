@@ -12,9 +12,7 @@ import { useTranslation } from 'react-i18next';
 
 import classes from './Category.module.scss';
 
-interface CategoryProps {
-  template?: string;
-}
+interface CategoryProps {}
 const listCategories = [
   { title: 'catelogy.accessories', icon: <SelectAllOutlinedIcon />, hasButtonAdd: false },
   { title: 'catelogy.camera', icon: <CameraAltOutlinedIcon />, hasButtonAdd: true },
@@ -26,18 +24,20 @@ const listCategories = [
   { title: 'catelogy.tv', icon: <TvOutlinedIcon />, hasButtonAdd: true },
 ];
 
-const Category: React.FC<CategoryProps> = ({ template }) => {
+const Category: React.FC<CategoryProps> = () => {
   const [t] = useTranslation();
   return (
     <div className={classes.category}>
       <div className={classes.product}>Product categories</div>
+
       <ul>
         {listCategories.map((item) => (
-          <li key={item.title}>
+          <li key={item.title} className={classes.productItem}>
             <div className={classes.left}>
               <button type="button">{item.icon}</button>
               <span>{t(item.title)}</span>
             </div>
+
             {item.hasButtonAdd && (
               <div className={classes.right}>
                 <button type="button" className={classes.buttonAdd}>

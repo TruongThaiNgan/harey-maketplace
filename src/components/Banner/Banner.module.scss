@@ -1,37 +1,39 @@
+@import '../../scss/main';
+
 .banner {
-  width: 100%;
-  background-image: url('https://elab.stylemixthemes.com/demo-1/wp-content/uploads/sites/2/2019/03/banners-500x250-4-1199x499.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  height: fit-content;
-  height: 30rem;
+  @include size(100%, 30rem);
+  @include cover-background;
   display: flex;
   align-items: center;
   padding-left: 5rem;
+  background: url('https://elab.stylemixthemes.com/demo-1/wp-content/uploads/sites/2/2019/03/banners-500x250-4-1199x499.jpg');
+
   .text {
-    height: 50%;
-    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    .content {
-      font-size: 2.5rem;
-      color: rgba(68, 68, 68, 1);
-    }
-    .button {
-      button {
-        background-color: rgba(89, 91, 212, 1);
-        border: 1px solid rgba(89, 91, 212, 1);
-        color: white;
-        padding: 1rem 2rem;
-        border-radius: 1.5rem;
-        cursor: pointer;
-        &:hover {
-          background-color: rgba(41, 47, 56, 1);
-          border-color: rgba(41, 47, 56, 1);
-        }
-      }
+    width: 50%;
+    height: 50%;
+  }
+}
+
+.content {
+  color: rgba(68, 68, 68, 1);
+  font-size: 2.5rem;
+}
+
+.button {
+  button {
+    padding: 1rem 2rem;
+    border: 1px solid rgba(89, 91, 212, 1);
+    border-radius: 1.5rem;
+    background-color: rgba(89, 91, 212, 1);
+    color: #fff;
+    cursor: pointer;
+
+    &:hover {
+      border-color: rgba(41, 47, 56, 1);
+      background-color: rgba(41, 47, 56, 1);
     }
   }
 }

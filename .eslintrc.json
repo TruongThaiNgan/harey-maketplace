@@ -28,13 +28,16 @@
           ["@", "./src"],
           ["@Component", "./src/components"],
           ["@Page", "./src/pages"],
-          ["@Store", "./src/store"],
           ["@Constant", "./src/constants"],
           ["@Slice", "./src/store/slices"],
+          ["@Store", "./src/store"],
           ["@Util", "./src/utils"],
           ["@Image", "./src/assets/images"],
           ["@Icon", "./src/assets/icons"],
-          ["@Asset", "./src/assets"]
+          ["@Asset", "./src/assets"],
+          ["@Service", "./src/services"],
+          ["@Mutation", "./src/hooks/apiHooks/mutations"],
+          ["@Query", "./src/hooks/apiHooks/queries"]
         ],
         "extensions": [".ts", ".tsx", ".js", ".jsx", ".json"]
       }
@@ -89,12 +92,6 @@
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
     "react/no-string-refs": [0],
-    "object-curly-newline": [
-      "error",
-      {
-        "multiline": true
-      }
-    ],
     "react/jsx-no-bind": [0],
 
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
@@ -121,6 +118,9 @@
     "implicit-arrow-linebreak": "off",
     "arrow-body-style": ["error", "as-needed", { "requireReturnForObjectLiteral": true }],
     "operator-linebreak": "off",
-    "@typescript-eslint/no-non-null-assertion": "off"
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-empty-interface": "warn",
+    "no-useless-escape": "off",
+    "object-curly-newline": "off"
   }
 }

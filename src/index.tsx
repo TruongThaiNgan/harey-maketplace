@@ -1,17 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import store from '@Store/store';
-import './i18n/i18n';
 
 import App from './App';
+import './i18n/i18n';
 import './index.css';
 
+const queryClient = new QueryClient();
+
+const persistor = persistStore(store);
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <QueryClientProvider client={queryClient}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Router>
+            <App />
+          </Router>
+        </PersistGate>
+      </QueryClientProvider>
+      ;
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
