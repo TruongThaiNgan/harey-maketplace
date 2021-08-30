@@ -3,6 +3,7 @@
 .priceSlider {
   .title {
     margin-bottom: 2rem;
+
     font-weight: bold;
   }
 
@@ -13,9 +14,11 @@
       padding: 0.5rem;
       border: 1px solid rgba(89, 91, 212, 1);
       border-radius: 2px;
-      background-color: rgba(89, 91, 212, 1);
+
       color: #fff;
       font-weight: 400;
+
+      background-color: rgba(89, 91, 212, 1);
     }
   }
 }

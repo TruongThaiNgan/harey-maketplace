@@ -2,21 +2,30 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import PrivateRoute from '@Component/PrivateRoute/PrivateRoute';
-import Login from '@Page/Login';
-import Shop from '@Page/Shop/Shop';
-import Home from '@Page/Home/Home';
-import DropBox from '@Component/DropBox';
-import ShopMenu from '@Component/ShopMenu';
-import ElementsMenu from '@Component/ElementsMenu';
+import withGetData from '@Hoc/withGetData';
 import About from '@Page/About';
-
-interface routerProps {}
+import Home from '@Page/Home/Home';
+import Login from '@Page/Login';
+import ProductPage from '@Page/ProductPage/ProductPage';
+import {
+  fetchPageAccessories,
+  fetchPageProduct,
+  getNumberAccessories,
+  getNumberProduct,
+  getPageAccessoriesData,
+  getPageProductData,
+} from '@Slice/pageSlice';
 
 const routeList = [
   {
     path: '/shop',
-    exact: false,
-    component: <Shop />,
+    exact: true,
+    component: withGetData(fetchPageProduct, getPageProductData, getNumberProduct),
+  },
+  {
+    path: '/product-category/accessories',
+    exact: true,
+    component: withGetData(fetchPageAccessories, getPageAccessoriesData, getNumberAccessories),
   },
   {
     path: '/login',
@@ -29,14 +38,19 @@ const routeList = [
     component: <About />,
   },
   {
+    path: '/cart',
+    exact: false,
+    component: <div>cart</div>,
+  },
+  {
     path: '/contact',
     exact: false,
     component: <div>Contact us</div>,
   },
   {
-    path: '/comming',
+    path: '/coming',
     exact: false,
-    component: <div>Comming Soon</div>,
+    component: <div>Coming Soon</div>,
   },
   {
     path: '/pages',
@@ -47,6 +61,51 @@ const routeList = [
     path: '/element',
     exact: false,
     component: <div>Element</div>,
+  },
+  {
+    path: '/product/:name',
+    exact: false,
+    component: <ProductPage />,
+  },
+  {
+    path: '/product-category/cameras-photos',
+    exact: true,
+    component: <div>cameras-photos</div>,
+  },
+  {
+    path: '/product-category/computers',
+    exact: true,
+    component: <div>computers</div>,
+  },
+  {
+    path: '/product-category/console-games',
+    exact: true,
+    component: <div>console-games</div>,
+  },
+  {
+    path: '/product-category/gadgets',
+    exact: true,
+    component: <div>gadgets</div>,
+  },
+  {
+    path: '/product-category/mobiles-tablets',
+    exact: true,
+    component: <div>mobiles-tablets</div>,
+  },
+  {
+    path: '/product-category/tools-storage',
+    exact: true,
+    component: <div>tools-storage</div>,
+  },
+  {
+    path: '/product-category/tvs-audio',
+    exact: true,
+    component: <div>tvs-audio</div>,
+  },
+  {
+    path: '/product-category/gadgets/watches',
+    exact: true,
+    component: <div>watches</div>,
   },
   {
     path: '/',
@@ -76,7 +135,7 @@ const privateRouteList = [
     component: <div>bank</div>,
   },
 ];
-const MyRouter: React.FC<routerProps> = () => (
+const MyRouter: React.FC = () => (
   <Switch>
     {privateRouteList.map(({ path, component, exact }) => (
       <PrivateRoute key={path} path={path} exact={exact}>

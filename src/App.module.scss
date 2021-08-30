@@ -6,13 +6,15 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: '#f8f9fa';
+    padding-bottom: 3rem;
+
+    background-color: #f8f9fa;
 
     .displayBoard {
       display: flex;
       justify-content: center;
       width: 100%;
-      max-width: 1500px;
+      // max-width: 1500px;
     }
   }
 }

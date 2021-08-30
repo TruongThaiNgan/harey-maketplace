@@ -12,9 +12,9 @@
 }
 
 @mixin cover-background {
+  background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-repeat: no-repeat;
 }
 
 @mixin size($width, $height: $width) {
@@ -24,11 +24,13 @@
 
 @mixin button-icon($background-color: transparent) {
   border: 0;
+
   background-color: $background-color;
   cursor: pointer;
 }
 
 @mixin ul-no-padding {
   padding: 0;
+
   list-style: none;
 }

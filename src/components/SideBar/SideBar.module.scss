@@ -4,6 +4,7 @@
 %block {
   margin-top: 2rem;
   padding: 1rem;
+
   background-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -11,17 +12,20 @@
 
 .sideBar {
   padding: 0 1rem 0 2rem;
+
   background-color: #f8f9fa;
 }
 
 .title {
   margin-bottom: 2rem;
+
   font-weight: bold;
 }
 
 .brand {
   @extend %block;
   border: 0;
+
   cursor: pointer;
 
   ul {
@@ -33,8 +37,9 @@
   margin-bottom: 0.5rem;
 
   &::before {
-    content: '⇨';
     margin-right: 0.5rem;
+
+    content: '⇨';
   }
 
   span {
@@ -53,6 +58,7 @@
     li {
       display: flex;
       height: 2rem;
+
       cursor: pointer;
 
       .check {
@@ -61,6 +67,7 @@
         margin-right: 0.5rem;
         border: 1px solid #cacaca;
         border-radius: 2px;
+
         color: #fff;
       }
 
@@ -84,6 +91,7 @@
 
   .titleTopRate {
     margin-bottom: 2rem;
+
     font-weight: bold;
   }
 
@@ -96,6 +104,7 @@
 
       .title {
         margin-bottom: 1rem;
+
         font-weight: normal;
       }
 

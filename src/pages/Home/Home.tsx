@@ -1,108 +1,126 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { shallowEqual } from 'react-redux';
 
-import Banner from '@Component/Banner/Banner';
-import BestSeller from '@Component/BestSeller';
-import Category from '@Component/Category/Category';
+import BestSellerSection from '@Component/BestSellerSection';
 import HotDeal from '@Component/HotDeal';
-import ProductList from '@Component/ProductList';
-import Trending from '@Component/Trending';
+import Latest from '@Component/Latest';
+import ReviewSection from '@Component/ReviewSection';
+import TrendingSection from '@Component/TrendingSection';
+import Viewed from '@Component/Viewed';
+import { fetchHomePage, getProductInHome } from '@Slice/pageSlice';
+import { useAppDispatch, useAppSelector } from '@Store/hooks';
 
+import { donorList } from './constants';
 import classes from './Home.module.scss';
 
-interface HomeProps {
-  template?: string;
-}
-const lastChanceList = [
-  { id: 1, name: 'Last Chance 1' },
-  { id: 2, name: 'Last Chance 2' },
-  { id: 3, name: 'Last Chance 3' },
-  { id: 4, name: 'Last Chance 4' },
-];
-const latestList = [
-  { id: 1, name: 'Latest 1' },
-  { id: 2, name: 'Latest 2' },
-  { id: 3, name: 'Latest 3' },
-  { id: 4, name: 'Latest 4' },
-  { id: 5, name: 'Latest 5' },
-  { id: 6, name: 'Latest 6' },
-];
 const viewedList = [
-  { id: 1, name: 'Viewed 1' },
-  { id: 2, name: 'Viewed 2' },
-  { id: 3, name: 'Viewed 3' },
-  { id: 4, name: 'Viewed 4' },
-  { id: 5, name: 'Viewed 5' },
-  { id: 6, name: 'Viewed 6' },
+  {
+    id: 22,
+    title: 'Amazfit SmartWatch',
+    oldPrice: '$174.00',
+    price: '$144.00',
+    image1:
+      'https://elab.stylemixthemes.com/demo-1/wp-content/uploads/sites/2/2019/04/amazfit_equator_rose_gold_closed_loop-270x270.png',
+    image2:
+      'https://elab.stylemixthemes.com/demo-1/wp-content/uploads/sites/2/2019/04/amazfit_moonbeam_white_open_clasp-999x999-270x270.png',
+  },
+  {
+    id: 23,
+    title: 'Apple Watch',
+    oldPrice: '$399.00',
+    price: '$300.00',
+    image1: 'https://elab.stylemixthemes.com/demo-1/wp-content/uploads/sites/2/2019/04/white-watch-270x270.png',
+    image2:
+      'https://elab.stylemixthemes.com/demo-1/wp-content/uploads/sites/2/2019/04/amazfit_bip_smartwatch_white_cloud_front-999x999-270x270.png',
+  },
+  {
+    id: 92,
+    title: 'Smartwatch Fronier',
+    oldPrice: '$239.00',
+    price: '$200.00',
+    image1: 'https://elab.stylemixthemes.com/demo-1/wp-content/uploads/sites/2/2019/05/galaxy-watch-270x270.jpg',
+    image2: 'https://elab.stylemixthemes.com/demo-1/wp-content/uploads/sites/2/2019/05/galaxy-fi-799x799-270x270.jpg',
+  },
+  {
+    id: 91,
+    title: 'Smartwatch classic edition',
+    oldPrice: '$215.00',
+    price: '$189.00',
+    image1: 'https://elab.stylemixthemes.com/demo-1/wp-content/uploads/sites/2/2019/05/SAM-WATCH-270x270.jpg',
+    image2:
+      'https://elab.stylemixthemes.com/demo-1/wp-content/uploads/sites/2/2019/05/sport-watcxh-799x799-270x270.jpg',
+  },
+  {
+    id: 89,
+    title: 'Smartwatch 4 series',
+    oldPrice: '$199.00',
+    price: '$149.00',
+    image1: 'https://elab.stylemixthemes.com/demo-1/wp-content/uploads/sites/2/2019/05/iwatch-270x270.jpg',
+    image2: 'https://elab.stylemixthemes.com/demo-1/wp-content/uploads/sites/2/2019/05/frontier-799x799-270x270.jpg',
+  },
+  {
+    id: 88,
+    title: 'Smartwatch 2.0 LTE Wifi',
+    oldPrice: '$149.00',
+    price: '$129.00',
+    image1: 'https://elab.stylemixthemes.com/demo-1/wp-content/uploads/sites/2/2019/04/watch-red-2-270x270.png',
+    image2:
+      'https://elab.stylemixthemes.com/demo-1/wp-content/uploads/sites/2/2019/04/frontred-watch-799x799-270x270.png',
+  },
 ];
+const Home: React.FC = () => {
+  const dispath = useAppDispatch();
+  const { bestSellerList, hotDealList, lastChanceList, trendingList } = useAppSelector(getProductInHome, shallowEqual);
 
-const brandList = [
-  { id: 1, name: 'MASTER STUDY' },
-  { id: 2, name: 'homepress' },
-  { id: 3, name: 'consulting' },
-  { id: 4, name: 'motor' },
-];
-const Home: React.FC<HomeProps> = ({ template }) => {
-  const temp = 0;
+  useEffect(() => {
+    dispath(fetchHomePage());
+  }, [dispath]);
   return (
     <div className={classes.homeContainer}>
-      <div className={classes.category}>
-        <div className={classes.sideBar}>
-          <Category />
-        </div>
-
-        <div className={classes.banner}>
-          <Banner />
-        </div>
-      </div>
-
-      <div className={classes.imageList}>
-        <div className={classes.image}>Image1</div>
-        <div className={classes.image}>Image2</div>
-      </div>
-
-      <div className={classes.trending}>
-        <Trending />
-      </div>
-
-      <div className={classes.lastChance}>
-        <div className={classes.lastChanceTitle}>
-          <strong>Last</strong> chance to buy
-        </div>
-        <ProductList list={lastChanceList} />
-      </div>
-
-      <div className={classes.bestSeller}>
-        <BestSeller />
-      </div>
+      <ReviewSection />
+      <TrendingSection lastChanceList={lastChanceList} trendingList={trendingList} />
+      <BestSellerSection bestSellerList={bestSellerList} />
 
       <div className={classes.latestProduct}>
-        <div className={classes.latestTitle}>
-          <strong>Latest</strong> Products
-        </div>
-        <div className={classes.productLatestList}>
-          <ProductList amountItemPerRow={6} list={latestList} />
-        </div>
+        <Latest />
       </div>
 
-      <div className={classes.imageList}>
-        <div className={classes.image}>Image 1</div>
-        <div className={classes.image}>Image 2</div>
-      </div>
-
-      <div className={classes.hotDeal}>
-        <HotDeal />
-      </div>
-
-      <div className={classes.viewed}>
-        <div className={classes.viewedTitle}>Recently Viewed</div>
-        <div className={classes.listProduct}>
-          <ProductList list={viewedList} amountItemPerRow={8} />
+      <div className={classes.center}>
+        <div className={classes.imageList}>
+          <div className={classes.image}>
+            <img
+              src="https://elab.stylemixthemes.com/demo-1/wp-content/uploads/sites/2/2019/06/shutterstock_146498354-719x314.jpg"
+              alt="img1"
+            />
+          </div>
+          <div className={classes.image}>
+            <img
+              src="https://elab.stylemixthemes.com/demo-1/wp-content/uploads/sites/2/2019/06/shutterstock_14649835-1-719x314.jpg"
+              alt="img2"
+            />
+          </div>
         </div>
       </div>
 
-      <div className={classes.donors}>
-        <div className={classes.listProduct}>
-          <ProductList list={brandList} />
+      <div className={classes.center}>
+        <div className={classes.hotDeal}>
+          <HotDeal hotDealList={hotDealList} />
+        </div>
+      </div>
+
+      <div className={classes.center}>
+        <div className={classes.viewed}>
+          <Viewed viewedList={viewedList} />
+        </div>
+      </div>
+
+      <div className={classes.center}>
+        <div className={classes.donors}>
+          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+            {donorList.map((image) => (
+              <img src={image} alt="" style={{ flexBasis: '20%' }} key={image} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

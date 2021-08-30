@@ -1,4 +1,4 @@
-export interface LoginFormProps {}
+export type LoginFormProps = Record<string, never>;
 export interface LoginInput {
   title: string;
   type: 'text' | 'password';

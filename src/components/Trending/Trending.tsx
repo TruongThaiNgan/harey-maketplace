@@ -1,27 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import ProductList from '@Component/ProductList';
+import Product from '@Component/Product';
+import TimerCountdown from '@Component/TimerCountdown';
 
 import { TrendingProps } from './interfaces';
 import classes from './Trending.module.scss';
 
 const listNav = [
-  { title: 'Latest Products' },
-  { title: 'Mobile & Tablets' },
-  { title: 'Computers & Accessories' },
-  { title: 'Accesories' },
+  { id: 1, title: 'Latest Products' },
+  { id: 2, title: 'Mobile & Tablets' },
+  { id: 3, title: 'Computers & Accessories' },
+  { id: 4, title: 'Accesories' },
 ];
 
-const productList = [
-  { id: 1, name: 'Product 1' },
-  { id: 2, name: 'Product 2' },
-  { id: 3, name: 'Product 3' },
-  { id: 4, name: 'Product 4' },
-  { id: 5, name: 'Product 5' },
-  { id: 6, name: 'Product 6' },
-];
-const Trending: React.FC<TrendingProps> = () => {
+const Trending: React.FC<TrendingProps> = ({ trendingList }) => {
   // Hook states
+  const [index, setIndex] = useState<number>(1);
 
   // Hook effects
 
@@ -30,37 +24,52 @@ const Trending: React.FC<TrendingProps> = () => {
   // Action handlers
 
   // Renderers
-  const temp = 0;
   return (
     <div className={classes.trendingContainer}>
       <div className={classes.trendingDeal}>
         <div className={classes.trendingTitle}>Trending deals</div>
 
         <div className={classes.nav}>
-          {listNav.map(({ title }) => (
-            <div key={title}>{title}</div>
+          {listNav.map(({ id, title }) => (
+            <button
+              type="button"
+              key={title}
+              className={id === index ? classes.active : undefined}
+              onClick={() => setIndex(id)}
+            >
+              {title}
+            </button>
           ))}
         </div>
-        <ProductList list={productList} />
-        {/* <div className={classes.listProduct}>
-          <div className={classes.product}>Product</div>
-          <div className={classes.product}>Product</div>
-          <div className={classes.product}>Product</div>
-          <div className={classes.product}>Product</div>
-          <div className={classes.product}>Product</div>
-        </div> */}
+
+        <div className={classes.productContainer}>
+          {trendingList?.map(({ id, ...rest }) => (
+            <div className={classes.productItem} key={id}>
+              <Product {...rest} timeCountdown />
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className={classes.dealOfDay}>
-        <div className={classes.dealTitle}>Deal of the Day</div>
-        <div className={classes.imageProduct}>Image</div>
-        <div className={classes.dealSubTitle}>Sony</div>
-        <div className={classes.dealProductName}>White Solo 5 Wireless</div>
-        <div className={classes.price}>$129.00</div>
+        <div className={classes.dealTitle}>Deal of day</div>
+        <div className={classes.countdown}>
+          <TimerCountdown />
+        </div>
+        <div className={classes.dealProduct}>
+          <img
+            src="https://elab.stylemixthemes.com/demo-1/wp-content/uploads/sites/2/2019/05/iphone-xs-gols-1-599x599-410x530.png"
+            alt="main"
+          />
+        </div>
+        <div className={classes.price}>
+          <div className={classes.title}>AA Smartphone XS</div>
+          <div className={classes.oldPrice}>$1,100.00</div>
+          <div className={classes.newPrice}>$1,059.00</div>
+        </div>
       </div>
     </div>
   );
 };
-
 Trending.defaultProps = {};
 export default Trending;

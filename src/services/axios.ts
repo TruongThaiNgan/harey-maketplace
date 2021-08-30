@@ -1,6 +1,8 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 import { getAccessToken } from '@Util/localStorageService';
+import store from '@Store/store';
+import { updateAuth } from '@Slice/userSlice';
 
 axios.interceptors.request.use(
   (request) => {
@@ -14,6 +16,20 @@ axios.interceptors.request.use(
   },
   (error) => {
     Promise.reject(error);
+  },
+);
+
+type ErrorRespone = {
+  message: string;
+  code: string;
+};
+
+axios.interceptors.response.use(
+  (response) => response,
+  (error: AxiosError<ErrorRespone>) => {
+    if (error.response?.status === 401 && error.response?.data.message === 'Invalid Token') {
+      store.dispatch(updateAuth({ auth: false }));
+    }
   },
 );
 

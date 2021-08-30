@@ -8,37 +8,72 @@ import MobileScreenShareOutlinedIcon from '@material-ui/icons/MobileScreenShareO
 import BuildOutlinedIcon from '@material-ui/icons/BuildOutlined';
 import TvOutlinedIcon from '@material-ui/icons/TvOutlined';
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
+import WatchOutlinedIcon from '@material-ui/icons/WatchOutlined';
 import { useTranslation } from 'react-i18next';
+
+import CustomLink from '@Component/CustomLink';
 
 import classes from './Category.module.scss';
 
-interface CategoryProps {}
 const listCategories = [
-  { title: 'catelogy.accessories', icon: <SelectAllOutlinedIcon />, hasButtonAdd: false },
-  { title: 'catelogy.camera', icon: <CameraAltOutlinedIcon />, hasButtonAdd: true },
-  { title: 'catelogy.computer', icon: <ComputerOutlinedIcon />, hasButtonAdd: false },
-  { title: 'catelogy.console', icon: <SportsEsportsOutlinedIcon />, hasButtonAdd: false },
-  { title: 'catelogy.gadgets', icon: <HeadsetOutlinedIcon />, hasButtonAdd: true },
-  { title: 'catelogy.mobile', icon: <MobileScreenShareOutlinedIcon />, hasButtonAdd: true },
-  { title: 'catelogy.tool', icon: <BuildOutlinedIcon />, hasButtonAdd: false },
-  { title: 'catelogy.tv', icon: <TvOutlinedIcon />, hasButtonAdd: true },
+  {
+    title: 'catelogy.accessories',
+    icon: <SelectAllOutlinedIcon />,
+    hasButtonAdd: false,
+    link: '/product-category/accessories',
+  },
+  {
+    title: 'catelogy.computer',
+    icon: <ComputerOutlinedIcon />,
+    hasButtonAdd: false,
+    link: '/product-category/computers',
+  },
+  {
+    title: 'catelogy.camera',
+    icon: <CameraAltOutlinedIcon />,
+    hasButtonAdd: true,
+    link: '/product-category/cameras-photos',
+  },
+  {
+    title: 'catelogy.mobile',
+    icon: <MobileScreenShareOutlinedIcon />,
+    hasButtonAdd: true,
+    link: '/product-category/mobiles-tablets',
+  },
+  { title: 'catelogy.tv', icon: <TvOutlinedIcon />, hasButtonAdd: true, link: '/product-category/accessories' },
+  {
+    title: 'catelogy.console',
+    icon: <SportsEsportsOutlinedIcon />,
+    hasButtonAdd: false,
+    link: '/product-category/console-games',
+  },
+  {
+    title: 'catelogy.gadgets',
+    icon: <HeadsetOutlinedIcon />,
+    hasButtonAdd: true,
+    link: '/product-category/gadgets',
+  },
+  { title: 'catelogy.tool', icon: <BuildOutlinedIcon />, hasButtonAdd: false, link: '/product-category/tools-storage' },
+  { title: 'Watches', icon: <WatchOutlinedIcon />, hasButtonAdd: false, link: '/product-category/gadgets/watches' },
 ];
 
-const Category: React.FC<CategoryProps> = () => {
+const Category: React.FC = () => {
   const [t] = useTranslation();
   return (
     <div className={classes.category}>
       <div className={classes.product}>Product categories</div>
 
       <ul>
-        {listCategories.map((item) => (
-          <li key={item.title} className={classes.productItem}>
-            <div className={classes.left}>
-              <button type="button">{item.icon}</button>
-              <span>{t(item.title)}</span>
-            </div>
+        {listCategories.map(({ title, icon, hasButtonAdd, link }) => (
+          <li key={title} className={classes.productItem}>
+            <CustomLink to={link}>
+              <div className={classes.left}>
+                <button type="button">{icon}</button>
+                <span>{t(title)}</span>
+              </div>
+            </CustomLink>
 
-            {item.hasButtonAdd && (
+            {hasButtonAdd && (
               <div className={classes.right}>
                 <button type="button" className={classes.buttonAdd}>
                   <AddOutlinedIcon />

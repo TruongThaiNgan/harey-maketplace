@@ -1,25 +1,31 @@
-import React from 'react';
-import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
+import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
 import LocalPhoneOutlinedIcon from '@material-ui/icons/LocalPhoneOutlined';
 import PermPhoneMsgOutlinedIcon from '@material-ui/icons/PermPhoneMsgOutlined';
-import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
+import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { NavLink } from 'react-router-dom';
 
+import specialOffer from '@Image/special-offer.jpg';
 import skype from '@Image/skype.svg';
-import copyRight from '@Image/copyRight.png';
 import phoneCall from '@Image/phone-call.svg';
 import mail from '@Image/mail.svg';
-import specialOffer from '@Image/special-offer.jpg';
+import copyRight from '@Image/copyRight.png';
 
 import classes from './Footer.module.scss';
 
-interface FooterProps {}
 const infoList = [
   { icon: skype, title: 'Skype', content: 'E-lab_shop_contact' },
   { icon: phoneCall, title: 'footer.info', content: '878 - 3853 -9576' },
   { icon: mail, title: 'Email', content: 'shopelab@gmail.com' },
 ];
-const myAccountList = ['footer.shop', 'footer.cart', 'footer.aboutUs', 'footer.contactUs', 'footer.comingSoon'];
+const myAccountList = [
+  { title: 'footer.shop', link: '/shop' },
+  { title: 'footer.cart', link: '/cart' },
+  { title: 'footer.aboutUs', link: '/about' },
+  { title: 'footer.contactUs', link: '/contact' },
+  { title: 'footer.comingSoon', link: '/coming' },
+];
 const customServicesList = ['footer.home', 'footer.blog', 'footer.wishList', 'footer.compare', 'footer.portfolio'];
 const contactList = [
   { icon: <RoomOutlinedIcon />, content: '445 Mount Eden Road' },
@@ -28,7 +34,7 @@ const contactList = [
   { icon: <EmailOutlinedIcon />, content: 'shopelab@gmail.com' },
 ];
 
-const Footer: React.FC<FooterProps> = () => {
+const Footer: React.FC = () => {
   const [t] = useTranslation();
   return (
     <div className={classes.footerContainer}>
@@ -55,8 +61,12 @@ const Footer: React.FC<FooterProps> = () => {
         <div className={classes.list}>
           <span className={classes.title}>{t('footer.account')}</span>
           <ul>
-            {myAccountList.map((item) => (
-              <li key={item}>{t(item)}</li>
+            {myAccountList.map(({ title, link }) => (
+              <li key={title}>
+                <NavLink to={link} style={{ color: 'inherit' }}>
+                  {t(title)}
+                </NavLink>
+              </li>
             ))}
           </ul>
         </div>

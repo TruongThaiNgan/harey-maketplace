@@ -13,6 +13,7 @@
       "@Assets/*": ["src/assets/*"],
       "@Util/*": ["src/utils/*"],
       "@Service/*": ["src/services/*"],
+      "@Hoc/*": ["src/hoc/*"],
       "@Mutation/*": ["src/hooks/apiHooks/mutations/*"],
       "@Query/*": ["src/hooks/apiHooks/queries/*"]
     }

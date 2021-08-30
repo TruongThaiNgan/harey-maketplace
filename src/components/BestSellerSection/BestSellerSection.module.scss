@@ -1,0 +1,10 @@
+@import '../../scss/main';
+
+.bestSellerSectionContainer {
+  @include row(center, center);
+
+  .center {
+    width: 100%;
+    max-width: 1500px;
+  }
+}

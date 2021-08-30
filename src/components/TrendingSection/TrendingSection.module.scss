@@ -1,0 +1,44 @@
+@import '../../scss/main';
+
+.trendingSectionContainer {
+  @include row(center, center);
+  padding-bottom: 4rem;
+
+  background-color: #fff;
+
+  .center {
+    width: 100%;
+    max-width: 1500px;
+  }
+
+  .lastChance {
+    @include col(center);
+    width: 100%;
+    margin-top: 2rem;
+    padding: 1rem;
+
+    background-color: #fff;
+  }
+}
+
+.lastChanceTitle {
+  color: #444;
+  font-weight: bold;
+
+  strong {
+    font-size: 2rem;
+  }
+}
+
+.productList {
+  @include row(center, center);
+  margin-top: 2rem;
+
+  .product {
+    width: 100%;
+  }
+}
+
+.trending {
+  height: 1000px;
+}

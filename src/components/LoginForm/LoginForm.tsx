@@ -4,10 +4,6 @@ import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 
 import Facebook from '@Component/Facebook';
-import useCreateAuthMutation from '@Mutation/useCreateAuthMutation';
-import { updateAuth } from '@Slice/userSlice';
-import { useAppDispatch } from '@Store/hooks';
-import { setToken } from '@Util/localStorageService';
 
 import { LoginFormProps, LoginInput } from './interfaces';
 import classes from './LoginForm.module.scss';
@@ -27,7 +23,6 @@ const initialValues = {
 const LoginForm: React.FC<LoginFormProps> = () => {
   // Hook states
   const [t] = useTranslation();
-  const dispatch = useAppDispatch();
   const { values, handleChange, errors, touched } = useFormik({
     initialValues,
     onSubmit: () => {
@@ -37,17 +32,6 @@ const LoginForm: React.FC<LoginFormProps> = () => {
     validateOnChange: false,
     validateOnBlur: true,
   });
-  const { mutate } = useCreateAuthMutation({
-    onSuccess: ({ data }) => {
-      if (data.status === '200') {
-        setToken(data.accessToken);
-        dispatch(updateAuth({ auth: true }));
-      }
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
   // Hook effects
 
   // Constants
@@ -55,7 +39,6 @@ const LoginForm: React.FC<LoginFormProps> = () => {
   // Action handlers
   const submitHandler = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    mutate(values);
   };
 
   // Renderers

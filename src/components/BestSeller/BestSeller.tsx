@@ -3,9 +3,9 @@ import EventNoteOutlinedIcon from '@material-ui/icons/EventNoteOutlined';
 import HeadsetOutlinedIcon from '@material-ui/icons/HeadsetOutlined';
 import TrendingUpOutlinedIcon from '@material-ui/icons/TrendingUpOutlined';
 import WatchOutlinedIcon from '@material-ui/icons/WatchOutlined';
-import React from 'react';
+import React, { useState } from 'react';
 
-import ProductList from '@Component/ProductList';
+import Product from '@Component/Product';
 
 import classes from './BestSeller.module.scss';
 import { BestSellerProps } from './interfaces';
@@ -18,19 +18,9 @@ const listIcon = [
   { id: 5, icon: <HeadsetOutlinedIcon /> },
 ];
 
-const bestSellerList1 = [
-  { id: 1, name: 'best seller 1' },
-  { id: 2, name: 'best seller 2' },
-];
-const bestSellerList2 = [
-  { id: 1, name: 'best seller 3' },
-  { id: 2, name: 'best seller 4' },
-  { id: 3, name: 'best seller 5' },
-  { id: 4, name: 'best seller 6' },
-];
-
-const BestSeller: React.FC<BestSellerProps> = () => {
+const BestSeller: React.FC<BestSellerProps> = ({ bestSellerList }) => {
   // Hook states
+  const [index, setIndex] = useState<number>(1);
 
   // Hook effects
 
@@ -40,7 +30,6 @@ const BestSeller: React.FC<BestSellerProps> = () => {
 
   // Renderers
 
-  const temp = 0;
   return (
     <div className={classes.bestSellerContainer}>
       <div className={classes.bestSellerBar}>
@@ -48,7 +37,12 @@ const BestSeller: React.FC<BestSellerProps> = () => {
 
         <div className={classes.listIcon}>
           {listIcon.map(({ id, icon }) => (
-            <button type="button" key={id}>
+            <button
+              type="button"
+              key={id}
+              className={id === index ? classes.active : undefined}
+              onClick={() => setIndex(id)}
+            >
               {icon}
             </button>
           ))}
@@ -56,15 +50,26 @@ const BestSeller: React.FC<BestSellerProps> = () => {
       </div>
 
       <div className={classes.seller}>
-        <div className={classes.mainSeller}>Main Product</div>
+        <div className={classes.mainSeller}>{bestSellerList && <Product timeCountdown {...bestSellerList[0]} />}</div>
         <div className={classes.product}>
-          <ProductList list={bestSellerList1} amountItemPerRow={2} />
-          <ProductList list={bestSellerList2} />
+          <div className={classes.top}>
+            {bestSellerList?.slice(1, 3).map(({ id, ...rest }) => (
+              <div key={id}>
+                <Product key={id} {...rest} row />
+              </div>
+            ))}
+          </div>
+          <div className={classes.bottom}>
+            {bestSellerList?.slice(3).map(({ id, ...rest }) => (
+              <div key={id}>
+                <Product {...rest} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
   );
 };
-
 BestSeller.defaultProps = {};
 export default BestSeller;

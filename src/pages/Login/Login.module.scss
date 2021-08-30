@@ -4,11 +4,13 @@
   @include row(center, center);
   width: 100%;
   padding: 5rem 0;
+
   background: #f4f6f7;
 
   .block {
     @include row(center);
     width: 90%;
+
     background-color: #fff;
   }
 }
@@ -17,6 +19,7 @@
   @include col;
   width: 50%;
   padding: 4rem;
+
   background-color: #fff;
 
   h1 {

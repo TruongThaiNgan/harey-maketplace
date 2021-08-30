@@ -7,15 +7,15 @@
     padding: 0 10%;
 
     .left {
-      @include row(center, center);
+      @include row(flex-start, center);
       color: #686767;
       font-size: small;
 
       button {
         @include button-icon;
         color: #808080;
-        font-style: italic;
         font-size: small;
+        font-style: italic;
       }
 
       span {
@@ -24,6 +24,7 @@
     }
 
     .right {
+      @include row(flex-end, center);
       color: #808080;
       font-size: small;
 
@@ -45,20 +46,23 @@
 
     button {
       border: 0;
-      background-color: transparent;
+
       color: #575757;
       font-weight: 100;
+
+      background-color: transparent;
     }
   }
 
   .searchBar {
     @include row(space-between, center);
-    overflow: hidden;
     width: fit-content;
     height: 3rem;
     padding-left: 0.5rem;
     border: 1px solid #e6e6e6;
     border-radius: 18px;
+    overflow: hidden;
+
     color: #555;
 
     input {
@@ -73,8 +77,9 @@
 
     .searchButton {
       @include size(4rem, 100%);
-      background-color: rgba(89, 91, 212, 1);
       color: #fff;
+
+      background-color: rgba(89, 91, 212, 1);
     }
   }
 
@@ -92,21 +97,22 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
+
     background-color: rgba(41, 47, 56, 1);
     cursor: pointer;
   }
 
   .navBar {
-    @include row(center, flex-end);
+    @include row(flex-start, flex-end);
     width: 100%;
     max-width: 1500px;
     height: 100%;
 
-    button {
-      border: 0;
-      background-color: transparent;
-      color: #fff;
-    }
+    // button {
+    //   border: 0;
+    //   background-color: transparent;
+    //   color: #fff;
+    // }
 
     .categories {
       @include size(25%, 120%);
@@ -114,14 +120,18 @@
       padding: 0 1rem;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
-      background-color: rgba(89, 91, 212, 1);
+
       color: #fff;
       font-size: 0.8rem;
 
+      background-color: rgba(89, 91, 212, 1);
+
       button {
         border: 0;
-        background-color: transparent;
+
         color: #fff;
+
+        background-color: transparent;
       }
     }
   }
@@ -132,23 +142,33 @@
   @include size(75%, 100%);
 
   margin-left: 2rem;
+
   cursor: pointer;
 
   .boxContainer {
+    @include button-icon;
     position: relative;
+
     display: flex;
     flex-direction: column;
+    width: 100%;
     height: 100%;
+    padding: 0;
 
     &:hover .buttonLink {
       background-color: rgba(89, 91, 212, 1);
     }
   }
 
+  .active {
+    background-color: rgba(89, 91, 212, 1);
+  }
+
   .buttonLink {
-    // @include row(center, center);
     @include size(100%, 100%);
+    color: #fff;
     font-size: 1rem;
+
     cursor: pointer;
   }
 

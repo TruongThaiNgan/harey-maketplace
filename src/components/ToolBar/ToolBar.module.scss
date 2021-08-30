@@ -12,8 +12,10 @@
       padding: 0 1rem;
       border: 1px solid rgba(0, 0, 0, 0.1);
       border-radius: 2rem;
-      background-color: #fff;
+
       color: #444;
+
+      background-color: #fff;
       cursor: pointer;
 
       &:focus {
@@ -27,15 +29,19 @@
       margin-left: 2rem;
       border: 1px solid rgba(0, 0, 0, 0.1);
       border-radius: 2rem;
-      background-color: transparent;
+
       color: #444;
       font-size: small;
+
+      background-color: transparent;
       cursor: pointer;
 
       &:hover {
         border-color: rgba(89, 91, 212, 1);
-        background-color: rgba(89, 91, 212, 1);
+
         color: #fff;
+
+        background-color: rgba(89, 91, 212, 1);
       }
     }
   }
@@ -45,8 +51,10 @@
 
     button {
       border: 0;
-      background-color: transparent;
+
       color: #e5e5e5;
+
+      background-color: transparent;
 
       &:hover {
         color: #000;
@@ -58,8 +66,10 @@
       padding: 0 1rem;
       border: 1px solid rgba(0, 0, 0, 0.1);
       border-radius: 2rem;
-      background-color: #fff;
+
       color: #444;
+
+      background-color: #fff;
       cursor: pointer;
 
       &:focus {

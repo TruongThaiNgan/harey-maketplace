@@ -1,12 +1,11 @@
 import React from 'react';
-import { useQuery } from 'react-query';
 
 import axios from '@Service/axios';
 
-import { AboutProps } from './interfaces';
 import classes from './About.module.scss';
+import { AboutProps } from './interfaces';
 
-const About: React.FC<AboutProps> = () => {
+const About: React.FC<AboutProps> = () => (
   // Hook states
 
   // Hook effects
@@ -16,40 +15,20 @@ const About: React.FC<AboutProps> = () => {
   // Action handlers
 
   // Renderers
-
-  const temp = 0;
-  const { isLoading, error, data, refetch, isFetching } = useQuery(
-    'repoData',
-    () =>
-      axios
-        .get('/shop/product')
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err)),
-    {
-      enabled: false,
-      cacheTime: 15000,
-    },
-  );
-  if (isFetching) {
-    return <div> loading ...</div>;
-  }
-  if (error) {
-    return <div> error ...</div>;
-  }
-  return (
-    <div className={classes.aboutContainer}>
-      <div>About</div>
-      <button
-        type="button"
-        onClick={() => {
-          refetch();
-        }}
-      >
-        click
-      </button>
-    </div>
-  );
-};
-
+  <div className={classes.aboutContainer}>
+    <div>About</div>
+    <button
+      type="button"
+      onClick={() => {
+        axios
+          .get('/secret')
+          .then((res) => console.log(res))
+          .catch((error) => console.log(error));
+      }}
+    >
+      click
+    </button>
+  </div>
+);
 About.defaultProps = {};
 export default About;

@@ -25,7 +25,6 @@ ReactDOM.render(
           </Router>
         </PersistGate>
       </QueryClientProvider>
-      ;
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'),

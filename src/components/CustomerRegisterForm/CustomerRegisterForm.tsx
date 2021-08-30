@@ -3,12 +3,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 
-import { useAppDispatch, useAppSelector } from '@Store/hooks';
-import { getAuth } from '@Slice/userSlice';
-import useCreateCustomerMutation from '@Mutation/useCreateCustomerMutation';
-
 import classes from './CustomerRegisterForm.module.scss';
-import { CustomerRegisterFormProps, LoginInput } from './interfaces';
+import { LoginInput } from './interfaces';
 
 const loginInputList: LoginInput[] = [
   { title: 'login.email', type: 'text', name: 'email' },
@@ -31,17 +27,9 @@ const initialValues = {
   password: '',
   confirmPassword: '',
 };
-const LoginForm: React.FC<CustomerRegisterFormProps> = () => {
+const LoginForm: React.FC = () => {
   // Hook states
   const [t] = useTranslation();
-  const { isLoading, mutate } = useCreateCustomerMutation({
-    onSuccess: ({ data }) => {
-      console.log(data);
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
   const { values, handleChange, errors, touched } = useFormik({
     initialValues,
     onSubmit: () => {
@@ -58,7 +46,6 @@ const LoginForm: React.FC<CustomerRegisterFormProps> = () => {
   // Action handlers
   const submitHandler = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    mutate({ email: values.email, password: values.password });
   };
 
   // Renderers

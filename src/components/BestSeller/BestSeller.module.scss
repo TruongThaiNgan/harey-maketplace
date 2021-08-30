@@ -4,7 +4,6 @@
   @include col;
   width: 100%;
   height: 100%;
-  border: 1px solid #000;
 }
 
 .bestSellerBar {
@@ -14,12 +13,13 @@
   .bestSellerHeader {
     width: 100%;
     padding: 2rem 0 1rem;
+
     font-weight: bold;
     font-size: 2rem;
   }
 
   .listIcon {
-    @include row;
+    @include row(flex-end, center);
 
     button {
       @include button-icon;
@@ -34,19 +34,51 @@
 
 .seller {
   @include row;
-  width: 100%;
-  height: 100%;
-  border: 1px solid #000;
+  @include size(100%, 100%);
 
   .mainSeller {
     @include row(center, center);
-    width: 25%;
-    height: 100%;
-    border: 1px solid #000;
+    @include size(25%, 100%);
+    margin-right: 0.5rem;
+
+    background-color: #fff;
+  }
+}
+
+.product {
+  @include col;
+  width: 75%;
+
+  .top {
+    @include row;
+    margin-bottom: 0.5rem;
+
+    div {
+      margin-right: 0.5rem;
+
+      background-color: #fff;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
 
-  .product {
-    @include col;
-    width: 75%;
+  .bottom {
+    @include row;
+
+    div {
+      margin-right: 0.5rem;
+
+      background-color: #fff;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
+}
+
+.active {
+  color: #595bd4;
 }

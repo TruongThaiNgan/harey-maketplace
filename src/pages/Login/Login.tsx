@@ -11,7 +11,6 @@ import { useAppSelector } from '@Store/hooks';
 import { LocationState } from './interfaces';
 import classes from './Login.module.scss';
 
-interface LoginProps {}
 const listRegister = [
   {
     name: 'customer',
@@ -23,7 +22,7 @@ const listRegister = [
   },
 ];
 
-const Login: React.FC<LoginProps> = () => {
+const Login: React.FC = () => {
   const [t] = useTranslation();
   const [isVendor, setIsVendor] = useState<boolean>(false);
   const auth = useAppSelector(getAuth);

@@ -1,0 +1,25 @@
+@import '../../scss/main';
+
+.timerCountdownContainer {
+  @include size(100%, 100%);
+  @include row(center, center);
+
+  padding: 1rem 0;
+
+  .block {
+    @include col(center, center);
+
+    .number {
+      @include row(center, center);
+      color: #494949;
+      font-size: 1.5rem;
+    }
+
+    .format {
+      @include row(center, center);
+      color: #ccc;
+      font-size: 0.5rem;
+      text-transform: uppercase;
+    }
+  }
+}

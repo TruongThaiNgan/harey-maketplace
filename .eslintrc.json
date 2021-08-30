@@ -36,8 +36,7 @@
           ["@Icon", "./src/assets/icons"],
           ["@Asset", "./src/assets"],
           ["@Service", "./src/services"],
-          ["@Mutation", "./src/hooks/apiHooks/mutations"],
-          ["@Query", "./src/hooks/apiHooks/queries"]
+          ["@Hoc", "./src/hoc"]
         ],
         "extensions": [".ts", ".tsx", ".js", ".jsx", ".json"]
       }

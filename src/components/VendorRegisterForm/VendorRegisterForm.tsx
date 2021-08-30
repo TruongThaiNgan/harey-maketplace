@@ -3,8 +3,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 
-import useCreateVendorMutation from '@Mutation/useCreateVendorMutation';
-
 import { RegisterFormProps, RegisterInput } from './interfaces';
 import classes from './VendorRegisterForm.module.scss';
 
@@ -79,7 +77,7 @@ const validationSchema = Yup.object().shape({
 const VendorRegisterForm: React.FC<RegisterFormProps> = () => {
   // Hook states
   const [t] = useTranslation();
-  const { values, handleChange, handleSubmit, handleBlur, errors, setFieldError, touched } = useFormik({
+  const { values, handleChange, handleSubmit, handleBlur, errors, touched } = useFormik({
     initialValues,
     onSubmit: () => {
       console.log('submit');
@@ -87,14 +85,6 @@ const VendorRegisterForm: React.FC<RegisterFormProps> = () => {
     validationSchema,
     validateOnChange: false,
     validateOnBlur: true,
-  });
-  const { mutate } = useCreateVendorMutation({
-    onSuccess: ({ data }) => {
-      if (data.status === '409') setFieldError('email', 'email exist');
-    },
-    onError: (error) => {
-      console.log(error);
-    },
   });
 
   // Hook effects
@@ -104,7 +94,6 @@ const VendorRegisterForm: React.FC<RegisterFormProps> = () => {
   // Action handlers
   const submitHandler = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    mutate(values);
     handleSubmit();
   };
 

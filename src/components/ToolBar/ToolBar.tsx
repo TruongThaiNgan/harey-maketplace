@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 
 import classes from './ToolBar.module.scss';
 
-interface ToolBarProps {}
 const sortOptionList = [
   'toolBar.default',
   'toolBar.popularity',
@@ -18,7 +17,12 @@ const sortOptionList = [
 
 const showOptionList = [5, 12, 15, 20];
 
-const ToolBar: React.FC<ToolBarProps> = () => {
+interface ToolBarProps {
+  onChangeLimit: React.Dispatch<React.SetStateAction<number>>;
+  limit: number;
+}
+
+const ToolBar: React.FC<ToolBarProps> = ({ onChangeLimit, limit }) => {
   const [t] = useTranslation();
   return (
     <div className={classes.toolbar}>
@@ -44,7 +48,16 @@ const ToolBar: React.FC<ToolBarProps> = () => {
         <button type="button">
           <ViewModuleIcon />
         </button>
-        <select name="show" id="show" className={classes.show}>
+        <select
+          name="show"
+          id="show"
+          className={classes.show}
+          onChange={(event) => {
+            console.log(event.target.value);
+            onChangeLimit(+event.target.value);
+          }}
+          value={limit}
+        >
           {showOptionList.map((item) => (
             <option key={item} value={item}>
               {`${t('toolBar.show')} ${item}`}{' '}

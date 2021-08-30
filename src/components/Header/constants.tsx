@@ -7,10 +7,6 @@ import ShuffleOutlinedIcon from '@material-ui/icons/ShuffleOutlined';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import React from 'react';
 
-import ShopMenu from '@Component/ShopMenu';
-import DropBox from '@Component/DropBox';
-import ElementsMenu from '@Component/ElementsMenu';
-
 import { ButtonListState } from './interfaces';
 
 export const iconlist = [
@@ -44,26 +40,23 @@ export const homeList = [
 export const pageList = [{ title: 'Blog' }, { title: 'Portfolio' }, { title: '404' }];
 
 export const buttonList: ButtonListState = [
-  { id: 1, title: 'header.home', component: <DropBox list={homeList} style={{ position: 'absolute' }} />, link: '/' },
+  { id: 1, title: 'header.home', link: '/' },
   {
     id: 2,
     title: 'header.shop',
-    component: <ShopMenu style={{ position: 'absolute', width: '800px', height: '500px' }} />,
     link: '/shop',
   },
   { id: 3, title: 'header.aboutUs', link: '/about' },
   { id: 4, title: 'header.contactUs', link: '/contact' },
-  { id: 5, title: 'header.comingSoon', link: '/comming' },
+  { id: 5, title: 'header.comingSoon', link: '/coming' },
   {
     id: 6,
     title: 'header.pages',
-    component: <DropBox list={pageList} style={{ position: 'absolute' }} />,
     link: '/pages',
   },
   {
     id: 7,
     title: 'header.elements',
-    component: <ElementsMenu style={{ position: 'absolute', width: '1200px', height: '300px', right: 0 }} />,
     link: '/element',
   },
 ];

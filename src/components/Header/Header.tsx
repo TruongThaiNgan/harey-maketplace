@@ -2,17 +2,18 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import classNames from 'classnames';
 
 import logo from '@Image/logo.svg';
 import CustomLink from '@Component/CustomLink';
 
-import { buttonList, featureList, iconlist, initButtonState, linkList } from './constants';
+import { buttonList, featureList, iconlist, linkList } from './constants';
 import classes from './Header.module.scss';
-import { HeaderProps, NavButtonState } from './interfaces';
+import { HeaderProps } from './interfaces';
 
 const Header: React.FC<HeaderProps> = () => {
   const [t] = useTranslation();
-  const [navButton, setNavButton] = useState<NavButtonState>(initButtonState);
+  const [index, setIndex] = useState<number>(1);
   return (
     <header className={classes.header}>
       <div className={classes.listLink}>
@@ -35,7 +36,9 @@ const Header: React.FC<HeaderProps> = () => {
 
       <div className={classes.headerBar}>
         <button type="button">
-          <img src={logo} alt="logo" />
+          <CustomLink to="/">
+            <img src={logo} alt="logo" />
+          </CustomLink>
         </button>
 
         <div className={classes.searchBar}>
@@ -67,28 +70,17 @@ const Header: React.FC<HeaderProps> = () => {
           </div>
 
           <div className={classes.listButton}>
-            {buttonList.map(({ id, title, component, link }) => (
-              <div
+            {buttonList.map(({ id, title, link }) => (
+              <button
+                type="button"
                 key={`${id}`}
-                className={classes.boxContainer}
-                onMouseEnter={() =>
-                  setNavButton((preState) => {
-                    return { ...preState, [title]: true };
-                  })
-                }
-                onMouseLeave={() =>
-                  setNavButton((preState) => {
-                    return { ...preState, [title]: false };
-                  })
-                }
+                className={classNames(classes.boxContainer, index === id ? classes.active : undefined)}
+                onClick={() => setIndex(id)}
               >
-                <CustomLink to={link} key={`${id}`}>
-                  <button type="button" className={classes.buttonLink}>
-                    {t(title)}
-                  </button>
+                <CustomLink to={link} key={`${id}`} className={classes.buttonLink}>
+                  {t(title)}
                 </CustomLink>
-                {navButton[title] && <div className={classes.dropBox}>{component}</div>}
-              </div>
+              </button>
             ))}
           </div>
         </div>

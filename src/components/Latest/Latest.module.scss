@@ -1,0 +1,64 @@
+@import '../../scss/main';
+
+.latestContainer {
+  @include col;
+  width: 100%;
+  max-width: 1500px;
+  margin-top: 2rem;
+  overflow: hidden;
+
+  .productLatestList {
+    @include row(center, center);
+    flex-wrap: nowrap;
+    width: max-content;
+
+    .productItem {
+      flex: 1 0 16.66%;
+      max-width: 250px;
+      border: 1px solid #ccc;
+    }
+  }
+}
+
+.latestTitle {
+  @include row(space-between, center);
+  width: 100%;
+
+  font-weight: bold;
+  font-size: 1rem;
+
+  strong {
+    font-size: 2rem;
+  }
+}
+
+.buttonControl {
+  width: fit-content;
+
+  button {
+    @include button-icon;
+    width: 2rem;
+    height: 2rem;
+    margin-left: 1rem;
+
+    color: #b8b8b8;
+
+    background-color: #f1f1f1;
+
+    &:hover {
+      color: #fff;
+
+      background-color: #b8b8b8;
+    }
+
+    &:disabled {
+      color: #fff;
+
+      background-color: #f1f1f1;
+
+      &:hover {
+        background-color: #f1f1f1;
+      }
+    }
+  }
+}

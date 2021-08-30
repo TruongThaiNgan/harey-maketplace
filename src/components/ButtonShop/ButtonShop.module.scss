@@ -1,0 +1,22 @@
+@import '../../scss/main';
+
+.buttonShopContainer {
+  button {
+    padding: 1rem 2rem;
+    border: 1px solid rgba(89, 91, 212, 1);
+    border-radius: 1.5rem;
+
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    background-color: rgba(89, 91, 212, 1);
+    cursor: pointer;
+
+    &:hover {
+      border-color: rgba(41, 47, 56, 1);
+
+      background-color: rgba(41, 47, 56, 1);
+    }
+  }
+}

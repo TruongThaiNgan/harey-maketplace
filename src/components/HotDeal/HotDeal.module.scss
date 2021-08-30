@@ -6,7 +6,11 @@
   height: 100%;
   margin-top: 2rem;
 
+  background-color: #fff;
+
   .hotDealTitle {
+    margin-bottom: 3rem;
+
     font-weight: bold;
     font-size: 2rem;
   }
@@ -19,27 +23,38 @@
   .hotDealNav {
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 15%;
     height: 100%;
-    border: 1px solid #000;
 
-    div {
+    .iconNav {
       @include row(flex-end, center);
-      padding: 1rem 0;
+      @include button-icon;
+      margin-bottom: 1rem;
+
+      font-size: medium;
+
       cursor: pointer;
 
-      button {
-        @include button-icon;
-        padding: 0 1rem;
+      span {
+        margin-right: 2rem;
       }
     }
   }
 
   .listProduct {
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-start;
-    width: 75%;
+    width: 85%;
+    height: 100%;
     margin-top: 0;
-    border: 1px solid #000;
+
+    .productItem {
+      flex-basis: 33.33%;
+    }
   }
+}
+
+.active {
+  color: #595bd4;
 }

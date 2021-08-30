@@ -1,8 +1,9 @@
-interface productList {
+import { ProductProps } from '@Component/Product';
+
+interface ProductItem extends ProductProps {
   id: number;
-  name: string;
 }
 export interface ProductListProps {
   amountItemPerRow?: number;
-  list: productList[];
+  list: ProductItem[];
 }

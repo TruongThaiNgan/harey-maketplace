@@ -1,27 +1,16 @@
+import FacebookIcon from '@material-ui/icons/Facebook';
 import React, { useState } from 'react';
 import FacebookLogin, { ReactFacebookFailureResponse, ReactFacebookLoginInfo } from 'react-facebook-login';
-import FacebookIcon from '@material-ui/icons/Facebook';
 
-import { useAppDispatch } from '@Store/hooks';
 import { updateAuth } from '@Slice/userSlice';
-import useCreateAuthFacebookMutation from '@Mutation/useCreateAuthFacebookMutation';
-import { setToken } from '@Util/localStorageService';
+import { useAppDispatch } from '@Store/hooks';
 
-import { FacebookProps, IFackbook } from './interfaces';
 import classes from './Facebook.module.scss';
+import { IFackbook } from './interfaces';
 
-const Facebook: React.FC<FacebookProps> = () => {
+const Facebook: React.FC = () => {
   // Hook states
   const dispatch = useAppDispatch();
-  const { isLoading, mutate } = useCreateAuthFacebookMutation({
-    onSuccess: ({ data }) => {
-      setToken(data.accessToken);
-      dispatch(updateAuth({ auth: true }));
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
   const [value, setValue] = useState<IFackbook>({
     isLoggedIn: false,
     userID: '',
@@ -46,10 +35,6 @@ const Facebook: React.FC<FacebookProps> = () => {
       // res is ReactFacebookLoginInfo
       if ('userID' in res) {
         dispatch(updateAuth({ auth: true }));
-        mutate({
-          userID: res.userID,
-          accessToken: res.accessToken,
-        });
       }
     }
   };

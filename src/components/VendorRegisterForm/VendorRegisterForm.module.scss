@@ -19,9 +19,10 @@
     width: 70%;
     padding: 0.5rem 1rem;
     border: 0;
-    background-color: #f4f6f7;
+
     font-size: 1.1rem;
 
+    background-color: #f4f6f7;
     &:focus {
       outline: none;
     }
@@ -49,6 +50,7 @@
     span {
       color: #777;
       text-decoration: underline;
+
       cursor: pointer;
     }
   }
@@ -70,11 +72,12 @@
   padding: 13px 25px;
   border: 0;
   border-radius: 22px;
-  background-color: rgba(89, 91, 212, 1);
+
   color: #fff;
   font-size: 11px;
-  cursor: pointer;
 
+  background-color: rgba(89, 91, 212, 1);
+  cursor: pointer;
   &:hover {
     background-color: rgba(41, 47, 56, 1);
   }

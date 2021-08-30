@@ -1,1 +1,1 @@
-export interface AboutProps {}
+export type AboutProps = Record<string, never>;

@@ -1,0 +1,25 @@
+@import '../../scss/main';
+
+.viewedContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .viewedTitle {
+    margin-top: 2rem;
+
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+  .viewedList {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .viewedItem {
+    flex-basis: 16.66%;
+    height: fit-content;
+    border: 1px solid #ccc;
+  }
+}

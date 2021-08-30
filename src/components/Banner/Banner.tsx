@@ -1,9 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+import ButtonShop from '@Component/ButtonShop';
+
 import classes from './Banner.module.scss';
 
-interface BannerProps {}
+type BannerProps = Record<string, never>;
 
 const Banner: React.FC<BannerProps> = () => {
   const [t] = useTranslation();
@@ -15,10 +17,7 @@ const Banner: React.FC<BannerProps> = () => {
         <div className={classes.content}>
           <strong>{t('banner.get')} $100</strong> {t('banner.voucher')}
         </div>
-
-        <div className={classes.button}>
-          <button type="button">{t('banner.shop')}</button>
-        </div>
+        <ButtonShop />
       </div>
     </div>
   );
