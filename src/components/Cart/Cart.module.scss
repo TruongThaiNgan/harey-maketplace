@@ -1,0 +1,221 @@
+@import '../../scss/main';
+
+.cartContainer {
+  @include col(center, center);
+  width: 100%;
+  height: 100%;
+
+  .center {
+    width: 100%;
+    max-width: 1500px;
+    height: 100%;
+    margin-top: 10rem;
+
+    background-color: #fff;
+  }
+}
+
+table {
+  width: 100%;
+  margin-top: 2rem;
+  thead {
+    width: 100%;
+    th {
+      font-weight: bold;
+      text-align: left;
+      text-transform: uppercase;
+    }
+  }
+  tbody {
+    width: 100%;
+
+    td {
+      text-align: left;
+    }
+  }
+}
+
+tr {
+  background-color: #fff;
+}
+.amount {
+  width: 50%;
+  height: 2rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 22px;
+
+  text-align: center;
+
+  &:focus {
+    outline: none;
+  }
+}
+.title {
+  font-weight: bold;
+}
+
+.price {
+  font-size: 1.5rem;
+}
+
+.total {
+  color: #595bd4;
+  font-size: 1.5rem;
+}
+
+.cancel {
+  border: 0;
+
+  font-weight: bold;
+
+  background-color: transparent;
+  cursor: pointer;
+  &:hover {
+    color: #f00;
+  }
+}
+
+.checkout {
+  @include row(space-between, center);
+  width: 100%;
+  max-width: 1500px;
+  height: 500px;
+  margin-top: 5rem;
+
+  .shipping {
+    @include row(center, center);
+    width: 55%;
+    height: 100%;
+
+    background-color: #fff;
+  }
+}
+.nav {
+  @include col;
+  width: 25%;
+  height: 100%;
+  border: 1px solid #ccc;
+  button {
+    width: 100%;
+    height: 3rem;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+
+    font-weight: 600;
+    font-size: 0.8rem;
+
+    text-transform: uppercase;
+
+    background-color: transparent;
+    cursor: pointer;
+  }
+}
+.content {
+  @include col;
+  width: 75%;
+  height: 100%;
+  padding-top: 1rem;
+  padding-left: 3rem;
+  span {
+    margin-top: 1rem;
+  }
+  .select {
+    width: 50%;
+    height: 3rem;
+    margin-top: 1rem;
+  }
+  input {
+    width: 80%;
+    height: 3rem;
+    margin-top: 1rem;
+    padding-left: 1rem;
+    border: 0;
+
+    background-color: #f4f6f7;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.button {
+  margin-top: 1rem;
+}
+
+.subTotal {
+  @include col(flex-start, center);
+  width: 43%;
+  height: 100%;
+  padding-top: 1rem;
+
+  background-color: #fff;
+}
+.row {
+  @include row(space-between, center);
+  width: 100%;
+  height: 3rem;
+
+  padding: 0 3rem;
+
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.separate {
+  width: 100%;
+  border-top: 1px dashed #ccc;
+}
+
+.totalPrice {
+  color: rgba(68, 68, 68, 1);
+  font-size: 1.3rem;
+}
+
+.listButton {
+  @include row(space-between, center);
+  width: 100%;
+  max-width: 1500px;
+  margin-top: 2rem;
+}
+
+.shopping {
+  width: 13rem;
+  height: 3rem;
+  border: 1px solid rgba(41, 47, 56, 1);
+  border-radius: 22px;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  background-color: transparent;
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+
+    background-color: rgba(41, 47, 56, 1);
+  }
+}
+.proceed {
+  width: 13rem;
+  height: 3rem;
+  border: 1px solid #595bd4;
+  border-radius: 22px;
+
+  color: #fff;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  background-color: #595bd4;
+
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+
+    background-color: rgba(41, 47, 56, 1);
+  }
+}

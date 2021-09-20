@@ -1,4 +1,4 @@
-export interface IFackbook {
+export interface IFacebook {
   isLoggedIn: boolean;
   userID: string;
   name?: string;

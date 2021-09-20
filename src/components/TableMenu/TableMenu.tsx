@@ -5,14 +5,6 @@ import classes from './TableMenu.module.scss';
 
 const TableMenu: React.FC<TableMenuProps> = ({ list }) => {
   // Hook states
-
-  // Hook effects
-
-  // Constants
-
-  // Action handlers
-
-  // Renderers
   const { title, body } = list;
   return (
     <div className={classes.tableMenuContainer}>
@@ -28,4 +20,4 @@ const TableMenu: React.FC<TableMenuProps> = ({ list }) => {
 };
 
 TableMenu.defaultProps = {};
-export default TableMenu;
+export default React.memo(TableMenu);

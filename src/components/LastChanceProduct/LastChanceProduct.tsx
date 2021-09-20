@@ -6,21 +6,12 @@ import classes from './LastChanceProduct.module.scss';
 const LastChanceProduct: React.FC<LastChanceProductProps> = ({ image1, image2, price, title, oldPrice }) => {
   // Hook states
   const [image, setImage] = useState<string>(image1);
-
-  // Hook effects
-
-  // Constants
-
   // Action handlers
-
-  // Renderers
+  const mouseEnterHandle = (): void => setImage(image2);
+  const mouseLeaveHandle = (): void => setImage(image1);
 
   return (
-    <div
-      className={classes.lastChanceProductContainer}
-      onMouseEnter={() => setImage(image2)}
-      onMouseLeave={() => setImage(image1)}
-    >
+    <div className={classes.lastChanceProductContainer} onMouseEnter={mouseEnterHandle} onMouseLeave={mouseLeaveHandle}>
       <div className={classes.image}>
         <img src={image} alt={title} />
       </div>
@@ -36,4 +27,4 @@ const LastChanceProduct: React.FC<LastChanceProductProps> = ({ image1, image2, p
 };
 
 LastChanceProduct.defaultProps = {};
-export default LastChanceProduct;
+export default React.memo(LastChanceProduct);

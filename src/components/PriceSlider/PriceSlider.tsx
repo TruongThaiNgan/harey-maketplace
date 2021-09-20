@@ -1,6 +1,6 @@
 import Slider from '@material-ui/core/Slider';
 import { withStyles } from '@material-ui/core/styles';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import classes from './PriceSlider.module.scss';
@@ -43,11 +43,14 @@ const AirbnbThumbComponent: React.FC = ({ ...res }) => (
   </span>
 );
 const PriceSlider: React.FC = () => {
+  // Hook states
   const [t] = useTranslation();
   const [value, setValue] = useState<number[]>([59, 1499]);
-  const handleChange = (event: React.ChangeEvent<unknown>, newValue: number | number[]): void => {
+  // Action handlers
+  const handleChange = useCallback((event: React.ChangeEvent<unknown>, newValue: number | number[]) => {
     setValue(newValue as number[]);
-  };
+  }, []);
+
   return (
     <div className={classes.priceSlider}>
       <div className={classes.title}>{t('sideBar.price')}</div>

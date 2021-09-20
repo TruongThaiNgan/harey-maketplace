@@ -7,16 +7,6 @@ import { ReviewSectionProps } from './interfaces';
 import classes from './ReviewSection.module.scss';
 
 const ReviewSection: React.FC<ReviewSectionProps> = () => (
-  // Hook states
-
-  // Hook effects
-
-  // Constants
-
-  // Action handlers
-
-  // Renderers
-
   <div className={classes.reviewSectionContainer}>
     <div className={classes.center}>
       <div className={classes.category}>
@@ -46,7 +36,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = () => (
               slow-carb
             </div>
             <div className={classes.button}>
-              <ButtonShop />
+              <ButtonShop style={{ padding: '1rem 2rem' }} />
             </div>
           </div>
         </div>
@@ -58,7 +48,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = () => (
               Organic cardigan flannel four dollar toast salvia dreamcatcher subway tile aesthetic kale chips.
             </div>
             <div className={classes.button}>
-              <ButtonShop />
+              <ButtonShop style={{ padding: '1rem 2rem' }} />
             </div>
           </div>
         </div>

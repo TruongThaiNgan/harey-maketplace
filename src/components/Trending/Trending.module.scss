@@ -1,7 +1,7 @@
 @import '../../scss/main';
 
 .trendingContainer {
-  @include row(space-between, center);
+  @include row(space-between, flex-start);
   width: 100%;
   height: 100%;
   margin-top: 2rem;
@@ -15,28 +15,56 @@
 }
 
 .productContainer {
-  @include row(flex-end, flex-end);
+  @include row(flex-start, stretch);
   flex-wrap: wrap;
 
   .productItem {
     flex-basis: 25%;
     border: 1px solid #ccc;
+    @include tablet {
+      flex-basis: 33.33%;
+    }
+    @include mobile {
+      flex-basis: 50%;
+      height: fit-content;
+    }
+    @include x-mobile {
+      flex-basis: 100%;
+      height: fit-content;
+    }
   }
 }
 
 .trendingDeal {
-  @include col(flex-end, flex-end);
+  @include col(flex-start, flex-end);
   width: 75%;
   height: 100%;
+  @include mobile {
+    width: fit-content;
+  }
+  @include x-mobile {
+    width: 100%;
+  }
 }
 
 .dealOfDay {
   @include size(25%, 100%);
-  @include col(center, center);
+  @include col(center, flex-start);
+  min-width: 250px;
+  max-height: 700px;
   margin-left: 1rem;
   padding-top: 2rem;
 
   background-color: #f7f9fa;
+  @include tablet {
+    margin-top: 20%;
+  }
+  @include mobile {
+    display: none;
+  }
+  @include x-mobile {
+    display: none;
+  }
 
   .dealTitle {
     @include row(center, center);
@@ -104,6 +132,12 @@
   @include row(flex-start, center);
   width: 100%;
   padding: 2rem 0;
+  @include mobile {
+    flex-wrap: wrap;
+  }
+  @include x-mobile {
+    flex-wrap: wrap;
+  }
 
   button {
     @include button-icon;
@@ -114,6 +148,16 @@
     font-size: medium;
 
     cursor: pointer;
+    @include mobile {
+      flex-basis: 50%;
+      margin-right: 0;
+      margin-bottom: 1rem;
+    }
+    @include x-mobile {
+      flex-basis: 50%;
+      margin-right: 0;
+      margin-bottom: 1rem;
+    }
 
     &:last-child() {
       margin-right: 0;
@@ -127,4 +171,10 @@
 
 .content {
   @include row(space-between, center);
+}
+
+.loading {
+  @include row(center, center);
+  width: 100%;
+  height: 100%;
 }

@@ -7,10 +7,12 @@ import { PersistPartial } from 'redux-persist/es/persistReducer';
 import { LOG_OUT } from '@Constant/auth';
 import pageReducer from '@Slice/pageSlice';
 import userReducer from '@Slice/userSlice';
+import cartReducer from '@Slice/cartSlice';
 
 type RootReducer = CombinedState<{
   user: ReturnType<typeof userReducer> & PersistPartial;
   page: ReturnType<typeof pageReducer> & PersistPartial;
+  cart: ReturnType<typeof cartReducer> & PersistPartial;
 }>;
 type State = RootReducer | undefined;
 const persistConfig = {
@@ -28,9 +30,15 @@ const productPersistConfig = {
   storage: storageSession,
   whiteList: ['page'],
 };
+const cartPersistConfig = {
+  key: 'cart',
+  storage,
+  whitelist: ['cart'],
+};
 const appReducer = combineReducers({
   user: persistReducer(userPersistConfig, userReducer),
   page: persistReducer(productPersistConfig, pageReducer),
+  cart: persistReducer(cartPersistConfig, cartReducer),
 });
 
 const rootReducer = (state: State, action: AnyAction): RootReducer => {

@@ -2,56 +2,49 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { ProductItem } from '@Hoc/interfaces';
 import {
-  getPageAccessories,
+  getListProduct,
   getPageHome,
-  getPageProduct,
+  getProductByName,
+  getTrending,
   HomePage,
-  IGetPageProductRequestParams,
+  IGetPageRequestParams,
+  OneProduct,
   Page,
 } from '@Service/product';
 import { RootState } from '@Store/store';
+import { convertName } from '@Util/convert';
 
-type Status = 'idle' | 'loading' | 'successed' | 'error';
-interface Entities {
-  [key: number]: ProductItem;
-}
-
-type ProductInHomePage = Omit<HomePage, 'message' | 'status' | 'productList'>;
-type ProductInHome = {
-  trendingList: ProductItem[];
-  lastChanceList: ProductItem[];
-  bestSellerList: ProductItem[];
-  hotDealList: ProductItem[];
-};
-interface PageState {
-  status: Status;
-  error: string;
-  id: number[];
-  accessories: number[];
-  productInHome: ProductInHomePage;
-  entities: Entities;
-}
+import { Entities, IError, IGetPageThunkParams, PageState, ProductInHomePage, TypePage } from './interfaces';
 
 const initialState: PageState = {
   status: 'idle',
   error: '',
-  id: [],
+  product: [],
   accessories: [],
+  computers: [],
+  camerasPhotos: [],
+  mobilesTablets: [],
+  tvAudio: [],
+  consoleGame: [],
+  gadgets: [],
+  toolsStorage: [],
+  watches: [],
   entities: {} as Entities,
   productInHome: {} as ProductInHomePage,
+  mapNameToId: {},
 };
 
-const checkDataExist = (data: number[], { page, limit }: IGetPageProductRequestParams): boolean => {
+const checkDataExist = (data: number[], { page, limit }: IGetPageRequestParams): boolean => {
   const start = (page - 1) * limit;
   const listData = data.slice(start, start + limit);
   if (listData.length === 0) return false;
   return data.slice(start, start + limit).every((value) => value !== 0);
 };
 
-const getEntities = (
+export const getEntities = (
   data: PageState,
   target: number[],
-  { page, limit }: IGetPageProductRequestParams,
+  { page, limit }: IGetPageRequestParams,
 ): ProductItem[] => {
   const start = (page - 1) * limit;
   const listProduct = target.slice(start, start + limit);
@@ -61,20 +54,51 @@ const getEntities = (
   return listProduct.map((id) => data.entities[id]);
 };
 
-export const fetchPageProduct = createAsyncThunk<Page, IGetPageProductRequestParams, { state: RootState }>(
-  '/product/fetchPageProduct',
-  async (params, thunkAPI) => {
+export const fetchPage = createAsyncThunk<Page, IGetPageThunkParams, { state: RootState }>(
+  '/product/fetchPage',
+  async ({ page, limit, type, getAPI }, thunkAPI) => {
     try {
       const data = thunkAPI.getState().page;
-      const hasExist = checkDataExist(data.id, params);
+      const hasExist = checkDataExist(data[type], { page, limit });
 
       if (hasExist)
         return {
           message: 'ok',
-          numberProduct: data.id.length,
-          productList: getEntities(data, data.id, params),
+          numberProduct: data[type].length,
+          productList: getEntities(data, data[type], { page, limit }),
         };
-      const res = await getPageProduct(params);
+      const res = await getAPI({ page, limit });
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue({ error: error.response.data.message });
+    }
+  },
+);
+export const fetchProductList = createAsyncThunk<Page, number[], { state: RootState }>(
+  '/product/fetchListProduct',
+  async (list, thunkAPI) => {
+    try {
+      const { cart, page } = thunkAPI.getState();
+      const listCart = Object.entries(cart.cart);
+      const hasExist = listCart.every(([id]) => !!page.entities[+id]);
+      if (hasExist)
+        return {
+          message: 'ok',
+          numberProduct: listCart.length,
+          productList: listCart.map(([id]) => page.entities[+id]),
+        };
+      const res = await getListProduct(list);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue({ error: error.response.data.message });
+    }
+  },
+);
+export const fetchOneProduct = createAsyncThunk<OneProduct, string, { state: RootState }>(
+  '/product/fetchOneProduct',
+  async (name, thunkAPI) => {
+    try {
+      const res = await getProductByName(name);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.response.data.message });
@@ -82,26 +106,6 @@ export const fetchPageProduct = createAsyncThunk<Page, IGetPageProductRequestPar
   },
 );
 
-export const fetchPageAccessories = createAsyncThunk<Page, IGetPageProductRequestParams, { state: RootState }>(
-  '/product/fetchPageAccessories',
-  async (params, thunkAPI) => {
-    try {
-      const data = thunkAPI.getState().page;
-      const hasExist = checkDataExist(data.accessories, params);
-
-      if (hasExist)
-        return {
-          message: 'ok',
-          numberProduct: data.accessories.length,
-          productList: getEntities(data, data.accessories, params),
-        };
-      const res = await getPageAccessories(params);
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue({ error: error.response.data.message });
-    }
-  },
-);
 export const fetchHomePage = createAsyncThunk<HomePage>('/product/fetchHomePage', async (_, thunkAPI) => {
   try {
     const res = await getPageHome();
@@ -110,6 +114,19 @@ export const fetchHomePage = createAsyncThunk<HomePage>('/product/fetchHomePage'
     return thunkAPI.rejectWithValue({ error: error.response.data.message });
   }
 });
+export const fetchTrendingList = createAsyncThunk<Page, TypePage, { state: RootState }>(
+  '/product/fetchTrending',
+  async (type, thunkAPI) => {
+    try {
+      const getAPI = getTrending(type);
+      const res = await getAPI();
+      return res.data;
+    } catch (error: unknown) {
+      const err = error as IError;
+      return thunkAPI.rejectWithValue({ error: err?.response.data.message });
+    }
+  },
+);
 
 export const pageSlice = createSlice({
   name: 'product',
@@ -121,72 +138,42 @@ export const pageSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchPageProduct.pending, (state) => {
+      .addCase(fetchPage.pending, (state) => {
         return {
           ...state,
           status: 'loading',
         };
       })
-      .addCase(fetchPageProduct.fulfilled, (state, action) => {
+      .addCase(fetchPage.fulfilled, (state, action) => {
         const newState = { ...state };
         const { productList } = action.payload;
-        const { page, limit } = action.meta.arg;
+        if (!productList)
+          return {
+            ...state,
+            status: 'error',
+          };
+        const { page, limit, type } = action.meta.arg;
         const start = (page - 1) * limit;
         const newId = productList.map(({ id }) => id);
 
-        if (state.id.length === 0) {
+        if (state[type].length === 0) {
           const { numberProduct } = action.payload;
-          newState.id = Array.from({ length: +numberProduct }, () => 0);
+          newState[type] = Array.from({ length: +numberProduct }, () => 0);
         }
 
-        newState.id = [...newState.id.slice(0, start), ...newId, ...newState.id.slice(start + limit)];
+        newState[type] = [...newState[type].slice(0, start), ...newId, ...newState[type].slice(start + limit)];
         productList.forEach((value) => {
           newState.entities = { ...newState.entities, [value.id]: value };
+          newState.mapNameToId = { ...newState.mapNameToId, [convertName(value.title)]: value.id };
         });
 
-        return { ...newState, status: 'successed' };
+        return { ...newState, status: 'succeeded' };
       })
-      .addCase(fetchPageProduct.rejected, (state, action) => {
+      .addCase(fetchPage.rejected, (state, action) => {
         return {
           ...state,
           status: 'error',
-          error: action.error.message || '',
-        };
-      })
-      .addCase(fetchPageAccessories.pending, (state) => {
-        return {
-          ...state,
-          status: 'loading',
-        };
-      })
-      .addCase(fetchPageAccessories.fulfilled, (state, action) => {
-        const newState = { ...state };
-        const { productList } = action.payload;
-        const { page, limit } = action.meta.arg;
-        const start = (page - 1) * limit;
-        const newId = productList.map(({ id }) => id);
-
-        if (state.accessories.length === 0) {
-          const { numberProduct } = action.payload;
-          newState.accessories = Array.from({ length: +numberProduct }, () => 0);
-        }
-
-        newState.accessories = [
-          ...newState.accessories.slice(0, start),
-          ...newId,
-          ...newState.accessories.slice(start + limit),
-        ];
-        productList.forEach((value) => {
-          newState.entities = { ...newState.entities, [value.id]: value };
-        });
-
-        return { ...newState, status: 'successed' };
-      })
-      .addCase(fetchPageAccessories.rejected, (state, action) => {
-        return {
-          ...state,
-          status: 'error',
-          error: action.error.message || '',
+          error: action.error.message ?? '',
         };
       })
       .addCase(fetchHomePage.pending, (state) => {
@@ -197,46 +184,105 @@ export const pageSlice = createSlice({
       })
       .addCase(fetchHomePage.fulfilled, (state, action) => {
         const newState = { ...state };
-        const { productList, bestSellerList, hotDealList, lastChanceList, trendingList } = action.payload;
+        const { productList, bestSellerList, hotDealList, lastChanceList, trendingList, latestList } = action.payload;
         productList.forEach((value) => {
           newState.entities = { ...newState.entities, [value.id]: value };
+          newState.mapNameToId = { ...newState.mapNameToId, [convertName(value.title)]: value.id };
         });
 
         return {
           ...newState,
-          status: 'successed',
-          productInHome: { bestSellerList, hotDealList, lastChanceList, trendingList },
+          status: 'succeeded',
+          productInHome: { bestSellerList, hotDealList, lastChanceList, trendingList, latestList },
         };
       })
       .addCase(fetchHomePage.rejected, (state, action) => {
         return {
           ...state,
           status: 'error',
-          error: action.error.message || '',
+          error: action.error.message ?? '',
+        };
+      })
+      .addCase(fetchProductList.pending, (state) => {
+        return {
+          ...state,
+          status: 'loading',
+        };
+      })
+      .addCase(fetchProductList.fulfilled, (state, action) => {
+        const newState = { ...state };
+        const { productList } = action.payload;
+        productList.forEach((value) => {
+          newState.entities = { ...newState.entities, [value.id]: value };
+          newState.mapNameToId = { ...newState.mapNameToId, [convertName(value.title)]: value.id };
+        });
+        return {
+          ...newState,
+          status: 'succeeded',
+        };
+      })
+      .addCase(fetchProductList.rejected, (state, action) => {
+        return {
+          ...state,
+          status: 'error',
+          error: action.error.message ?? '',
+        };
+      })
+      .addCase(fetchTrendingList.pending, (state) => {
+        return {
+          ...state,
+          status: 'loading',
+        };
+      })
+      .addCase(fetchTrendingList.fulfilled, (state, action) => {
+        const newState = { ...state };
+        const { productList } = action.payload;
+        productList.forEach((value) => {
+          newState.entities = { ...newState.entities, [value.id]: value };
+          newState.mapNameToId = { ...newState.mapNameToId, [convertName(value.title)]: value.id };
+        });
+        newState.productInHome = {
+          ...newState.productInHome,
+          trendingList: productList.map(({ id }) => +id),
+        };
+        return {
+          ...newState,
+          status: 'succeeded',
+        };
+      })
+      .addCase(fetchTrendingList.rejected, (state, action) => {
+        return {
+          ...state,
+          status: 'error',
+          error: action.error.message ?? '',
+        };
+      })
+      .addCase(fetchOneProduct.pending, (state) => {
+        return {
+          ...state,
+          status: 'loading',
+        };
+      })
+      .addCase(fetchOneProduct.fulfilled, (state, action) => {
+        const newState = { ...state };
+        const { infoProduct } = action.payload;
+        newState.entities = { ...newState.entities, [infoProduct.id]: infoProduct };
+        newState.mapNameToId = { ...newState.mapNameToId, [convertName(infoProduct.title)]: infoProduct.id };
+        return {
+          ...newState,
+          status: 'succeeded',
+        };
+      })
+      .addCase(fetchOneProduct.rejected, (state, action) => {
+        return {
+          ...state,
+          status: 'error',
+          error: action.error.message ?? '',
         };
       });
   },
 });
 
 export const { resetPageState } = pageSlice.actions;
-export const getPageProductStatus = (state: RootState): Status => state.page.status;
-export const getNumberProduct = (state: RootState): number => state.page.id.length;
-export const getNumberAccessories = (state: RootState): number => state.page.accessories.length;
-export const getPageProductData =
-  ({ page, limit }: IGetPageProductRequestParams): ((state: RootState) => ProductItem[]) =>
-  (state: RootState): ProductItem[] =>
-    getEntities(state.page, state.page.id, { page, limit });
-export const getPageAccessoriesData =
-  ({ page, limit }: IGetPageProductRequestParams): ((state: RootState) => ProductItem[]) =>
-  (state: RootState): ProductItem[] =>
-    getEntities(state.page, state.page.accessories, { page, limit });
-export const getProductInHome = (state: RootState): ProductInHome => {
-  const listProduct = state.page.productInHome;
-  const entries = Object.entries(listProduct);
-  let list = {} as ProductInHome;
-  entries.forEach(([key, value]) => {
-    list = { ...list, [key]: value.map((id) => state.page.entities[id]) };
-  });
-  return list;
-};
+
 export default pageSlice.reducer;

@@ -1,8 +1,9 @@
 import { AxiosResponse } from 'axios';
 
 import { ProductItem } from '@Hoc/interfaces';
+import { PaymentMethodKey } from '@Slice/userSlice';
 
-export type IGetPageProductRequestParams = {
+export type IGetPageRequestParams = {
   page: number;
   limit: number;
 };
@@ -13,13 +14,14 @@ export type Page = {
   productList: ProductItem[];
   numberProduct: number;
 };
-
-export type IGetPageProductResponse = AxiosResponse<Page>;
-export type IGetProductByNameResponse = AxiosResponse<{
+export type OneProduct = {
   message: string;
   status?: string;
-  infoProduct: unknown;
-}>;
+  infoProduct: ProductItem;
+};
+
+export type IGetPageProductResponse = AxiosResponse<Page>;
+export type IGetProductByNameResponse = AxiosResponse<OneProduct>;
 
 export interface HomePage {
   message: string;
@@ -29,6 +31,7 @@ export interface HomePage {
   lastChanceList: number[];
   bestSellerList: number[];
   hotDealList: number[];
+  latestList: number[];
 }
 
 export type IGetPageHomeResponse = AxiosResponse<HomePage>;
@@ -40,3 +43,9 @@ export type IProductQueryKey = [string, IProductQuery];
 
 export type IPostProductRequestParams = { temp: string };
 export type IPostProductResponse = AxiosResponse<{ message: string; status?: string }>;
+
+export type ResponseFetchPaymentID = {
+  message: string;
+  status?: string;
+  listPaymentID: PaymentMethodKey[];
+};

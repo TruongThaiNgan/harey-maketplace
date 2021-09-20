@@ -1,19 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
+import { countdown } from './constants';
 import { Time, TimerCountdownProps } from './interfaces';
 import classes from './TimerCountdown.module.scss';
-
-const countdown = (time: Time): Time => {
-  if (time.second > 0) return { ...time, second: time.second - 1 };
-
-  if (time.minute > 0) return { ...time, minute: time.minute - 1, second: 59 };
-
-  if (time.hour > 0) return { ...time, hour: time.hour - 1, minute: 59, second: 59 };
-
-  if (time.day > 0) return { day: time.day - 1, hour: 23, minute: 59, second: 59 };
-
-  return { ...time };
-};
 
 const TimerCountdown: React.FC<TimerCountdownProps> = () => {
   // Hook states
@@ -27,20 +16,17 @@ const TimerCountdown: React.FC<TimerCountdownProps> = () => {
 
   // Hook effects
   useEffect(() => {
-    if (!timer) {
-      const id = setInterval(() => {
-        setTime((preTime) => countdown(preTime));
-      }, 1000);
-      setTimer(id);
-    }
-    return () => clearInterval(timer!);
-  }, [timer]);
-  // Constants
-
-  // Action handlers
-
-  // Renderers
-
+    let isCancelled = false;
+    const id = setInterval(() => {
+      if (!isCancelled) setTime((preTime) => countdown(preTime));
+    }, 1000);
+    setTimer(id);
+    return () => {
+      isCancelled = true;
+      if (timer) clearInterval(timer);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className={classes.timerCountdownContainer}>
       <div className={classes.block}>

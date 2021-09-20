@@ -1,24 +1,27 @@
-import React, { useState } from 'react';
+import { CircularProgress } from '@material-ui/core';
+import React, { useEffect, useState } from 'react';
 
 import Product from '@Component/Product';
 import TimerCountdown from '@Component/TimerCountdown';
+import { fetchTrendingList } from '@Slice/pageSlice';
+import { useAppDispatch, useAppSelector } from '@Store/hooks';
+import { getPageProductStatus, getTrendingList } from '@Slice/selector';
 
 import { TrendingProps } from './interfaces';
 import classes from './Trending.module.scss';
+import { listNav } from './constants';
 
-const listNav = [
-  { id: 1, title: 'Latest Products' },
-  { id: 2, title: 'Mobile & Tablets' },
-  { id: 3, title: 'Computers & Accessories' },
-  { id: 4, title: 'Accesories' },
-];
-
-const Trending: React.FC<TrendingProps> = ({ trendingList }) => {
+const Trending: React.FC<TrendingProps> = () => {
   // Hook states
   const [index, setIndex] = useState<number>(1);
+  const isLoading = useAppSelector(getPageProductStatus) === 'loading';
+  const trendingList = useAppSelector(getTrendingList);
+  const dispatch = useAppDispatch();
 
   // Hook effects
-
+  useEffect(() => {
+    dispatch(fetchTrendingList(listNav[index - 1].type));
+  }, [dispatch, index]);
   // Constants
 
   // Action handlers
@@ -43,11 +46,17 @@ const Trending: React.FC<TrendingProps> = ({ trendingList }) => {
         </div>
 
         <div className={classes.productContainer}>
-          {trendingList?.map(({ id, ...rest }) => (
-            <div className={classes.productItem} key={id}>
-              <Product {...rest} timeCountdown />
+          {isLoading ? (
+            <div className={classes.loading}>
+              <CircularProgress />
             </div>
-          ))}
+          ) : (
+            trendingList?.map(({ id, ...rest }) => (
+              <div className={classes.productItem} key={id}>
+                <Product id={id} {...rest} timeCountdown />
+              </div>
+            ))
+          )}
         </div>
       </div>
 

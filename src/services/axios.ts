@@ -11,7 +11,7 @@ axios.interceptors.request.use(
       request.headers.Authorization = `Bearer ${token}`;
     }
     request.params = request.params || {};
-    request.params.lang = 'vi';
+    // request.params.lang = 'vi';
     return request;
   },
   (error) => {
@@ -19,14 +19,14 @@ axios.interceptors.request.use(
   },
 );
 
-type ErrorRespone = {
+type ErrorResponse = {
   message: string;
   code: string;
 };
 
 axios.interceptors.response.use(
   (response) => response,
-  (error: AxiosError<ErrorRespone>) => {
+  (error: AxiosError<ErrorResponse>) => {
     if (error.response?.status === 401 && error.response?.data.message === 'Invalid Token') {
       store.dispatch(updateAuth({ auth: false }));
     }

@@ -7,16 +7,6 @@ import classes from './ShopMenu.module.scss';
 import { productsList, productTypesList, shopPagesList, woocommerceList } from './constansts';
 
 const ShopMenu: React.FC<ShopMenuProps> = ({ style }) => (
-  // Hook states
-
-  // Hook effects
-
-  // Constants
-
-  // Action handlers
-
-  // Renderers
-
   <div className={classes.shopMenuContainer} style={style}>
     <div className={classes.block}>
       <TableMenu list={shopPagesList} />
@@ -32,4 +22,4 @@ const ShopMenu: React.FC<ShopMenuProps> = ({ style }) => (
   </div>
 );
 ShopMenu.defaultProps = {};
-export default ShopMenu;
+export default React.memo(ShopMenu);

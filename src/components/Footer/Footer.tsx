@@ -1,38 +1,12 @@
-import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
-import LocalPhoneOutlinedIcon from '@material-ui/icons/LocalPhoneOutlined';
-import PermPhoneMsgOutlinedIcon from '@material-ui/icons/PermPhoneMsgOutlined';
-import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
 import specialOffer from '@Image/special-offer.jpg';
-import skype from '@Image/skype.svg';
-import phoneCall from '@Image/phone-call.svg';
-import mail from '@Image/mail.svg';
 import copyRight from '@Image/copyRight.png';
 
 import classes from './Footer.module.scss';
-
-const infoList = [
-  { icon: skype, title: 'Skype', content: 'E-lab_shop_contact' },
-  { icon: phoneCall, title: 'footer.info', content: '878 - 3853 -9576' },
-  { icon: mail, title: 'Email', content: 'shopelab@gmail.com' },
-];
-const myAccountList = [
-  { title: 'footer.shop', link: '/shop' },
-  { title: 'footer.cart', link: '/cart' },
-  { title: 'footer.aboutUs', link: '/about' },
-  { title: 'footer.contactUs', link: '/contact' },
-  { title: 'footer.comingSoon', link: '/coming' },
-];
-const customServicesList = ['footer.home', 'footer.blog', 'footer.wishList', 'footer.compare', 'footer.portfolio'];
-const contactList = [
-  { icon: <RoomOutlinedIcon />, content: '445 Mount Eden Road' },
-  { icon: <LocalPhoneOutlinedIcon />, content: '878 - 3853 -9576' },
-  { icon: <PermPhoneMsgOutlinedIcon />, content: '878 - 0505 - 0440' },
-  { icon: <EmailOutlinedIcon />, content: 'shopelab@gmail.com' },
-];
+import { contactList, customServicesList, infoList, myAccountList } from './constants';
 
 const Footer: React.FC = () => {
   const [t] = useTranslation();
@@ -91,7 +65,7 @@ const Footer: React.FC = () => {
 
         <div className={classes.list}>
           <span className={classes.title}>{t('footer.specialOffers')}</span>
-          <img src={specialOffer} alt="specialOffer" />
+          <img className={classes.imgOffer} src={specialOffer} alt="specialOffer" />
         </div>
 
         <div className={classes.list}>
@@ -105,10 +79,10 @@ const Footer: React.FC = () => {
         </div>
       </div>
 
-      <div className={classes.copyRight}>
+      {/* <div className={classes.copyRight}>
         <span className={classes.title}>{t('footer.copyRight')}</span>
         <img src={copyRight} alt="copyRight" />
-      </div>
+      </div> */}
     </div>
   );
 };

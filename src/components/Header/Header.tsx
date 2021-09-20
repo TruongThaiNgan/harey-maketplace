@@ -7,18 +7,22 @@ import classNames from 'classnames';
 import logo from '@Image/logo.svg';
 import CustomLink from '@Component/CustomLink';
 
-import { buttonList, featureList, iconlist, linkList } from './constants';
-import classes from './Header.module.scss';
-import { HeaderProps } from './interfaces';
+import i18n from '../../i18n/i18n';
 
-const Header: React.FC<HeaderProps> = () => {
+import { buttonList, featureList, iconList, linkList } from './constants';
+import classes from './Header.module.scss';
+
+const Header: React.FC = () => {
+  // Hook states
   const [t] = useTranslation();
   const [index, setIndex] = useState<number>(1);
+  const [language, setLanguage] = useState<string>('vi');
+
   return (
     <header className={classes.header}>
       <div className={classes.listLink}>
         <div className={classes.left}>
-          {iconlist.map(({ id, icon }) => (
+          {iconList.map(({ id, icon }) => (
             <button type="button" key={`${id}`}>
               {icon}
             </button>
@@ -52,18 +56,32 @@ const Header: React.FC<HeaderProps> = () => {
         </div>
 
         <div className={classes.features}>
-          {featureList.map(({ id, icon }) => (
+          {featureList.map(({ id, icon, link }) => (
             <button type="button" key={`${id}`}>
-              {icon}
+              <CustomLink to={link}>{icon}</CustomLink>
             </button>
           ))}
+          <button
+            type="button"
+            onClick={() => {
+              if (language === 'vi') {
+                i18n.changeLanguage('en');
+                setLanguage('en');
+              } else {
+                i18n.changeLanguage('vi');
+                setLanguage('vi');
+              }
+            }}
+          >
+            {language.toUpperCase()}
+          </button>
         </div>
       </div>
 
       <nav className={classes.nav}>
         <div className={classes.navBar}>
           <div className={classes.categories}>
-            <span>{t('header.categories')}</span>
+            <span className={classes.categoriesText}>{t('header.categories')}</span>
             <button type="button">
               <MenuIcon />
             </button>

@@ -1,5 +1,6 @@
 @mixin row($justify-content: flex-start, $align-items: flex-start) {
   display: flex;
+  flex-direction: row;
   align-items: $align-items;
   justify-content: $justify-content;
 }
@@ -33,4 +34,38 @@
   padding: 0;
 
   list-style: none;
+}
+
+/* Mixin */
+/* Set các giá trị với màn hình tương ứng */
+$mobile-width: 480px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+@mixin x-mobile {
+  @media (max-width: #{$mobile-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (min-width: #{$mobile-width}) and (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+@mixin not-desktop {
+  @media (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
 }

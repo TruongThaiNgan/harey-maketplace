@@ -5,8 +5,8 @@ import { useHistory, useLocation } from 'react-router-dom';
 import CustomerRegisterForm from '@Component/CustomerRegisterForm';
 import LoginForm from '@Component/LoginForm';
 import VendorRegisterForm from '@Component/VendorRegisterForm';
-import { getAuth } from '@Slice/userSlice';
 import { useAppSelector } from '@Store/hooks';
+import { getAuth } from '@Slice/selector';
 
 import { LocationState } from './interfaces';
 import classes from './Login.module.scss';
@@ -23,6 +23,7 @@ const listRegister = [
 ];
 
 const Login: React.FC = () => {
+  // Hook states
   const [t] = useTranslation();
   const [isVendor, setIsVendor] = useState<boolean>(false);
   const auth = useAppSelector(getAuth);
@@ -31,7 +32,6 @@ const Login: React.FC = () => {
   const { from } = location.state || { from: { pathname: '/' } };
 
   // Hook effects
-
   useEffect(() => {
     if (auth === true) history.replace(from);
   }, [auth, from, history]);

@@ -1,51 +1,39 @@
 import { useFormik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import * as Yup from 'yup';
+
+import { postCustomer } from '@Service/customer';
+import { updateAuth } from '@Slice/userSlice';
+import { useAppDispatch } from '@Store/hooks';
+import { setToken } from '@Util/localStorageService';
 
 import classes from './CustomerRegisterForm.module.scss';
-import { LoginInput } from './interfaces';
+import { initialValues, loginInputList, validationSchema } from './Constants';
 
-const loginInputList: LoginInput[] = [
-  { title: 'login.email', type: 'text', name: 'email' },
-  { title: 'login.password', type: 'password', name: 'password' },
-  { title: 'login.confirmPassword', type: 'password', name: 'confirmPassword' },
-];
-const validationSchema = Yup.object().shape({
-  email: Yup.string().required('login.error.emailRequired').email('login.error.emailInvalid'),
-  password: Yup.string()
-    .required('login.error.passwordRequired')
-    .min(8, 'login.error.minPassword')
-    .max(15, 'login.error.maxPassword')
-    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$/, 'login.error.passwordInvalid'),
-  confirmPassword: Yup.string()
-    .required('login.error.confirmPasswordRequired')
-    .oneOf([Yup.ref('password'), null], 'login.error.equalPassword'),
-});
-const initialValues = {
-  email: '',
-  password: '',
-  confirmPassword: '',
-};
 const LoginForm: React.FC = () => {
   // Hook states
   const [t] = useTranslation();
-  const { values, handleChange, errors, touched } = useFormik({
+  const dispatch = useAppDispatch();
+  const { values, handleChange, errors, touched, handleSubmit } = useFormik({
     initialValues,
-    onSubmit: () => {
-      console.log('sending');
+    onSubmit: async () => {
+      try {
+        const res = await postCustomer({ email: values.email, password: values.password });
+        setToken(res.data.accessToken);
+        dispatch(updateAuth({ auth: true }));
+      } catch (error) {
+        console.log(error);
+      }
     },
     validationSchema,
     validateOnChange: false,
     validateOnBlur: true,
   });
-  // Hook effects
-
-  // Constants
 
   // Action handlers
   const submitHandler = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
+    handleSubmit();
   };
 
   // Renderers

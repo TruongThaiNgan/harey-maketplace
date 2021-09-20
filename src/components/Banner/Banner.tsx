@@ -5,10 +5,10 @@ import ButtonShop from '@Component/ButtonShop';
 
 import classes from './Banner.module.scss';
 
-type BannerProps = Record<string, never>;
-
-const Banner: React.FC<BannerProps> = () => {
+const Banner: React.FC = () => {
+  // Hook states
   const [t] = useTranslation();
+
   return (
     <div className={classes.banner}>
       <div className={classes.text}>
@@ -17,7 +17,7 @@ const Banner: React.FC<BannerProps> = () => {
         <div className={classes.content}>
           <strong>{t('banner.get')} $100</strong> {t('banner.voucher')}
         </div>
-        <ButtonShop />
+        <ButtonShop style={{ padding: '1rem 2rem' }} />
       </div>
     </div>
   );

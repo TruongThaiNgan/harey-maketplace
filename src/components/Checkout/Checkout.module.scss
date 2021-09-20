@@ -1,0 +1,126 @@
+@import '../../scss/main';
+
+.checkoutContainer {
+  @include row(center, center);
+  width: 100%;
+  .center {
+    @include row(space-between, flex-start);
+    width: 100%;
+    max-width: 1500px;
+    margin-top: 5rem;
+  }
+}
+.billDetails {
+  @include col;
+  width: 55%;
+  padding: 5rem;
+
+  background-color: #fff;
+
+  .billTitle {
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
+}
+.cardDetails {
+  @include col(flex-start, center);
+  width: 43%;
+  height: 100%;
+  padding: 2rem;
+  border-top: 3px solid #595bd4;
+
+  background-color: #fff;
+}
+.form {
+  @include col(flex-start, flex-start);
+  width: 100%;
+  margin-top: 3rem;
+  label {
+    @include row(space-between, center);
+    width: 100%;
+    margin-bottom: 1rem;
+
+    font-size: 0.8rem;
+    span {
+      width: 30%;
+
+      text-transform: uppercase;
+    }
+    .asterisk {
+      color: #f00;
+    }
+    input {
+      width: 70%;
+      height: 3rem;
+      border: 1px solid #f4f6f7;
+
+      background-color: #f4f6f7;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+.select {
+  width: 70%;
+  height: 3rem;
+  border: 1px solid #f4f6f7;
+
+  background-color: #f4f6f7;
+}
+
+.row {
+  @include row(space-between, center);
+  width: 100%;
+  padding: 3rem;
+
+  font-size: 1rem;
+  .left {
+    width: fit-content;
+
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+  .right {
+    width: fit-content;
+  }
+}
+
+.separate {
+  width: 90%;
+  height: 0;
+  border-top: 1px solid #ccc;
+}
+
+.detail {
+  @include col(center, center);
+  width: 100%;
+  .record {
+    @include row(space-between, center);
+    margin-bottom: 2rem;
+    strong {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.header {
+  font-weight: bold;
+}
+
+.showDetail {
+  border: 0;
+
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.subTotal {
+  font-weight: bold;
+}
+
+.total {
+  color: rgba(89, 91, 212, 1);
+  font-weight: bold;
+  font-size: 1.5rem;
+}

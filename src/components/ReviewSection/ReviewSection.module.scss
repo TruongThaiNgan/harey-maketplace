@@ -23,6 +23,15 @@
     padding: 0 1rem;
 
     background-color: #fff;
+    @include tablet {
+      display: none;
+    }
+    @include mobile {
+      display: none;
+    }
+    @include x-mobile {
+      display: none;
+    }
   }
 
   .banner {
@@ -32,6 +41,15 @@
     height: 30rem;
     margin-top: 1rem;
     overflow: hidden;
+    @include tablet {
+      width: 100%;
+    }
+    @include mobile {
+      width: 100%;
+    }
+    @include x-mobile {
+      width: 100%;
+    }
 
     .bannerImage {
       @include size(100%, 100%);
@@ -45,11 +63,22 @@
     .bannerText {
       @include col(center, center);
       position: absolute;
-      top: 20%;
+      top: 15%;
       right: 10%;
 
       width: 35%;
-
+      @include tablet {
+        top: 0;
+        right: 0;
+      }
+      @include mobile {
+        top: 0;
+        right: 0;
+      }
+      @include x-mobile {
+        top: 0;
+        right: 0;
+      }
       .subTitle {
         margin-bottom: 1rem;
 
@@ -78,6 +107,15 @@
   @include row(space-between, center);
   width: 100%;
   margin-top: 2rem;
+  @include tablet {
+    @include col;
+  }
+  @include mobile {
+    @include col;
+  }
+  @include x-mobile {
+    @include col;
+  }
 }
 
 .image {

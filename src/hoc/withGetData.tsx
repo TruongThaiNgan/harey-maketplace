@@ -1,42 +1,41 @@
-import { AsyncThunk } from '@reduxjs/toolkit';
 import classNames from 'classnames';
 import queryString from 'query-string';
 import React, { useCallback, useEffect, useState } from 'react';
 import { shallowEqual } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
+import { CircularProgress } from '@material-ui/core';
 
-import Banner from '@Component/Banner/Banner';
+import Banner from '@Component/Banner';
 import Product from '@Component/Product';
-import SideBar from '@Component/SideBar/SideBar';
-import ToolBar from '@Component/ToolBar/ToolBar';
-import { IGetPageProductRequestParams, Page } from '@Service/product';
-import { getPageProductStatus } from '@Slice/pageSlice';
+import SideBar from '@Component/SideBar';
+import ToolBar from '@Component/ToolBar';
+import { getPage } from '@Service/product';
+import { TypePage } from '@Slice/interfaces';
+import { fetchPage } from '@Slice/pageSlice';
 import { useAppDispatch, useAppSelector } from '@Store/hooks';
-import { RootState } from '@Store/store';
+import { getNumberProduct, getPageData, getPageProductStatus } from '@Slice/selector';
 
 import { ProductItem } from './interfaces';
 import classes from './withGetData.module.scss';
 
-const withGetData = (
-  fetch: AsyncThunk<Page, IGetPageProductRequestParams, { state: RootState }>,
-  getData: ({ page, limit }: IGetPageProductRequestParams) => (state: RootState) => ProductItem[],
-  getNumber: (state: RootState) => number,
-): React.ReactNode => {
+const withGetData = (type: TypePage): React.ReactNode => {
   const PageLoad: React.FC = () => {
-    const location = useLocation();
+    // Hook states
     const history = useHistory();
-    const params = queryString.parse(location.search);
-    const [page, setPage] = useState<number>(+params.page! || 1);
-    const [limit, setLimit] = useState<number>(+params.limit! || 5);
-    const totalProduct: number = useAppSelector(getNumber);
+    const location = useLocation();
+    const queries = queryString.parse(location.search);
+    const [page, setPage] = useState<number>(+queries.page! || 1);
+    const [limit, setLimit] = useState<number>(+queries.limit! || 5);
+    const totalProduct: number = useAppSelector(getNumberProduct(type));
     const totalPage = Math.floor((+totalProduct - 1) / limit) + 1;
 
-    const data: ProductItem[] = useAppSelector(getData({ page, limit }), shallowEqual);
+    const data: ProductItem[] = useAppSelector(getPageData({ page, limit, type }), shallowEqual);
     const dispatch = useAppDispatch();
     const status = useAppSelector(getPageProductStatus);
-
+    // Hook effects
     useEffect(() => {
-      dispatch(fetch({ page, limit }));
+      const getAPI = getPage(type);
+      dispatch(fetchPage({ page, limit, type, getAPI }));
     }, [dispatch, limit, page]);
 
     const updateLink = useCallback(
@@ -58,7 +57,6 @@ const withGetData = (
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [limit, updateLink]);
-
     return (
       <div className={classes.shopContainer}>
         <div className={classes.sideBar}>
@@ -70,12 +68,14 @@ const withGetData = (
           <ToolBar onChangeLimit={setLimit} limit={limit} />
           <div className={classes.listProduct}>
             {status === 'loading' ? (
-              <div>loading</div>
+              <div className={classes.loading}>
+                <CircularProgress />
+              </div>
             ) : (
               data.length !== 0 &&
               data?.map(({ id, ...rest }) => (
                 <div className={classes.productContainer} key={id}>
-                  <Product {...rest} />
+                  <Product id={id} {...rest} />
                 </div>
               ))
             )}

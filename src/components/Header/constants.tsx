@@ -9,7 +9,7 @@ import React from 'react';
 
 import { ButtonListState } from './interfaces';
 
-export const iconlist = [
+export const iconList = [
   { id: 1, icon: <TwitterIcon /> },
   { id: 2, icon: <InstagramIcon /> },
   { id: 3, icon: <FacebookIcon /> },
@@ -18,10 +18,10 @@ export const iconlist = [
 export const linkList = ['header.home', 'header.blog', 'header.comingSoon'];
 
 export const featureList = [
-  { id: 1, icon: <ShuffleOutlinedIcon /> },
-  { id: 2, icon: <PersonOutlineOutlinedIcon /> },
-  { id: 3, icon: <FavoriteBorderOutlinedIcon /> },
-  { id: 4, icon: <ShoppingCartOutlinedIcon /> },
+  { id: 1, icon: <ShuffleOutlinedIcon />, link: '/compare' },
+  { id: 2, icon: <PersonOutlineOutlinedIcon />, link: '/my-account' },
+  { id: 3, icon: <FavoriteBorderOutlinedIcon />, link: '/wishlist' },
+  { id: 4, icon: <ShoppingCartOutlinedIcon />, link: '/cart' },
 ];
 
 export const homeList = [

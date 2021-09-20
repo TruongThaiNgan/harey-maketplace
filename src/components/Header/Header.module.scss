@@ -1,39 +1,6 @@
 @import '../../scss/main';
 
 .header {
-  .listLink {
-    @include row(space-between, center);
-    height: 2rem;
-    padding: 0 10%;
-
-    .left {
-      @include row(flex-start, center);
-      color: #686767;
-      font-size: small;
-
-      button {
-        @include button-icon;
-        color: #808080;
-        font-size: small;
-        font-style: italic;
-      }
-
-      span {
-        margin-left: 3rem;
-      }
-    }
-
-    .right {
-      @include row(flex-end, center);
-      color: #808080;
-      font-size: small;
-
-      span {
-        margin: 0 0.5rem;
-      }
-    }
-  }
-
   .seperate {
     @include size(100%, 0);
     border-top: 1px solid #ccc;
@@ -43,6 +10,9 @@
     @include row(space-between, center);
     height: 8rem;
     padding: 0 10%;
+    @include tablet {
+      padding: 0;
+    }
 
     button {
       border: 0;
@@ -64,6 +34,10 @@
     overflow: hidden;
 
     color: #555;
+
+    @include mobile {
+      display: none;
+    }
 
     input {
       @include size(20rem, 2rem);
@@ -89,6 +63,8 @@
 
     button {
       margin: 0 1rem;
+
+      cursor: pointer;
     }
   }
 
@@ -108,12 +84,6 @@
     max-width: 1500px;
     height: 100%;
 
-    // button {
-    //   border: 0;
-    //   background-color: transparent;
-    //   color: #fff;
-    // }
-
     .categories {
       @include size(25%, 120%);
       @include row(space-between, center);
@@ -125,6 +95,15 @@
       font-size: 0.8rem;
 
       background-color: rgba(89, 91, 212, 1);
+      @include tablet {
+        width: fit-content;
+      }
+      @include mobile {
+        width: fit-content;
+      }
+      @include x-mobile {
+        width: fit-content;
+      }
 
       button {
         border: 0;
@@ -144,6 +123,18 @@
   margin-left: 2rem;
 
   cursor: pointer;
+  @include tablet {
+    width: 100%;
+    margin-left: 1rem;
+  }
+  @include mobile {
+    width: 100%;
+    margin-left: 0.5rem;
+  }
+  @include x-mobile {
+    width: 100%;
+    margin-left: 0.5rem;
+  }
 
   .boxContainer {
     @include button-icon;
@@ -174,5 +165,62 @@
 
   .dropBox {
     position: relative;
+  }
+}
+
+.categoriesText {
+  @include tablet {
+    display: none;
+  }
+  @include mobile {
+    display: none;
+  }
+  @include x-mobile {
+    display: none;
+  }
+}
+
+.listLink {
+  @include row(space-between, center);
+  height: 2rem;
+  padding: 0 10%;
+  @include mobile {
+    padding: 0;
+  }
+  @include x-mobile {
+    padding: 0;
+  }
+
+  .left {
+    @include row(flex-start, center);
+    color: #686767;
+    font-size: small;
+
+    button {
+      @include button-icon;
+      color: #808080;
+      font-size: small;
+      font-style: italic;
+    }
+
+    span {
+      margin-left: 3rem;
+      @include mobile {
+        margin: 0;
+      }
+      @include x-mobile {
+        margin: 0;
+      }
+    }
+  }
+
+  .right {
+    @include row(flex-end, center);
+    color: #808080;
+    font-size: small;
+
+    span {
+      margin: 0 0.5rem;
+    }
   }
 }

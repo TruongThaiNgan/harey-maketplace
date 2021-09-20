@@ -33,12 +33,39 @@
 .productList {
   @include row(center, center);
   margin-top: 2rem;
+  @include tablet {
+    flex-wrap: wrap;
+  }
+  @include mobile {
+    flex-wrap: wrap;
+  }
+  @include x-mobile {
+    flex-wrap: wrap;
+  }
 
   .product {
-    width: 100%;
+    // width: 100%;
+    @include tablet {
+      flex-basis: 50%;
+    }
+    @include mobile {
+      flex-basis: 50%;
+    }
+    @include x-mobile {
+      flex-basis: 100%;
+    }
   }
 }
 
 .trending {
   height: 1000px;
+  @include tablet {
+    height: 1300px;
+  }
+  @include mobile {
+    height: fit-content;
+  }
+  @include x-mobile {
+    height: fit-content;
+  }
 }

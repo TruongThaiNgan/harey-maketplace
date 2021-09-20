@@ -1,0 +1,159 @@
+@import '../../scss/main';
+
+.myAccountContainer {
+  @include row(center, center);
+  width: 100%;
+  max-width: 1500px;
+  height: 1000px;
+  .sideBar {
+    width: 20%;
+    height: 100%;
+    padding: 0 1rem;
+    border: 1px solid #000;
+    border-right: 0;
+
+    text-align: center;
+  }
+  .content {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    height: 100%;
+    border: 1px solid #000;
+
+    text-align: center;
+  }
+}
+
+.sideBarRow {
+  @include row(flex-start, flex-start);
+  width: 100%;
+  height: 2rem;
+  margin-top: 1rem;
+
+  color: var(--indigo);
+
+  cursor: pointer;
+  button {
+    width: 100%;
+    height: 100%;
+    border: 0;
+
+    color: inherit;
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: left;
+    text-transform: uppercase;
+
+    background-color: transparent;
+    cursor: pointer;
+  }
+  &:hover {
+    color: var(--charade);
+  }
+}
+
+.cardNumber {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.subInfo {
+  @include row;
+  .elementLeft {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-bottom-left-radius: 5px;
+  }
+  .elementRight {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-bottom-right-radius: 5px;
+  }
+}
+.submit {
+  width: 100%;
+  margin-top: 3rem;
+  padding: 1rem;
+  border: 0;
+  border-radius: 22px;
+
+  color: #fff;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+
+  background-color: rgba(89, 91, 212, 1);
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(41, 47, 56, 1);
+  }
+}
+
+.billDetails {
+  @include col;
+  width: 100%;
+  padding: 5rem;
+
+  background-color: #fff;
+
+  .billTitle {
+    font-weight: bold;
+    font-size: 1.8rem;
+  }
+}
+.cardDetails {
+  @include col(flex-start, center);
+  width: 43%;
+  height: 100%;
+  padding: 2rem;
+  border-top: 3px solid #595bd4;
+
+  background-color: #fff;
+}
+.form {
+  @include col(flex-start, flex-start);
+  width: 100%;
+  margin-top: 3rem;
+  label {
+    @include row(space-between, center);
+    width: 100%;
+    margin-bottom: 1rem;
+
+    font-size: 0.8rem;
+    span {
+      width: 30%;
+
+      text-transform: uppercase;
+    }
+    .asterisk {
+      color: #f00;
+    }
+    input {
+      width: 70%;
+      height: 3rem;
+      border: 1px solid #f4f6f7;
+
+      background-color: #f4f6f7;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+.select {
+  width: 70%;
+  height: 3rem;
+  border: 1px solid #f4f6f7;
+
+  background-color: #f4f6f7;
+}
+
+.cardContainer {
+  width: 50%;
+}

@@ -1,1 +1,5 @@
-export type LatestProps = Record<string, never>;
+import { ProductItem } from '@Hoc/interfaces';
+
+export type LatestProps = {
+  latestList: ProductItem[];
+};

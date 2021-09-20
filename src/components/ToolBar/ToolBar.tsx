@@ -4,26 +4,14 @@ import ViewModuleIcon from '@material-ui/icons/ViewModule';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { showOptionList, sortOptionList } from './constants';
+import { ToolBarProps } from './interfaces';
 import classes from './ToolBar.module.scss';
 
-const sortOptionList = [
-  'toolBar.default',
-  'toolBar.popularity',
-  'toolBar.rating',
-  'toolBar.latest',
-  'toolBar.priceIncrease',
-  'toolBar.priceDecrease',
-];
-
-const showOptionList = [5, 12, 15, 20];
-
-interface ToolBarProps {
-  onChangeLimit: React.Dispatch<React.SetStateAction<number>>;
-  limit: number;
-}
-
 const ToolBar: React.FC<ToolBarProps> = ({ onChangeLimit, limit }) => {
+  // Hook states
   const [t] = useTranslation();
+
   return (
     <div className={classes.toolbar}>
       <div className={classes.left}>

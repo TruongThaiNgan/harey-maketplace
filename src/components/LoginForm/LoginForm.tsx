@@ -1,44 +1,47 @@
 import { useFormik } from 'formik';
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import * as Yup from 'yup';
 
 import Facebook from '@Component/Facebook';
+import { postAuth } from '@Service/auth';
+import { updateAuth } from '@Slice/userSlice';
+import { useAppDispatch } from '@Store/hooks';
+import { setToken } from '@Util/localStorageService';
+import CustomLink from '@Component/CustomLink';
 
-import { LoginFormProps, LoginInput } from './interfaces';
+import { initialValues, loginInputList, validationSchema } from './constants';
+import { LoginFormProps } from './interfaces';
 import classes from './LoginForm.module.scss';
 
-const loginInputList: LoginInput[] = [
-  { title: 'login.name', type: 'text', name: 'email' },
-  { title: 'login.password', type: 'password', name: 'password' },
-];
-const validationSchema = Yup.object().shape({
-  email: Yup.string().required('loginForm.errors.userNameRequired'),
-  password: Yup.string().required('loginForm.errors.passwordRequired'),
-});
-const initialValues = {
-  email: '',
-  password: '',
-};
 const LoginForm: React.FC<LoginFormProps> = () => {
   // Hook states
   const [t] = useTranslation();
-  const { values, handleChange, errors, touched } = useFormik({
+  const dispatch = useAppDispatch();
+  const [error, setError] = useState<string>('');
+  const { values, handleChange, errors, touched, handleSubmit } = useFormik({
     initialValues,
     onSubmit: () => {
-      console.log('sending');
+      postAuth(values)
+        .then((res) => {
+          const { status, accessToken, message } = res.data;
+          setToken(accessToken);
+          if (status === '200' && message === 'Log in success') dispatch(updateAuth({ auth: true }));
+          else setError('Email or password not correct');
+        })
+        .catch((err) => {
+          setError('some thing wrong');
+          console.log(err);
+        });
     },
     validationSchema,
-    validateOnChange: false,
+    validateOnChange: true,
     validateOnBlur: true,
   });
-  // Hook effects
-
-  // Constants
 
   // Action handlers
   const submitHandler = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
+    handleSubmit();
   };
 
   // Renderers
@@ -63,12 +66,15 @@ const LoginForm: React.FC<LoginFormProps> = () => {
           </React.Fragment>
         ))}
 
+        <span>{error}</span>
         <div className={classes.button}>
           <div>
             <button type="submit" className={classes.submit}>
               {t('login.login')}
             </button>
-            <span>{t('login.lost')}</span>
+            <span>
+              <CustomLink to="/send-mail-reset">{t('login.lost')}</CustomLink>
+            </span>
           </div>
         </div>
       </form>

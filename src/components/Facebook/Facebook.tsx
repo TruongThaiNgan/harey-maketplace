@@ -6,12 +6,12 @@ import { updateAuth } from '@Slice/userSlice';
 import { useAppDispatch } from '@Store/hooks';
 
 import classes from './Facebook.module.scss';
-import { IFackbook } from './interfaces';
+import { IFacebook } from './interfaces';
 
 const Facebook: React.FC = () => {
   // Hook states
   const dispatch = useAppDispatch();
-  const [value, setValue] = useState<IFackbook>({
+  const [value, setValue] = useState<IFacebook>({
     isLoggedIn: false,
     userID: '',
     name: '',
@@ -19,14 +19,7 @@ const Facebook: React.FC = () => {
     picture: '',
   });
 
-  // Hook effects
-
-  // Constants
-
   // Action handlers
-  const componentClicked = (): void => {
-    console.log('click');
-  };
   const responseFacebook = (res: ReactFacebookLoginInfo | ReactFacebookFailureResponse): void => {
     // res is ReactFacebookFailureResponse
     if ('status' in res) {
@@ -42,7 +35,6 @@ const Facebook: React.FC = () => {
     <FacebookLogin
       appId={process.env.REACT_APP_FACEBOOK_APP_ID!}
       fields="name,email,picture"
-      onClick={componentClicked}
       callback={responseFacebook}
       cssClass={classes.buttonFacebook}
       icon={<FacebookIcon />}

@@ -6,21 +6,11 @@ import Trending from '@Component/Trending';
 import { TrendingSectionProps } from './interfaces';
 import classes from './TrendingSection.module.scss';
 
-const TrendingSection: React.FC<TrendingSectionProps> = ({ lastChanceList, trendingList }) => (
-  // Hook states
-
-  // Hook effects
-
-  // Constants
-
-  // Action handlers
-
-  // Renderers
-
+const TrendingSection: React.FC<TrendingSectionProps> = ({ lastChanceList }) => (
   <div className={classes.trendingSectionContainer}>
     <div className={classes.center}>
       <div className={classes.trending}>
-        <Trending trendingList={trendingList} />
+        <Trending />
       </div>
 
       <div className={classes.lastChance}>
@@ -31,7 +21,7 @@ const TrendingSection: React.FC<TrendingSectionProps> = ({ lastChanceList, trend
         <div className={classes.productList}>
           {lastChanceList?.map(({ id, ...rest }) => (
             <div className={classes.product} key={id}>
-              <Product {...rest} row />
+              <Product id={id} {...rest} row />
             </div>
           ))}
         </div>
@@ -40,4 +30,4 @@ const TrendingSection: React.FC<TrendingSectionProps> = ({ lastChanceList, trend
   </div>
 );
 TrendingSection.defaultProps = {};
-export default TrendingSection;
+export default React.memo(TrendingSection);

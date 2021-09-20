@@ -7,6 +7,10 @@
 .info {
   @include row(center, center);
   @include size(100%, 8rem);
+  @include not-desktop {
+    @include col(center, center);
+    height: fit-content;
+  }
 }
 
 .left {
@@ -17,6 +21,12 @@
   color: #fff;
 
   background-color: #3b4466;
+  @include not-desktop {
+    @include col(center, center);
+  }
+  @include not-desktop {
+    width: 100%;
+  }
 
   .contact {
     @include row(center, center);
@@ -49,12 +59,21 @@
   padding-left: 1rem;
 
   background-color: rgba(89, 91, 212, 1);
+  @include not-desktop {
+    @include col(center, center);
+    width: 100%;
+    padding: 1rem;
+  }
 
   input {
     @include size(30rem, 3rem);
     margin-right: 2rem;
     border: 1px solid #fff;
     border-radius: 1.5rem;
+    @include not-desktop {
+      width: 90%;
+      margin-bottom: 0.5rem;
+    }
 
     &:focus {
       outline: none;
@@ -81,20 +100,32 @@
 }
 
 .more {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include row(space-between, center);
   height: 14rem;
   margin: 5rem 0;
+  @include not-desktop {
+    flex-wrap: wrap;
+  }
 }
 
 .list {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  @include col(center, flex-start);
   height: 100%;
   margin: 0 1rem;
+  @include tablet {
+    flex-basis: 44%;
+    margin: 0 1rem;
+  }
+  @include mobile {
+    flex-basis: 44%;
+    margin: 0 1rem;
+  }
+  @include x-mobile {
+    flex-basis: 100%;
+  }
+  @include not-desktop {
+    // align-items: center;
+  }
 
   .title {
     margin-bottom: 1rem;
@@ -108,6 +139,7 @@
     list-style: none;
 
     li {
+      min-width: 100px;
       margin: 1rem 0;
 
       color: rgba(41, 47, 56, 1);
@@ -132,7 +164,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 20rem;
+    min-width: 15rem;
+    max-width: 20rem;
     height: 100%;
 
     input {
@@ -211,4 +244,9 @@
     width: fit-content;
     height: fit-content;
   }
+}
+
+.imgOffer {
+  min-width: 250px;
+  max-width: 350px;
 }

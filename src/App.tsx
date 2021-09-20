@@ -6,18 +6,17 @@ import Header from '@Component/Header/Header';
 import classes from './App.module.scss';
 import MyRouter from './router/MyRouter';
 
-function App(): JSX.Element {
-  return (
-    <div className={classes.app}>
-      <Header />
-      <div className={classes.content}>
-        <div className={classes.displayBoard}>
-          <MyRouter />
-        </div>
+const App: React.FC = () => (
+  <div className={classes.app}>
+    <Header />
+    <div className={classes.content}>
+      <div className={classes.displayBoard}>
+        <MyRouter />
       </div>
-      <Footer />
     </div>
-  );
-}
+
+    <Footer />
+  </div>
+);
 
 export default App;

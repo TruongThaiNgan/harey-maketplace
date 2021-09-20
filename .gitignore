@@ -24,3 +24,7 @@ yarn-error.log*
 
 /.vscode
 .env
+.fttemplates
+
+# Local Netlify folder
+.netlify

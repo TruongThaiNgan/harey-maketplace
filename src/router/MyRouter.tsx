@@ -1,32 +1,21 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { CircularProgress } from '@material-ui/core';
 
-import PrivateRoute from '@Component/PrivateRoute/PrivateRoute';
+import PrivateRoute from '@Component/PrivateRoute';
 import withGetData from '@Hoc/withGetData';
-import About from '@Page/About';
-import Home from '@Page/Home/Home';
-import Login from '@Page/Login';
-import ProductPage from '@Page/ProductPage/ProductPage';
-import {
-  fetchPageAccessories,
-  fetchPageProduct,
-  getNumberAccessories,
-  getNumberProduct,
-  getPageAccessoriesData,
-  getPageProductData,
-} from '@Slice/pageSlice';
+import ResetPassword from '@Component/ResetPassword';
+
+const Login = React.lazy(() => import('@Page/Login'));
+const About = React.lazy(() => import('@Page/About'));
+const Cart = React.lazy(() => import('@Component/Cart'));
+const ProductPage = React.lazy(() => import('@Page/ProductPage'));
+const Checkout = React.lazy(() => import('@Component/Checkout'));
+const SendEmailReset = React.lazy(() => import('@Component/SendEmailReset'));
+const Home = React.lazy(() => import('@Page/Home'));
+const MyAccount = React.lazy(() => import('@Component/MyAccount'));
 
 const routeList = [
-  {
-    path: '/shop',
-    exact: true,
-    component: withGetData(fetchPageProduct, getPageProductData, getNumberProduct),
-  },
-  {
-    path: '/product-category/accessories',
-    exact: true,
-    component: withGetData(fetchPageAccessories, getPageAccessoriesData, getNumberAccessories),
-  },
   {
     path: '/login',
     exact: false,
@@ -40,7 +29,7 @@ const routeList = [
   {
     path: '/cart',
     exact: false,
-    component: <div>cart</div>,
+    component: <Cart />,
   },
   {
     path: '/contact',
@@ -63,49 +52,84 @@ const routeList = [
     component: <div>Element</div>,
   },
   {
+    path: '/wishlist',
+    exact: false,
+    component: <div>wishlist</div>,
+  },
+  {
+    path: '/compare',
+    exact: false,
+    component: <div>compare</div>,
+  },
+  {
     path: '/product/:name',
     exact: false,
     component: <ProductPage />,
   },
   {
-    path: '/product-category/cameras-photos',
+    path: '/shop',
     exact: true,
-    component: <div>cameras-photos</div>,
+    component: withGetData('product'),
+  },
+  {
+    path: '/product-category/accessories',
+    exact: true,
+    component: withGetData('accessories'),
   },
   {
     path: '/product-category/computers',
     exact: true,
-    component: <div>computers</div>,
+    component: withGetData('computers'),
+  },
+  {
+    path: '/product-category/cameras-photos',
+    exact: true,
+    component: withGetData('camerasPhotos'),
   },
   {
     path: '/product-category/console-games',
     exact: true,
-    component: <div>console-games</div>,
+    component: withGetData('consoleGame'),
   },
   {
     path: '/product-category/gadgets',
     exact: true,
-    component: <div>gadgets</div>,
+    component: withGetData('gadgets'),
   },
   {
     path: '/product-category/mobiles-tablets',
     exact: true,
-    component: <div>mobiles-tablets</div>,
+    component: withGetData('mobilesTablets'),
   },
   {
     path: '/product-category/tools-storage',
     exact: true,
-    component: <div>tools-storage</div>,
+    component: withGetData('toolsStorage'),
   },
   {
     path: '/product-category/tvs-audio',
     exact: true,
-    component: <div>tvs-audio</div>,
+    component: withGetData('tvAudio'),
   },
   {
     path: '/product-category/gadgets/watches',
     exact: true,
-    component: <div>watches</div>,
+    component: withGetData('watches'),
+  },
+  {
+    path: '/checkout',
+    exact: true,
+    component: <Checkout />,
+  },
+  {
+    path: '/send-mail-reset',
+    exact: true,
+    component: <SendEmailReset />,
+  },
+  {
+    path: '/reset-password',
+    exact: true,
+    component: <ResetPassword />,
   },
   {
     path: '/',
@@ -120,14 +144,14 @@ const routeList = [
 ];
 const privateRouteList = [
   {
-    path: '/secrect',
+    path: '/secret',
     exact: false,
-    component: <div>secrect</div>,
+    component: <div>secret</div>,
   },
   {
-    path: '/account',
+    path: '/my-account',
     exact: false,
-    component: <div>account</div>,
+    component: <MyAccount />,
   },
   {
     path: '/bank',
@@ -136,18 +160,20 @@ const privateRouteList = [
   },
 ];
 const MyRouter: React.FC = () => (
-  <Switch>
-    {privateRouteList.map(({ path, component, exact }) => (
-      <PrivateRoute key={path} path={path} exact={exact}>
-        {component}
-      </PrivateRoute>
-    ))}
-    {routeList.map(({ path, component, exact }) => (
-      <Route key={path} path={path} exact={exact}>
-        {component}
-      </Route>
-    ))}
-  </Switch>
+  <Suspense fallback={<CircularProgress />}>
+    <Switch>
+      {privateRouteList.map(({ path, component, exact }) => (
+        <PrivateRoute key={path} path={path} exact={exact}>
+          {component}
+        </PrivateRoute>
+      ))}
+      {routeList.map(({ path, component, exact }) => (
+        <Route key={path} path={path} exact={exact}>
+          {component}
+        </Route>
+      ))}
+    </Switch>
+  </Suspense>
 );
 
 MyRouter.defaultProps = {};

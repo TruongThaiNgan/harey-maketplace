@@ -7,16 +7,6 @@ import classes from './ElementsMenu.module.scss';
 import { ElementsMenuProps } from './interfaces';
 
 const ElementsMenu: React.FC<ElementsMenuProps> = ({ style }) => (
-  // Hook states
-
-  // Hook effects
-
-  // Constants
-
-  // Action handlers
-
-  // Renderers
-
   <div className={classes.elementsMenuContainer} style={style}>
     {elementList.map((element) => (
       <div className={classes.element} key={element.title}>
@@ -29,4 +19,4 @@ const ElementsMenu: React.FC<ElementsMenuProps> = ({ style }) => (
   </div>
 );
 ElementsMenu.defaultProps = {};
-export default ElementsMenu;
+export default React.memo(ElementsMenu);

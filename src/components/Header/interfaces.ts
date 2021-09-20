@@ -1,4 +1,3 @@
-export interface HeaderProps {}
 export interface NavButtonState {
   'header.home': boolean;
   'header.shop': boolean;
