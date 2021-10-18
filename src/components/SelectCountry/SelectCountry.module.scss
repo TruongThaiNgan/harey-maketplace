@@ -3,12 +3,12 @@
   height: 100%;
 
   padding-left: 1rem;
-  border: 1px solid #f4f6f7;
+  border: 1px solid var(--main-background);
 
-  background-color: #f4f6f7;
+  background-color: var(--main-background);
   cursor: pointer;
   &:focus {
-    background-color: #fff;
+    background-color: var(--white);
     outline: none;
   }
 }

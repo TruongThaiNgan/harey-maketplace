@@ -8,14 +8,14 @@
   overflow: hidden;
 
   .productLatestList {
-    @include row(center, center);
+    @include row(flex-start, center);
     flex-wrap: nowrap;
     width: max-content;
 
     .productItem {
       flex: 1 0 16.66%;
       max-width: 250px;
-      border: 1px solid #ccc;
+      border: 1px solid var(--silver);
     }
   }
 }
@@ -46,13 +46,13 @@
     background-color: #f1f1f1;
 
     &:hover {
-      color: #fff;
+      color: var(--white);
 
       background-color: #b8b8b8;
     }
 
     &:disabled {
-      color: #fff;
+      color: var(--white);
 
       background-color: #f1f1f1;
 

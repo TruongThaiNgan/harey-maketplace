@@ -20,7 +20,7 @@
 
       font-size: 1.1rem;
 
-      background-color: #f4f6f7;
+      background-color: var(--main-background);
 
       &:focus {
         outline: none;
@@ -32,7 +32,7 @@
     }
 
     .asterisk {
-      color: #f00;
+      color: var(--red);
     }
   }
 }
@@ -73,13 +73,13 @@
   border: 0;
   border-radius: 22px;
 
-  color: #fff;
+  color: var(--white);
   font-size: 11px;
 
-  background-color: rgba(89, 91, 212, 1);
+  background-color: var(--indigo);
   cursor: pointer;
 
   &:hover {
-    background-color: rgba(41, 47, 56, 1);
+    background-color: var(--charade);
   }
 }

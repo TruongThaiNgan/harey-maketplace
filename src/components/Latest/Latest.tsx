@@ -14,7 +14,8 @@ const Latest: React.FC<LatestProps> = ({ latestList }) => {
 
   // Action handlers
   const clickHandle = (direction: 'left' | 'right'): void => {
-    const { width } = ref.current!.getBoundingClientRect();
+    // const { width } = ref.current!.getBoundingClientRect();
+    const width = 3000;
     if (direction === 'left') {
       ref.current!.style.transform = `translateX(${(-width / 12) * (index - 1)}px)`;
       setIndex((preIndex) => preIndex - 1);

@@ -68,11 +68,11 @@
         border: 1px solid #cacaca;
         border-radius: 2px;
 
-        color: #fff;
+        color: var(--white);
       }
 
       &:hover > .check {
-        background-color: rgba(89, 91, 212, 1);
+        background-color: var(--indigo);
       }
 
       input {
@@ -109,7 +109,7 @@
       }
 
       .money {
-        color: rgba(89, 91, 212, 1);
+        color: var(--indigo);
         font-weight: 500;
         font-size: 1.3rem;
       }

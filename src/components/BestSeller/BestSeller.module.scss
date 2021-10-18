@@ -33,7 +33,7 @@
 }
 
 .seller {
-  @include row;
+  @include row(flex-start, stretch);
   @include size(100%, 100%);
   @include not-desktop {
     @include col(center, center);
@@ -41,10 +41,10 @@
 
   .mainSeller {
     @include row(center, center);
-    @include size(25%, 100%);
+    width: 25%;
     margin-right: 0.5rem;
 
-    background-color: #fff;
+    background-color: var(--white);
     @include tablet {
       width: 60%;
     }
@@ -78,7 +78,7 @@
     div {
       margin-right: 0.5rem;
 
-      background-color: #fff;
+      background-color: var(--white);
 
       &:last-child {
         margin-right: 0;
@@ -87,7 +87,7 @@
   }
 
   .bottom {
-    @include row;
+    @include row(flex-start, stretch);
     @include mobile {
       flex-wrap: wrap;
     }
@@ -98,7 +98,7 @@
     div {
       margin-right: 0.5rem;
 
-      background-color: #fff;
+      background-color: var(--white);
       @include mobile {
         flex-basis: 48%;
       }
@@ -114,5 +114,5 @@
 }
 
 .active {
-  color: #595bd4;
+  color: var(--indigo);
 }

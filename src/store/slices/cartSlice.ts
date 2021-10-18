@@ -42,10 +42,16 @@ export const cartSlice = createSlice({
         cart: newCart,
       };
     },
+    emptyCart(state) {
+      return {
+        ...state,
+        cart: {},
+      };
+    },
   },
 });
 
-export const { addToCart, updateAmountItemCart, removeToCart } = cartSlice.actions;
+export const { addToCart, updateAmountItemCart, removeToCart, emptyCart } = cartSlice.actions;
 export const getIdCartList = (state: RootState): number[] => Object.entries(state.cart.cart).map(([id]) => +id);
 export const getCartList = (state: RootState): ICartItem[] => {
   const listCart = Object.entries(state.cart.cart);

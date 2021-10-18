@@ -6,7 +6,7 @@
   height: 100%;
   margin-top: 2rem;
 
-  background-color: #fff;
+  background-color: var(--white);
 
   .hotDealTitle {
     margin-bottom: 3rem;
@@ -103,5 +103,5 @@
 }
 
 .active {
-  color: #595bd4;
+  color: var(--indigo);
 }

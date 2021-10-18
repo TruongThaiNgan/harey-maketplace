@@ -1,0 +1,43 @@
+@import '../../scss/main';
+.searchItemContainer {
+  width: 100%;
+  height: 100%;
+}
+.link {
+  @include row(flex-start, center);
+  width: 100%;
+  height: 100%;
+
+  color: #000;
+
+  text-decoration: none;
+}
+.image {
+  width: 5rem;
+  height: 5rem;
+}
+.left {
+  width: fit-content;
+}
+
+.right {
+  @include col(center, flex-start);
+  width: 100%;
+  height: 5rem;
+  padding-left: 2rem;
+  span {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+  .title {
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+  .categories {
+    text-transform: capitalize;
+  }
+}
+
+.background {
+  background-color: var(--indigo);
+}

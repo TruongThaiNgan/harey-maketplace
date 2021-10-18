@@ -1,4 +1,4 @@
-import { ProductItem } from '@Hoc/interfaces';
+import { ProductItem } from '@Component/PageLoad/interfaces';
 import { HomePage, IGetPageRequestParams, IGetPageProductResponse } from '@Service/product';
 
 export type Status = 'idle' | 'loading' | 'succeeded' | 'error';

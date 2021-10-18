@@ -15,7 +15,7 @@
   width: 55%;
   padding: 5rem;
 
-  background-color: #fff;
+  background-color: var(--white);
 
   .billTitle {
     font-weight: bold;
@@ -27,9 +27,9 @@
   width: 43%;
   height: 100%;
   padding: 2rem;
-  border-top: 3px solid #595bd4;
+  border-top: 3px solid var(--indigo);
 
-  background-color: #fff;
+  background-color: var(--white);
 }
 .form {
   @include col(flex-start, flex-start);
@@ -47,14 +47,15 @@
       text-transform: uppercase;
     }
     .asterisk {
-      color: #f00;
+      color: var(--red);
     }
     input {
       width: 70%;
       height: 3rem;
-      border: 1px solid #f4f6f7;
+      padding: 0 1rem;
+      border: 1px solid var(--main-background);
 
-      background-color: #f4f6f7;
+      background-color: var(--main-background);
       &:focus {
         outline: none;
       }
@@ -64,9 +65,9 @@
 .select {
   width: 70%;
   height: 3rem;
-  border: 1px solid #f4f6f7;
+  border: 1px solid var(--main-background);
 
-  background-color: #f4f6f7;
+  background-color: var(--main-background);
 }
 
 .row {
@@ -89,7 +90,7 @@
 .separate {
   width: 90%;
   height: 0;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid var(--silver);
 }
 
 .detail {
@@ -97,6 +98,7 @@
   width: 100%;
   .record {
     @include row(space-between, center);
+    width: 100%;
     margin-bottom: 2rem;
     strong {
       font-size: 1.2rem;
@@ -120,7 +122,7 @@
 }
 
 .total {
-  color: rgba(89, 91, 212, 1);
+  color: var(--indigo);
   font-weight: bold;
   font-size: 1.5rem;
 }

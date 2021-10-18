@@ -32,6 +32,8 @@
   .left {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+    width: 100%;
   }
 
   .right {
@@ -48,7 +50,7 @@
     padding: 0;
     border: 0;
 
-    color: rgba(89, 91, 212, 1);
+    color: var(--indigo);
     font-size: xx-large;
 
     background-color: transparent;
@@ -61,6 +63,6 @@
   }
 
   &:hover > .left > span {
-    color: rgba(89, 91, 212, 1);
+    color: var(--indigo);
   }
 }

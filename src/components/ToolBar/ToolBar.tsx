@@ -8,14 +8,20 @@ import { showOptionList, sortOptionList } from './constants';
 import { ToolBarProps } from './interfaces';
 import classes from './ToolBar.module.scss';
 
-const ToolBar: React.FC<ToolBarProps> = ({ onChangeLimit, limit }) => {
+const ToolBar: React.FC<ToolBarProps> = ({ onChangeLimit, limit, onChangeSort, sort }) => {
   // Hook states
   const [t] = useTranslation();
 
+  const onChangeSortItem = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+    onChangeSort(event.target.value);
+  };
+  const onChangeShow = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+    onChangeLimit(+event.target.value);
+  };
   return (
     <div className={classes.toolbar}>
       <div className={classes.left}>
-        <select name="sort" id="sort" className={classes.sort}>
+        <select name="sort" id="sort" className={classes.sort} onChange={onChangeSortItem} value={sort}>
           {sortOptionList.map((item) => (
             <option key={item} value={item}>
               {t(item)}
@@ -36,16 +42,7 @@ const ToolBar: React.FC<ToolBarProps> = ({ onChangeLimit, limit }) => {
         <button type="button">
           <ViewModuleIcon />
         </button>
-        <select
-          name="show"
-          id="show"
-          className={classes.show}
-          onChange={(event) => {
-            console.log(event.target.value);
-            onChangeLimit(+event.target.value);
-          }}
-          value={limit}
-        >
+        <select name="show" id="show" className={classes.show} onChange={onChangeShow} value={limit}>
           {showOptionList.map((item) => (
             <option key={item} value={item}>
               {`${t('toolBar.show')} ${item}`}{' '}

@@ -30,15 +30,15 @@
   border: 0;
   border-radius: 22px;
 
-  color: #fff;
+  color: var(--white);
   letter-spacing: 0.2rem;
   text-transform: uppercase;
 
-  background-color: rgba(89, 91, 212, 1);
+  background-color: var(--indigo);
   cursor: pointer;
 
   &:hover {
-    background-color: rgba(41, 47, 56, 1);
+    background-color: var(--charade);
   }
 }
 

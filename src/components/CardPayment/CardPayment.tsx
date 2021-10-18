@@ -5,9 +5,9 @@ import { shallowEqual } from 'react-redux';
 
 import Modal from '@Component/Modal';
 import axios from '@Service/axios';
-import { getCartList } from '@Slice/cartSlice';
+import { emptyCart, getCartList } from '@Slice/cartSlice';
 import { ErrStripe } from '@Slice/interfaces';
-import { useAppSelector } from '@Store/hooks';
+import { useAppDispatch, useAppSelector } from '@Store/hooks';
 import { calculateTotal } from '@Util/convert';
 
 import classes from './CardPayment.module.scss';
@@ -17,6 +17,7 @@ const CardPayment: React.FC<CardPaymentProps> = ({ value, disabled }) => {
   // Hook states
   const stripe = useStripe();
   const elements = useElements();
+  const dispatch = useAppDispatch();
   const [showModal, setShowModal] = useState<boolean>(false);
   const [error, setError] = useState<string>('Error');
   const [block, setBlock] = useState<boolean>(false);
@@ -71,12 +72,16 @@ const CardPayment: React.FC<CardPaymentProps> = ({ value, disabled }) => {
               setError('verifying');
               const check = await axios.get(`/payment/check/${payment.data.id}`);
               if (check.status === 200) {
+                dispatch(emptyCart());
                 setError('payment success');
               }
             }
           } else {
             if (payment.data.status === 400) setError(payment.data.message);
-            else setError('payment success');
+            else {
+              dispatch(emptyCart());
+              setError('payment success');
+            }
           }
         } catch (err: unknown) {
           setError((err as ErrStripe)?.message);
@@ -86,6 +91,8 @@ const CardPayment: React.FC<CardPaymentProps> = ({ value, disabled }) => {
       }
     },
     [
+      cartList,
+      dispatch,
       elements,
       stripe,
       totalAmount,
@@ -142,7 +149,7 @@ const CardPayment: React.FC<CardPaymentProps> = ({ value, disabled }) => {
         </div>
       </div>
       <button type="submit" onClick={onSubmitCard} className={classes.submit} disabled={disabled}>
-        pay 100
+        pay
       </button>
       <Modal
         show={showModal}

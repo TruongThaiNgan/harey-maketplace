@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { ProductItem } from '@Hoc/interfaces';
+import { ProductItem } from '@Component/PageLoad/interfaces';
 import {
   getListProduct,
   getPageHome,
@@ -12,7 +12,7 @@ import {
   Page,
 } from '@Service/product';
 import { RootState } from '@Store/store';
-import { convertName } from '@Util/convert';
+import { convertName, convertSort } from '@Util/convert';
 
 import { Entities, IError, IGetPageThunkParams, PageState, ProductInHomePage, TypePage } from './interfaces';
 
@@ -56,18 +56,17 @@ export const getEntities = (
 
 export const fetchPage = createAsyncThunk<Page, IGetPageThunkParams, { state: RootState }>(
   '/product/fetchPage',
-  async ({ page, limit, type, getAPI }, thunkAPI) => {
+  async ({ page, limit, sort, type, getAPI }, thunkAPI) => {
     try {
       const data = thunkAPI.getState().page;
       const hasExist = checkDataExist(data[type], { page, limit });
-
-      if (hasExist)
+      if (hasExist && sort === 'toolBar.default')
         return {
           message: 'ok',
           numberProduct: data[type].length,
           productList: getEntities(data, data[type], { page, limit }),
         };
-      const res = await getAPI({ page, limit });
+      const res = await getAPI({ page, limit, sort: convertSort(sort) });
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.response.data.message });

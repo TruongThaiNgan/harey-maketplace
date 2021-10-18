@@ -20,7 +20,7 @@
 
   .productItem {
     flex-basis: 25%;
-    border: 1px solid #ccc;
+    border: 1px solid var(--silver);
     @include tablet {
       flex-basis: 33.33%;
     }
@@ -77,6 +77,7 @@
   .countdown {
     width: 80%;
     height: 10%;
+    margin: 0 auto;
   }
 
   .dealProduct {
@@ -113,7 +114,7 @@
     .newPrice {
       margin-top: 0.5rem;
 
-      color: rgba(89, 91, 212, 1);
+      color: var(--indigo);
       font-weight: bold;
       font-size: 1.5rem;
     }
@@ -166,7 +167,7 @@
 }
 
 .active {
-  color: #595bd4;
+  color: var(--indigo);
 }
 
 .content {

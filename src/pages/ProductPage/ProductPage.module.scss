@@ -2,7 +2,7 @@
 
 .productContainer {
   @include col(center, center);
-  background-color: #fff;
+  background-color: var(--white);
 }
 
 .content {
@@ -71,7 +71,7 @@
     .newPrice {
       margin-left: 1rem;
 
-      color: rgba(89, 91, 212, 1);
+      color: var(--indigo);
       font-size: 2rem;
     }
 
@@ -82,7 +82,7 @@
       height: 2rem;
       margin-left: 5rem;
       padding: 1rem;
-      border: 1px solid #ccc;
+      border: 1px solid var(--silver);
       border-radius: 1.5rem;
       &:focus {
         outline: none;
@@ -95,20 +95,20 @@
       height: 2rem;
       margin-left: 3rem;
       padding: 1rem;
-      border: 1px solid rgba(89, 91, 212, 1);
+      border: 1px solid var(--indigo);
       border-radius: 1.5rem;
 
-      color: #fff;
+      color: var(--white);
       font-weight: bold;
       font-size: 0.7rem;
       text-transform: uppercase;
 
-      background-color: rgba(89, 91, 212, 1);
+      background-color: var(--indigo);
 
       cursor: pointer;
 
       &:hover {
-        color: rgba(89, 91, 212, 1);
+        color: var(--indigo);
 
         background-color: transparent;
       }
@@ -133,10 +133,10 @@
     .icon {
       @include size(40px, 40px);
       @include row(center, center);
-      border: 1px solid #ccc;
+      border: 1px solid var(--silver);
       border-radius: 50%;
 
-      color: rgba(89, 91, 212, 1);
+      color: var(--indigo);
       font-weight: 100;
     }
 
@@ -149,9 +149,9 @@
 
     &:hover {
       .icon {
-        color: #fff;
+        color: var(--white);
 
-        background-color: rgba(89, 91, 212, 1);
+        background-color: var(--indigo);
       }
     }
   }
@@ -173,10 +173,11 @@
     @include size(fit-content, fit-content);
     margin-left: 1rem;
     padding: 1rem;
-    border: 1px solid #fff;
+    border: 1px solid var(--white);
     border-radius: 50%;
 
-    box-shadow: 0 0 0 3px #ccc;
+    box-shadow: 0 0 0 3px var(--silver);
+    cursor: pointer;
   }
 
   img {
@@ -211,10 +212,10 @@
     }
 
     .active {
-      border-top: 4px solid rgba(89, 91, 212, 1);
+      border-top: 4px solid var(--indigo);
       border-radius: 5px;
 
-      background-color: #fff;
+      background-color: var(--white);
     }
   }
 }
@@ -228,7 +229,7 @@
 .bodyDesc {
   @include col(center, center);
   width: 100%;
-  border-color: #fff;
+  border-color: var(--white);
 
   .titleDesc {
     @include row(center, center);
@@ -261,9 +262,12 @@
   color: #808080;
 
   .row {
-    @include row(center, center);
+    @include row(flex-start, center);
     width: 100%;
     padding: 0.5em;
+    .col {
+      width: 100%;
+    }
 
     &:nth-child(odd) {
       background-color: #f8f9fa;

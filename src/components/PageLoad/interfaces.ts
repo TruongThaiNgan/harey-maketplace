@@ -1,5 +1,11 @@
-export interface ShopProps {
-  template?: string;
+import { TypePage } from '@Slice/interfaces';
+
+export interface PageLoadProps {
+  type: TypePage;
+  limit: number;
+  page: number;
+  sort?: string;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 export interface ProductItem {
   id: number;

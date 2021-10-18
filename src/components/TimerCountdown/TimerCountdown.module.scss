@@ -17,7 +17,7 @@
 
     .format {
       @include row(center, center);
-      color: #ccc;
+      color: var(--silver);
       font-size: 0.5rem;
       text-transform: uppercase;
     }

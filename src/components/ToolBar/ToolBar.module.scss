@@ -15,7 +15,7 @@
 
       color: #444;
 
-      background-color: #fff;
+      background-color: var(--white);
       cursor: pointer;
 
       &:focus {
@@ -37,11 +37,11 @@
       cursor: pointer;
 
       &:hover {
-        border-color: rgba(89, 91, 212, 1);
+        border-color: var(--indigo);
 
-        color: #fff;
+        color: var(--white);
 
-        background-color: rgba(89, 91, 212, 1);
+        background-color: var(--indigo);
       }
     }
   }
@@ -57,7 +57,7 @@
       background-color: transparent;
 
       &:hover {
-        color: #000;
+        color: var(--black);
       }
     }
 
@@ -69,7 +69,7 @@
 
       color: #444;
 
-      background-color: #fff;
+      background-color: var(--white);
       cursor: pointer;
 
       &:focus {

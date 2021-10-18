@@ -1,4 +1,4 @@
-import { ProductItem } from '@Hoc/interfaces';
+import { ProductItem } from '@Component/PageLoad/interfaces';
 import { RootState } from '@Store/store';
 
 import { IGetPageThunkParams, ProductInHome, Status, TypePage } from './interfaces';

@@ -4,11 +4,11 @@
   @include size(100%, 100%);
   position: relative;
 
-  background-color: #fff;
+  background-color: var(--white);
 }
 
 .col {
-  @include col(space-between, center);
+  @include col(center, center);
   height: 100%;
 
   color: inherit;
@@ -60,7 +60,7 @@ img {
   margin-bottom: 0.5rem;
   padding-left: 1rem;
 
-  color: rgba(89, 91, 212, 1);
+  color: var(--indigo);
   font-weight: bold;
   font-size: 0.9rem;
 
@@ -81,7 +81,7 @@ img {
   width: fit-content;
   padding: 0.2rem 1rem;
 
-  color: #fff;
+  color: var(--white);
   font-weight: 300;
 
   background-color: #77a464;
@@ -98,12 +98,12 @@ img {
   justify-content: center;
   width: fit-content;
 
-  background-color: rgba(89, 91, 212, 1);
+  background-color: var(--indigo);
 
   button {
     border: 0;
 
-    color: #fff;
+    color: var(--white);
     font-size: small;
 
     background-color: transparent;
@@ -132,4 +132,18 @@ img {
 
 .snackbar {
   width: 10rem;
+}
+
+.imageContainer {
+  position: relative;
+
+  width: 100%;
+  padding-top: 100%;
+}
+.image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }

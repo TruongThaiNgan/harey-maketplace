@@ -58,7 +58,13 @@ const Product: React.FC<ProductProps> = ({ image1, image2, title, price, oldPric
   return (
     <div className={classes.productContainer} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <NavLink to={`/product/${title.toLowerCase().replace(/ /g, '-')}`} className={row ? classes.row : classes.col}>
-        <img src={image} alt="origin" />
+        {!row ? (
+          <div className={classes.imageContainer}>
+            <img src={image} alt="origin" className={classes.image} />
+          </div>
+        ) : (
+          <img src={image} alt="origin" />
+        )}
 
         {timeCountdown && (
           <div className={classes.timer}>

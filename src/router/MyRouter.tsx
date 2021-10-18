@@ -1,10 +1,10 @@
+import { CircularProgress } from '@material-ui/core';
 import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { CircularProgress } from '@material-ui/core';
 
 import PrivateRoute from '@Component/PrivateRoute';
-import withGetData from '@Hoc/withGetData';
 import ResetPassword from '@Component/ResetPassword';
+import Shop from '@Component/Shop';
 
 const Login = React.lazy(() => import('@Page/Login'));
 const About = React.lazy(() => import('@Page/About'));
@@ -14,6 +14,7 @@ const Checkout = React.lazy(() => import('@Component/Checkout'));
 const SendEmailReset = React.lazy(() => import('@Component/SendEmailReset'));
 const Home = React.lazy(() => import('@Page/Home'));
 const MyAccount = React.lazy(() => import('@Component/MyAccount'));
+const SearchPage = React.lazy(() => import('@Page/Search'));
 
 const routeList = [
   {
@@ -68,53 +69,13 @@ const routeList = [
   },
   {
     path: '/shop',
-    exact: true,
-    component: withGetData('product'),
+    exact: false,
+    component: <Shop />,
   },
   {
-    path: '/product-category/accessories',
+    path: '/search',
     exact: true,
-    component: withGetData('accessories'),
-  },
-  {
-    path: '/product-category/computers',
-    exact: true,
-    component: withGetData('computers'),
-  },
-  {
-    path: '/product-category/cameras-photos',
-    exact: true,
-    component: withGetData('camerasPhotos'),
-  },
-  {
-    path: '/product-category/console-games',
-    exact: true,
-    component: withGetData('consoleGame'),
-  },
-  {
-    path: '/product-category/gadgets',
-    exact: true,
-    component: withGetData('gadgets'),
-  },
-  {
-    path: '/product-category/mobiles-tablets',
-    exact: true,
-    component: withGetData('mobilesTablets'),
-  },
-  {
-    path: '/product-category/tools-storage',
-    exact: true,
-    component: withGetData('toolsStorage'),
-  },
-  {
-    path: '/product-category/tvs-audio',
-    exact: true,
-    component: withGetData('tvAudio'),
-  },
-  {
-    path: '/product-category/gadgets/watches',
-    exact: true,
-    component: withGetData('watches'),
+    component: <SearchPage />,
   },
   {
     path: '/checkout',

@@ -1,23 +1,74 @@
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
+import { useHistory } from 'react-router';
 
 import logo from '@Image/logo.svg';
 import CustomLink from '@Component/CustomLink';
+import axios from '@Service/axios';
+import SearchItem from '@Component/SearchItem';
 
 import i18n from '../../i18n/i18n';
 
 import { buttonList, featureList, iconList, linkList } from './constants';
 import classes from './Header.module.scss';
 
+interface ISearchData {
+  id: string;
+  title: string;
+  image1: string;
+  categories: string;
+}
+
 const Header: React.FC = () => {
   // Hook states
   const [t] = useTranslation();
+  const history = useHistory();
   const [index, setIndex] = useState<number>(1);
   const [language, setLanguage] = useState<string>('vi');
+  const [search, setSearch] = useState<string>('');
+  const [searchData, setSearchData] = useState<ISearchData[]>([]);
 
+  useEffect(() => {
+    if (search)
+      axios
+        .get('/shop/search', {
+          params: {
+            key: search,
+          },
+        })
+        .then((res) => {
+          setSearchData(res.data.listSearch);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    else setSearchData([]);
+  }, [search]);
+
+  const changeLanguage = (): void => {
+    if (language === 'vi') {
+      i18n.changeLanguage('en');
+      setLanguage('en');
+    } else {
+      i18n.changeLanguage('vi');
+      setLanguage('vi');
+    }
+  };
+  const handleChangeSearch = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setSearch(event.target.value);
+  };
+  const goToSearchPage = (): void => {
+    if (!search) return;
+    const key = search;
+    setSearch('');
+    history.push({
+      pathname: '/search',
+      search: `?key=${key}`,
+    });
+  };
   return (
     <header className={classes.header}>
       <div className={classes.listLink}>
@@ -45,14 +96,37 @@ const Header: React.FC = () => {
           </CustomLink>
         </button>
 
-        <div className={classes.searchBar}>
-          <input type="text" placeholder={t('header.look')} />
-          <button type="button" className={classes.allCategoriesButton}>
-            {t('header.allCategories')}
-          </button>
-          <button type="button" className={classes.searchButton}>
-            <SearchOutlinedIcon />
-          </button>
+        <div className={classes.searchContainer}>
+          <div className={classes.searchBar}>
+            <div className={classes.searchInput}>
+              <input type="text" placeholder={t('header.look')} value={search} onChange={handleChangeSearch} />
+              <button type="button" className={classes.allCategoriesButton}>
+                {t('header.allCategories')}
+              </button>
+              <button type="button" className={classes.searchButton} onClick={goToSearchPage}>
+                <SearchOutlinedIcon />
+              </button>
+            </div>
+
+            {search && (
+              <div className={classes.dropdown}>
+                <div className={classes.searchData}>
+                  {searchData.map(({ id, ...rest }) => (
+                    <button
+                      type="button"
+                      className={classes.searchItem}
+                      key={id}
+                      onClick={() => {
+                        setSearch('');
+                      }}
+                    >
+                      <SearchItem {...rest} />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className={classes.features}>
@@ -61,18 +135,7 @@ const Header: React.FC = () => {
               <CustomLink to={link}>{icon}</CustomLink>
             </button>
           ))}
-          <button
-            type="button"
-            onClick={() => {
-              if (language === 'vi') {
-                i18n.changeLanguage('en');
-                setLanguage('en');
-              } else {
-                i18n.changeLanguage('vi');
-                setLanguage('vi');
-              }
-            }}
-          >
+          <button type="button" onClick={changeLanguage}>
             {language.toUpperCase()}
           </button>
         </div>

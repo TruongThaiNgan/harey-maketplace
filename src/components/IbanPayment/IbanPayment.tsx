@@ -5,8 +5,8 @@ import { shallowEqual } from 'react-redux';
 
 import axios from '@Service/axios';
 import Modal from '@Component/Modal';
-import { useAppSelector } from '@Store/hooks';
-import { getCartList } from '@Slice/cartSlice';
+import { useAppDispatch, useAppSelector } from '@Store/hooks';
+import { emptyCart, getCartList } from '@Slice/cartSlice';
 import { calculateTotal } from '@Util/convert';
 
 import { IbanPaymentProps } from './interfaces';
@@ -39,6 +39,7 @@ const IBAN_ELEMENT_OPTIONS = {
 const IbanPayment: React.FC<IbanPaymentProps> = ({ value, disabled }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const dispatch = useAppDispatch();
   const [showModal, setShowModal] = useState<boolean>(false);
   const [error, setError] = useState<string>('Processing');
   const [block, setBlock] = useState<boolean>(false);
@@ -84,8 +85,10 @@ const IbanPayment: React.FC<IbanPaymentProps> = ({ value, disabled }) => {
         setError(
           'Request was sent, payment process will take several minutes, we will sent mail for you when process finish',
         );
+        dispatch(emptyCart());
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [elements, stripe, value],
   );
   return (

@@ -1,11 +1,12 @@
 import { AxiosResponse } from 'axios';
 
-import { ProductItem } from '@Hoc/interfaces';
+import { ProductItem } from '@Component/PageLoad/interfaces';
 import { PaymentMethodKey } from '@Slice/userSlice';
 
 export type IGetPageRequestParams = {
   page: number;
   limit: number;
+  sort?: string;
 };
 
 export type Page = {

@@ -8,7 +8,7 @@ import { createInvoice, createSetupIntent } from '@Service/payment/payment';
 import { getAuth, getListPaymentIDFromStore } from '@Slice/selector';
 import { fetchListCardPaymentID } from '@Slice/userSlice';
 import { useAppDispatch, useAppSelector } from '@Store/hooks';
-import { getCartList } from '@Slice/cartSlice';
+import { emptyCart, getCartList } from '@Slice/cartSlice';
 import { calculateTotal } from '@Util/convert';
 
 import classes from './LaterPayment.module.scss';
@@ -49,8 +49,10 @@ const LaterPayment: React.FC = () => {
           amount: totalPrice * 100,
           description: `${totalAmount} products:${cartList.map((item) => `${item.title}:${item.amount}`).join(', ')}`,
         });
-        if (invoice.data.message === 'create invoice') alert('create invoice success');
-        else alert('create invoice fail');
+        if (invoice.data.message === 'create invoice') {
+          dispatch(emptyCart());
+          alert('create invoice success');
+        } else alert('create invoice fail');
       }
     } catch (error) {
       console.log(error);

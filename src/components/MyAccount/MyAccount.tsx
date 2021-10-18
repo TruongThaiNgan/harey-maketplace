@@ -1,3 +1,5 @@
+import Button from '@material-ui/core/Button';
+import { Send } from '@material-ui/icons';
 import { CardCvcElement, CardExpiryElement, CardNumberElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useFormik } from 'formik';
 import React, { useEffect, useState } from 'react';
@@ -100,7 +102,6 @@ const MyAccount: React.FC = () => {
   // Renderers
   const form = (
     <div className={classes.billDetails}>
-      <div className={classes.billTitle}>Billing details</div>
       <div className={classes.form}>
         {listInput.map(({ required, title, name }) => (
           <label htmlFor={title} key={title}>
@@ -118,15 +119,17 @@ const MyAccount: React.FC = () => {
           </label>
         ))}
       </div>
-      <button
-        type="submit"
+      <Button
+        variant="contained"
+        endIcon={<Send />}
         onClick={(event) => {
           event.preventDefault();
           handleSubmit();
         }}
+        style={{ marginLeft: 'auto' }}
       >
-        submit
-      </button>
+        Send
+      </Button>
     </div>
   );
 
@@ -166,19 +169,19 @@ const MyAccount: React.FC = () => {
       </div>
       <div className={classes.content}>
         {index === 1 && (
-          <div>
-            <div style={{ marginBottom: '1rem', textTransform: 'uppercase' }}>List card payment</div>
+          <>
+            <h2 style={{ marginTop: '1rem', marginBottom: '1rem', textTransform: 'uppercase' }}>List card payment</h2>
             {listPaymentID.map(({ paymentMethodID, last4 }, number) => (
               <div className={classes.row} key={paymentMethodID}>
                 <span>{`card ${number}:`}</span> {`**** **** **** ${last4}`}
               </div>
             ))}
-          </div>
+          </>
         )}
         {index === 2 &&
           (hasInfo ? (
             <div className={classes.cardContainer}>
-              <div style={{ marginBottom: '0.5rem', width: '100%' }}>Card Information</div>
+              <h2 style={{ marginBottom: '0.5rem', width: '100%' }}>Card Information</h2>
               <div className={classes.cardNumber}>
                 <CardNumberElement
                   options={{
@@ -210,8 +213,8 @@ const MyAccount: React.FC = () => {
               </button>
             </div>
           ) : (
-            <div>
-              Please update info
+            <div style={{ width: '100%' }}>
+              <h2 style={{ marginTop: '1rem' }}>Please update info</h2>
               {form}
             </div>
           ))}

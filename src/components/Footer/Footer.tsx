@@ -3,10 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
 import specialOffer from '@Image/special-offer.jpg';
-import copyRight from '@Image/copyRight.png';
 
-import classes from './Footer.module.scss';
 import { contactList, customServicesList, infoList, myAccountList } from './constants';
+import classes from './Footer.module.scss';
 
 const Footer: React.FC = () => {
   const [t] = useTranslation();

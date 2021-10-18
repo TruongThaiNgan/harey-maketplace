@@ -27,13 +27,13 @@
     .oldPrice {
       margin-right: 0.5rem;
 
-      color: #ccc;
+      color: var(--silver);
       font-size: 0.9rem;
       text-decoration: line-through;
     }
 
     .newPrice {
-      color: #595bd4;
+      color: var(--indigo);
       font-size: 1rem;
     }
   }

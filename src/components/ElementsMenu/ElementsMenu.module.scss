@@ -3,9 +3,9 @@
 .elementsMenuContainer {
   @include size(100%, 100%);
   @include row;
-  border: 1px solid #000;
+  border: 1px solid var(--black);
 
-  background-color: #fff;
+  background-color: var(--white);
 
   .element {
     @include size(100%, 100%);
@@ -16,5 +16,5 @@
 .image {
   @include row(center, center);
   @include size(100%, 100%);
-  border: 1px solid #000;
+  border: 1px solid var(--black);
 }

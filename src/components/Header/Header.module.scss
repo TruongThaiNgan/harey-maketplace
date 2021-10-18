@@ -24,39 +24,6 @@
     }
   }
 
-  .searchBar {
-    @include row(space-between, center);
-    width: fit-content;
-    height: 3rem;
-    padding-left: 0.5rem;
-    border: 1px solid #e6e6e6;
-    border-radius: 18px;
-    overflow: hidden;
-
-    color: #555;
-
-    @include mobile {
-      display: none;
-    }
-
-    input {
-      @include size(20rem, 2rem);
-      border: 0;
-      border-right: 1px solid #e6e6e6;
-
-      &:focus {
-        outline: none;
-      }
-    }
-
-    .searchButton {
-      @include size(4rem, 100%);
-      color: #fff;
-
-      background-color: rgba(89, 91, 212, 1);
-    }
-  }
-
   .features {
     @include row(flex-end, center);
     width: fit-content;
@@ -91,10 +58,10 @@
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
 
-      color: #fff;
+      color: var(--white);
       font-size: 0.8rem;
 
-      background-color: rgba(89, 91, 212, 1);
+      background-color: var(--indigo);
       @include tablet {
         width: fit-content;
       }
@@ -108,7 +75,7 @@
       button {
         border: 0;
 
-        color: #fff;
+        color: var(--white);
 
         background-color: transparent;
       }
@@ -147,17 +114,17 @@
     padding: 0;
 
     &:hover .buttonLink {
-      background-color: rgba(89, 91, 212, 1);
+      background-color: var(--indigo);
     }
   }
 
   .active {
-    background-color: rgba(89, 91, 212, 1);
+    background-color: var(--indigo);
   }
 
   .buttonLink {
     @include size(100%, 100%);
-    color: #fff;
+    color: var(--white);
     font-size: 1rem;
 
     cursor: pointer;
@@ -221,6 +188,71 @@
 
     span {
       margin: 0 0.5rem;
+    }
+  }
+}
+
+.searchContainer {
+  @include col(center, center);
+  .searchBar {
+    @include col(center, center);
+    width: fit-content;
+  }
+  .searchInput {
+    @include row(space-between, center);
+    width: fit-content;
+    height: 3rem;
+    padding-left: 0.5rem;
+    border: 1px solid #e6e6e6;
+    border-radius: 18px;
+    overflow: hidden;
+
+    color: #555;
+
+    @include mobile {
+      display: none;
+    }
+
+    input {
+      @include size(20rem, 2rem);
+      border: 0;
+      border-right: 1px solid #e6e6e6;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .searchButton {
+      @include size(4rem, 100%);
+      color: #fff;
+
+      background-color: var(--indigo);
+      cursor: pointer;
+    }
+  }
+  .dropdown {
+    position: relative;
+
+    align-self: start;
+
+    .searchData {
+      @include col;
+      position: absolute;
+      z-index: 1;
+
+      width: 28rem;
+      max-height: 16rem;
+      padding-left: 1rem;
+      overflow-y: scroll;
+
+      background-color: var(--white);
+      .searchItem {
+        width: 100%;
+      }
+      &::-webkit-scrollbar {
+        color: var(--white);
+      }
     }
   }
 }

@@ -11,7 +11,7 @@
     height: 100%;
     margin-top: 10rem;
 
-    background-color: #fff;
+    background-color: var(--white);
   }
 }
 
@@ -36,13 +36,13 @@ table {
 }
 
 tr {
-  background-color: #fff;
+  background-color: var(--white);
 }
 .amount {
   width: 50%;
   height: 2rem;
   padding: 0.5rem;
-  border: 1px solid #ccc;
+  border: 1px solid var(--silver);
   border-radius: 22px;
 
   text-align: center;
@@ -60,7 +60,7 @@ tr {
 }
 
 .total {
-  color: #595bd4;
+  color: var(--indigo);
   font-size: 1.5rem;
 }
 
@@ -72,7 +72,7 @@ tr {
   background-color: transparent;
   cursor: pointer;
   &:hover {
-    color: #f00;
+    color: var(--red);
   }
 }
 
@@ -88,19 +88,19 @@ tr {
     width: 55%;
     height: 100%;
 
-    background-color: #fff;
+    background-color: var(--white);
   }
 }
 .nav {
   @include col;
   width: 25%;
   height: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid var(--silver);
   button {
     width: 100%;
     height: 3rem;
     border: 0;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid var(--silver);
 
     font-weight: 600;
     font-size: 0.8rem;
@@ -132,7 +132,7 @@ tr {
     padding-left: 1rem;
     border: 0;
 
-    background-color: #f4f6f7;
+    background-color: var(--main-background);
     &:focus {
       outline: none;
     }
@@ -149,7 +149,7 @@ tr {
   height: 100%;
   padding-top: 1rem;
 
-  background-color: #fff;
+  background-color: var(--white);
 }
 .row {
   @include row(space-between, center);
@@ -165,11 +165,11 @@ tr {
 
 .separate {
   width: 100%;
-  border-top: 1px dashed #ccc;
+  border-top: 1px dashed var(--silver);
 }
 
 .totalPrice {
-  color: rgba(68, 68, 68, 1);
+  color: var(--light-gray);
   font-size: 1.3rem;
 }
 
@@ -183,7 +183,7 @@ tr {
 .shopping {
   width: 13rem;
   height: 3rem;
-  border: 1px solid rgba(41, 47, 56, 1);
+  border: 1px solid var(--charade);
   border-radius: 22px;
 
   letter-spacing: 2px;
@@ -193,29 +193,29 @@ tr {
   background-color: transparent;
   cursor: pointer;
   &:hover {
-    color: #fff;
+    color: var(--white);
 
-    background-color: rgba(41, 47, 56, 1);
+    background-color: var(--charade);
   }
 }
 .proceed {
   width: 13rem;
   height: 3rem;
-  border: 1px solid #595bd4;
+  border: 1px solid var(--indigo);
   border-radius: 22px;
 
-  color: #fff;
+  color: var(--white);
 
   letter-spacing: 2px;
 
   text-transform: uppercase;
 
-  background-color: #595bd4;
+  background-color: var(--indigo);
 
   cursor: pointer;
   &:hover {
-    color: #fff;
+    color: var(--white);
 
-    background-color: rgba(41, 47, 56, 1);
+    background-color: var(--charade);
   }
 }

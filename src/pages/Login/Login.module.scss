@@ -5,13 +5,13 @@
   width: 100%;
   padding: 5rem 0;
 
-  background: #f4f6f7;
+  background: var(--main-background);
 
   .block {
     @include row(center);
     width: 90%;
 
-    background-color: #fff;
+    background-color: var(--white);
   }
 }
 
@@ -20,7 +20,7 @@
   width: 50%;
   padding: 4rem;
 
-  background-color: #fff;
+  background-color: var(--white);
 
   h1 {
     margin-bottom: 2rem;

@@ -19,7 +19,7 @@ const ProductPage: React.FC = () => {
   const [navIndex, setNavIndex] = useState<number>(1);
   const [isOpenSnackBar, setIsOpenSnackBar] = useState<boolean>(false);
   const dispatch = useAppDispatch();
-
+  const [isImage1, setIsImage1] = useState<boolean>(true);
   // Hook effects
   useEffect(() => {
     if (!infoPage) dispatch(fetchOneProduct(name));
@@ -46,7 +46,7 @@ const ProductPage: React.FC = () => {
     <div className={classes.productContainer}>
       <div className={classes.header}>
         <div className={classes.image}>
-          <img src={infoPage?.image1} alt="image1" />
+          <img src={isImage1 ? infoPage.image1 : infoPage.image2} alt="image1" />
         </div>
         <div className={classes.description}>
           <div className={classes.title}>{infoPage?.title}</div>
@@ -81,12 +81,24 @@ const ProductPage: React.FC = () => {
 
       <div className={classes.imageBottom}>
         <div className={classes.left}>
-          <div className={classes.circle}>
+          <button
+            type="button"
+            className={classes.circle}
+            onClick={() => {
+              setIsImage1(true);
+            }}
+          >
             <img src={infoPage?.image1} alt="" />
-          </div>
-          <div className={classes.circle}>
+          </button>
+          <button
+            type="button"
+            className={classes.circle}
+            onClick={() => {
+              setIsImage1(false);
+            }}
+          >
             <img src={infoPage?.image2} alt="" />
-          </div>
+          </button>
         </div>
       </div>
 

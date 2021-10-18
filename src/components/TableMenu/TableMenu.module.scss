@@ -1,7 +1,7 @@
 @import '../../scss/main';
 
 .tableMenuContainer {
-  background-color: #fff;
+  background-color: var(--white);
 
   .title {
     @include row(flex-start, center);
@@ -14,11 +14,11 @@
   .seperate {
     width: 95%;
     height: 0;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid var(--silver);
   }
 
   .list {
-    border-right: 1px solid #ccc;
+    border-right: 1px solid var(--silver);
 
     div {
       margin-top: 1rem;

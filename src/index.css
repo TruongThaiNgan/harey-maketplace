@@ -5,6 +5,15 @@
 :root {
   --indigo: rgb(89, 91, 212);
   --charade: rgb(41, 47, 56);
+  --background-backdrop: rgba(0, 0, 0, 0.75);
+  --white: #fff;
+  --silver: #ccc;
+  --red: #f00;
+  --main-background: #f4f6f7;
+  --light-gray: rgb(68, 68, 68);
+  --black: #000;
+  --fiord: #3b4466;
+  --mercury: #e6e6e6;
 }
 
 body {
