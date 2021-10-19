@@ -13,7 +13,6 @@ const Shop: React.FC = () => {
   const queries = queryString.parse(location.search);
   const [page, setPage] = useState<number>(+queries.page! || 1);
   const [limit, setLimit] = useState<number>(+queries.limit! || 5);
-  console.log(limit);
   const [sort, setSort] = useState<string>('toolBar.default');
   return (
     <div className={classes.shopContainer}>

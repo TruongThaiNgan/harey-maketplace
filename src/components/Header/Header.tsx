@@ -9,6 +9,8 @@ import logo from '@Image/logo.svg';
 import CustomLink from '@Component/CustomLink';
 import axios from '@Service/axios';
 import SearchItem from '@Component/SearchItem';
+import BackDrop from '@Component/BackDrop';
+import Category from '@Component/Category';
 
 import i18n from '../../i18n/i18n';
 
@@ -30,6 +32,8 @@ const Header: React.FC = () => {
   const [language, setLanguage] = useState<string>('vi');
   const [search, setSearch] = useState<string>('');
   const [searchData, setSearchData] = useState<ISearchData[]>([]);
+  const [isOpenRightSlider, setIsOpenRightSlider] = useState<boolean>(false);
+  const [isOpenLeftSlider, setIsOpenLeftSlider] = useState<boolean>(false);
 
   useEffect(() => {
     if (search)
@@ -47,6 +51,16 @@ const Header: React.FC = () => {
         });
     else setSearchData([]);
   }, [search]);
+
+  useEffect(() => {
+    if (isOpenRightSlider) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = 'scroll';
+  }, [isOpenRightSlider]);
+
+  useEffect(() => {
+    if (isOpenLeftSlider) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = 'scroll';
+  }, [isOpenLeftSlider]);
 
   const changeLanguage = (): void => {
     if (language === 'vi') {
@@ -69,6 +83,18 @@ const Header: React.FC = () => {
       search: `?key=${key}`,
     });
   };
+  const openRightSlider = (): void => {
+    setIsOpenRightSlider(true);
+  };
+  const closeRightSlider = (): void => {
+    setIsOpenRightSlider(false);
+  };
+  const openLeftSlider = (): void => {
+    setIsOpenLeftSlider(true);
+  };
+  const closeLeftSlider = (): void => {
+    setIsOpenLeftSlider(false);
+  };
   return (
     <header className={classes.header}>
       <div className={classes.listLink}>
@@ -90,9 +116,9 @@ const Header: React.FC = () => {
       <div className={classes.seperate} />
 
       <div className={classes.headerBar}>
-        <button type="button">
+        <button type="button" className={classes.logo}>
           <CustomLink to="/">
-            <img src={logo} alt="logo" />
+            <img src={logo} alt="logo" className={classes.img} />
           </CustomLink>
         </button>
 
@@ -145,7 +171,7 @@ const Header: React.FC = () => {
         <div className={classes.navBar}>
           <div className={classes.categories}>
             <span className={classes.categoriesText}>{t('header.categories')}</span>
-            <button type="button">
+            <button type="button" onClick={openLeftSlider}>
               <MenuIcon />
             </button>
           </div>
@@ -164,8 +190,52 @@ const Header: React.FC = () => {
               </button>
             ))}
           </div>
+          <button type="button" className={classes.rightButton} onClick={openRightSlider}>
+            <MenuIcon />
+          </button>
         </div>
       </nav>
+
+      {isOpenRightSlider && (
+        <div className={classes.rightSlider}>
+          <BackDrop onClick={closeRightSlider} />
+          {buttonList.map(({ id, title, link }) => (
+            <button
+              type="button"
+              key={`${id}`}
+              className={classes.buttonRightSlider}
+              onClick={() => {
+                closeRightSlider();
+                setIndex(id);
+              }}
+            >
+              <CustomLink to={link} key={`${id}`}>
+                {t(title)}
+              </CustomLink>
+            </button>
+          ))}
+          <div className={classes.searchRightSlider}>
+            <input type="text" placeholder={t('header.look')} value={search} onChange={handleChangeSearch} />
+            <button
+              type="button"
+              onClick={() => {
+                closeRightSlider();
+                goToSearchPage();
+              }}
+            >
+              <SearchOutlinedIcon />
+            </button>
+          </div>
+        </div>
+      )}
+      {isOpenLeftSlider && (
+        <div className={classes.leftSlider}>
+          <BackDrop onClick={closeLeftSlider} />
+          <div className={classes.leftSliderCategory}>
+            <Category closeSlider={closeLeftSlider} />
+          </div>
+        </div>
+      )}
     </header>
   );
 };

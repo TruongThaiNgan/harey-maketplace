@@ -7,7 +7,11 @@ import CustomLink from '@Component/CustomLink';
 import classes from './Category.module.scss';
 import { listCategories } from './constants';
 
-const Category: React.FC = () => {
+interface CategoryProps {
+  closeSlider?: () => void;
+}
+
+const Category: React.FC<CategoryProps> = ({ closeSlider }) => {
   // Hook states
   const [t] = useTranslation();
 
@@ -18,12 +22,20 @@ const Category: React.FC = () => {
       <ul>
         {listCategories.map(({ title, icon, hasButtonAdd, link }) => (
           <li key={title} className={classes.productItem}>
-            <CustomLink to={link}>
-              <div className={classes.left}>
-                <button type="button">{icon}</button>
-                <span>{t(title)}</span>
-              </div>
-            </CustomLink>
+            <button
+              type="button"
+              className={classes.link}
+              onClick={() => {
+                if (closeSlider) closeSlider();
+              }}
+            >
+              <CustomLink to={link}>
+                <div className={classes.left}>
+                  <div className={classes.icon}>{icon}</div>
+                  <span>{t(title)}</span>
+                </div>
+              </CustomLink>
+            </button>
 
             {hasButtonAdd && (
               <div className={classes.right}>

@@ -21,13 +21,7 @@
   .sideBar {
     @include size(25%, 100%);
     padding: 0 1rem;
-    @include tablet {
-      display: none;
-    }
-    @include mobile {
-      display: none;
-    }
-    @include x-mobile {
+    @include not-desktop {
       display: none;
     }
   }
@@ -57,50 +51,62 @@
       background-image: url('https://elab.stylemixthemes.com/demo-1/wp-content/uploads/sites/2/2019/03/phones_.png');
       transform: translateX(-25%);
     }
-
-    .bannerText {
-      @include col(center, center);
-      position: absolute;
-      top: 15%;
-      right: 10%;
-
-      width: 35%;
-      @include tablet {
-        top: 0;
-        right: 0;
-      }
-      @include mobile {
-        top: 0;
-        right: 0;
-      }
-      @include x-mobile {
-        top: 0;
-        right: 0;
-      }
-      .subTitle {
-        margin-bottom: 1rem;
-
-        color: rgb(90, 87, 87);
-        font-weight: bold;
-      }
-
-      .title {
-        margin-bottom: 1rem;
-
-        font-weight: bold;
-        font-size: 3rem;
-      }
-
-      .content {
-        width: 100%;
-
-        color: rgb(120, 120, 120);
-        line-height: 2;
-      }
-    }
   }
 }
 
+.bannerText {
+  @include col(center, center);
+  position: absolute;
+  top: 15%;
+  right: 10%;
+
+  width: 35%;
+  @include tablet {
+    top: 0;
+    right: 0;
+  }
+  @include mobile {
+    top: 0;
+    right: 0;
+
+    width: 50%;
+  }
+  @include x-mobile {
+    top: 0;
+    right: 10%;
+
+    width: 40%;
+  }
+  .subTitle {
+    margin-bottom: 1rem;
+
+    color: rgb(90, 87, 87);
+    font-weight: bold;
+  }
+
+  .title {
+    margin-bottom: 1rem;
+
+    font-weight: bold;
+    font-size: 3rem;
+    @include x-mobile {
+      font-size: 2rem;
+    }
+  }
+
+  .content {
+    width: 100%;
+
+    color: rgb(120, 120, 120);
+    line-height: 2;
+    @include mobile {
+      display: none;
+    }
+    @include x-mobile {
+      display: none;
+    }
+  }
+}
 .imageList {
   @include row(space-between, center);
   width: 100%;
@@ -134,6 +140,13 @@
 
   background-image: url('https://elab.stylemixthemes.com/demo0/wp-content/uploads/sites/2/2019/07/wireless-headphones-719x349.png');
   cursor: pointer;
+  @include x-mobile {
+    @include col(center, center);
+    padding-left: 0;
+
+    background-color: #f4b3be;
+    background-image: none;
+  }
 }
 
 .image2 {
@@ -145,6 +158,13 @@
 
   background-image: url('https://elab.stylemixthemes.com/demo-1/wp-content/uploads/sites/2/2019/07/smart_speakers-719x349.png');
   cursor: pointer;
+  @include x-mobile {
+    @include col(center, center);
+    padding-left: 0;
+
+    background-color: #acacb5;
+    background-image: none;
+  }
 }
 
 .title {
@@ -158,6 +178,12 @@
 .content {
   width: 40%;
   margin-bottom: 2rem;
+  @include mobile {
+    width: 60%;
+  }
+  @include x-mobile {
+    width: 80%;
+  }
 }
 
 .button {
