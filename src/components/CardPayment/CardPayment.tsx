@@ -28,6 +28,7 @@ const CardPayment: React.FC<CardPaymentProps> = ({ value, disabled }) => {
   const onSubmitCard = useCallback(
     async (event: React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
+
       if (!stripe || !elements) {
         return;
       }

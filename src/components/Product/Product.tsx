@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import Snackbar from '@material-ui/core/Snackbar';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
@@ -5,6 +6,7 @@ import ShuffleOutlinedIcon from '@material-ui/icons/ShuffleOutlined';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 import React, { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+// eslint-disable-next-line import/order
 import { NavLink } from 'react-router-dom';
 
 import { useAppDispatch } from '@Store/hooks';
@@ -106,5 +108,6 @@ const Product: React.FC<ProductProps> = ({ image1, image2, title, price, oldPric
   );
 };
 
+// eslint-disable-next-line react/default-props-match-prop-types
 Product.defaultProps = { timeCountdown: false };
 export default Product;

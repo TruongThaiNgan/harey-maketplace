@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import CardPayment from '@Component/CardPayment';
 import IbanPayment from '@Component/IbanPayment';
 import LaterPayment from '@Component/LaterPayment';
+import PaypalPayment from '@Component/PaypalPayment';
 
 import { PaymentProps } from './interfaces';
 import classes from './Payment.module.scss';
@@ -18,6 +19,10 @@ const listButton = [
   },
   {
     id: 3,
+    title: 'Paypal',
+  },
+  {
+    id: 4,
     title: 'Payment Later',
   },
 ];
@@ -42,7 +47,9 @@ const Payment: React.FC<PaymentProps> = ({ value, disabled }) => {
       </div>
       {index === 1 && <CardPayment value={value} disabled={disabled} />}
       {index === 2 && <IbanPayment value={value} disabled={disabled} />}
-      {index === 3 && <LaterPayment />}
+      {index === 3 && <PaypalPayment value={value} disabled={disabled} />}
+      {/* {index === 3 && <PaypalPayment/>} */}
+      {index === 4 && <LaterPayment />}
     </div>
   );
 };
